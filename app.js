@@ -1,10 +1,11 @@
 //external requires
 const express = require('express');
-const morgan = require('moregan');
+const morgan = require('morgan');
+const path = require('path');
 
 
 //internal requires
-const usersRouter = require("./routes/users");
+//const usersRouter = require("./routes/users");
 
 
 const app = express();
@@ -17,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 
 //internal use statements
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
 
 //TODO: error handlers
 
