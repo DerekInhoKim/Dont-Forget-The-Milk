@@ -1,10 +1,10 @@
 // external routes
 const jwt = require('jsonwebtoken');
-const { secret, expiresIn } = require('../config').jwtConfig;
+const { secret, expiresIn } = require('./config').jwtConfig;
 const bearerToken = require("express-bearer-token");
 
 //internal routes
-const { User } = require('../db/models');
+const { User } = require('./db/models');
 
 
 //function to create a user token

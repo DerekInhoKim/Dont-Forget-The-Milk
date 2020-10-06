@@ -1,11 +1,12 @@
 //external requires
 const express = require('express');
 const morgan = require('morgan');
-const { ValidationError, HostNotFoundError } = require("sequelize");
+const { ValidationError } = require("sequelize");
 const path = require('path');
 
 
 //internal requires
+const { environment } = require("./config");
 const usersRouter = require("./routes/users");
 
 

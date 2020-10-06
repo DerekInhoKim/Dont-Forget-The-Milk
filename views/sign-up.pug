@@ -1,0 +1,23 @@
+extends layout.pug
+
+block content
+  div(class="registration-container")
+    div(class="error-container")
+    h2 Create an account
+    form(class="registration-form")
+      .form-group
+        label(for='firstName') First Name
+        input(type='text' name='firstName' placeholder='Enter first name')
+      .form-group
+        label(for='lastName') Last Name
+        input(type='text' name='lastName' placeholder='Enter last name')
+      .form-group
+        label(for='userName') Username
+        input(type='text' name='userName' placeholder='Enter a username')
+      include includes/shared-form-fields.pug
+      .form-group
+        label(for='confirmPassword') Confirm Password
+        input(type='password' name='confirmPassword' placeholder='Confirm password')
+      button(type='submit') Register
+    a(href='/log-in') Already registered?
+  script(type='module' scr='js/sign-up.js')
