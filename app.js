@@ -57,24 +57,7 @@ app.use((error, req, res, next) => {
 });
 
 
-const express = require("express");
-const morgan = require("morgan");
-const { ValidationError } = require("sequelize");
-const indexRouter = require("./routes/index");
-const { environment } = require("./config");
-const path = require("path");
 
-const app = express();
-// Set the pug view engine.
-app.set("view engine", "pug");
-app.use(morgan("dev"));
-app.use(express.json());
-
-app.use("/", indexRouter);
-
-// app.use("/api/list", listsRouter);
-
-app.use(express.static(path.join(__dirname, "public")));
 
 
 module.exports = app;
