@@ -3,17 +3,22 @@ const morgan = require('morgan');
 const { environment } = require('./config');
 
 const app = express();
-const searchRouter = require('./routes/search');
+const indexRouter = require('./routes/index');
+const searchRouter = require('./routes/api/search');
 
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the express-sequelize-starter!");
-});
+app.set("view engine", "pug");
 
+// app.get("/", (req, res) => {
+//   res.send("Welcome to the express-sequelize-starter!");
+// });
 
-// Router for search feature
+// Router for INDEX - front end
+app.use('/', indexRouter);
+
+// Router for SEARCH FEATURE : API
 app.use('/search', searchRouter);
 
 // Catch unhandled requests and forward to error handler.
