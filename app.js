@@ -23,8 +23,6 @@ app.use((req, res, next) => {
   next(err);
 });
 
-// Custom error handlers.
-
 // Generic error handler.
 app.use((err, req, res, next) => {
   // console.log('error -------------------------------')
