@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require('morgan');
 const { environment } = require('./config');
+const path = require("path");
 
 const app = express();
 const indexRouter = require('./routes/index');
@@ -8,6 +9,7 @@ const searchRouter = require('./routes/api/search');
 
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
 
 app.set("view engine", "pug");
 
@@ -15,7 +17,7 @@ app.set("view engine", "pug");
 //   res.send("Welcome to the express-sequelize-starter!");
 // });
 
-// Router for INDEX - front end
+// Router for INDEX : front end
 app.use('/', indexRouter);
 
 // Router for SEARCH FEATURE : API

@@ -5,7 +5,7 @@ const path = require("path");
 const app = express();
 
 // Set the pug view engine.
-app.set("view engine", "pug");
+// app.set("view engine", "pug");
 app.use(express.static(path.join(__dirname, "public")));
 
 // Define a route.

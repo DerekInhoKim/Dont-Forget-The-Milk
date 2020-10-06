@@ -1,0 +1,30 @@
+
+.logo {
+  width: 45px;
+  height: auto;
+}
+
+.navbar {
+  background-color: #2060BF;
+  height: 50px;
+}
+
+button {
+  font-size: 14px;
+  color:  #2060BF;
+  font-weight: bold;
+  border: 1px solid #F4F7FB;
+  border-radius: 3px;
+  width: 70px;
+}
+
+.form-inline {
+  font-size: 9px;
+  color: white;
+}
+
+.form-control {
+  height: 30px;
+  background-color:#3D79C9;
+}
+
