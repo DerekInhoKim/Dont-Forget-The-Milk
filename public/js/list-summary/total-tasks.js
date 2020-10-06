@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   //If there is no list selected, we want to display our default inbox information.
   if(!listId){
     listId = 1
+
   }
 
   try {
