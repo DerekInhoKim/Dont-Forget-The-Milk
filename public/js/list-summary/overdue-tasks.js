@@ -53,14 +53,14 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     const { tasks } = await res.json()
 
     //Filter through all the tasks, to find which tasks are completed by accessing the column isComplete and checking the boolean value
-    const completedTasks = tasks.filter( task => {
+    const overdueTasks = tasks.filter( task => {
       task.dueDate < new Date()
 
     })
 
     //We take the element with the class overdue-tasks-span and set the innerHTML of the div to display the number of tasks which have been filtered to show which tasks have due dates less than today's date.
     const allTasks = document.querySelector(".overdue-tasks-span")
-    allTasks.innerHTML = completedTasks.length;
+    allTasks.innerHTML = overdueTasks.length;
 
 
   } catch (e){
