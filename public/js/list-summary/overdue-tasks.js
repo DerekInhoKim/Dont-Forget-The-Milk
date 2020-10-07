@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", async (event) => {
   //Access the user access token to pass into the header to authorize the user during our requests.
   const token = localStorage.getItem("DFTM_ACCESS_TOKEN");
+  const overdueTasksSpan = document.querySelector(".overdue-tasks-span")
 
 
   //Decide how to figure out which listID we're pulling from.
@@ -31,9 +32,31 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
   }
 
-  //If there is no list/task selected, we want to display our default inbox information.
+  //If there is no list/task selected, we want to display a number for total tasks.
   if(!listId){
-    listId = 1
+    const allLists = await fetch(`/api/lists`, { //Returns a list of all lists.
+      headers: {
+        "Authorization": `Bearer: ${token}`
+      }
+    })
+
+    let counter = 0; //Set up a counter, to count the number of tasks.
+    allLists.forEach(list => {
+      const eachTask = await fetch(`/api/lists/${list.id}`, { //This request will get all the tasks for a list.
+        headers: {
+          "Authorization": `Bearer: ${token}`
+        }
+      })
+
+      const overdueTasks = eachTask.filter(task => {
+        task.date < new Date()
+      })
+
+      counter += overdueTasks.length
+    })
+    //Set the innerHTML of our overdueTaskSpan to equal the count of all tasks added from each list
+    overdueTasksSpan.innerHTML = counter;
+
 
   }
 
@@ -59,7 +82,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     })
 
     //We take the element with the class overdue-tasks-span and set the innerHTML of the div to display the number of tasks which have been filtered to show which tasks have due dates less than today's date.
-    const overdueTasksSpan = document.querySelector(".overdue-tasks-span")
     overdueTasksSpan.innerHTML = overdueTasks.length;
 
 

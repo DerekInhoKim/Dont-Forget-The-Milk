@@ -28,11 +28,36 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
   }
 
-  //If there is no list selected, we want to display our default inbox information.
+  //If there is no list/task selected, we want to display a number for total tasks.
   if(!listId){
-    listId = 1
+    const allLists = await fetch(`/api/lists`, { //Returns a list of all lists.
+      headers: {
+        "Authorization": `Bearer: ${token}`
+      }
+    })
+
+    let counter = 0; //Set up a counter, to count the number of tasks.
+    allLists.forEach(list => {
+      const eachTask = await fetch(`/api/lists/${list.id}`, { //This request will get all the tasks for a list.
+        headers: {
+          "Authorization": `Bearer: ${token}`
+        }
+      })
+
+      //Filter the tasks to find only the tasks that are complete
+      const completeTasks = eachTask.filter(task => {
+        task.isComplete === true
+      })
+
+      //Add the number of tasks to the counter
+      counter += completeTasks.length
+    })
+    //Set the innerHTML of our completeTaskSpan to equal the count of all tasks from each list which have been filtered
+    completeTasksSpan.innerHTML = counter;
+
 
   }
+
 
   try {
     //We grab all the tasks, from the specific list

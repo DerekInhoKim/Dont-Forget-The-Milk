@@ -1,6 +1,9 @@
+const { all } = require("sequelize/types/lib/operators");
+
 document.addEventListener("DOMContentLoaded", async (event) => {
   //Access the user access token to pass into the header to authorize the user during our requests.
   const token = localStorage.getItem("DFTM_ACCESS_TOKEN");
+  const totalTasksSpan = document.querySelector(".total-task-span")
 
 
   //Decide how to figure out which listID we're pulling from.
@@ -26,9 +29,27 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   const listId = tasksList.listId
 
 
-  //If there is no list selected, we want to display our default inbox information.
+  //If there is no list/task selected, we want to display a number for total tasks.
   if(!listId){
-    listId = 1
+    const allLists = await fetch(`/api/lists`, { //Returns a list of all lists.
+      headers: {
+        "Authorization": `Bearer: ${token}`
+      }
+    })
+
+    let counter = 0; //Set up a counter, to count the number of tasks.
+    allLists.forEach(list => {
+      const eachTask = await fetch(`/api/lists/${list.id}`, { //This request will get all the tasks for a list.
+        headers: {
+          "Authorization": `Bearer: ${token}`
+        }
+      })
+
+      counter += eachTask.length //Add the length of the array, to the counter.
+    })
+    //Set the innerHTML of our totalTaskSpan to equal the count of all tasks added from each list
+    totalTasksSpan.innerHTML = counter;
+
 
   }
 
@@ -48,7 +69,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     const { tasks } = await res.json()
 
     //We take the element with the class total-task-span and set the innerHTML of the div to display the number of all tasks.
-    const totalTasksSpan = document.querySelector(".total-task-span")
     totalTasksSpan.innerHTML = tasks.length;
 
 
