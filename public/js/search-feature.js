@@ -20,6 +20,7 @@ searchForm.addEventListener("keydown", async (e) => {
       const { matchingTasks } = await res.json();
       // console.log("RES JSON: ", resJSON);
 
+      const header = document.getElementById("")
       const taskListContainer = document.querySelector(".task-list-container");
       const tasksHtml = matchingTasks.map(taskObj => {
         const task = taskObj.taskName;

@@ -70,7 +70,7 @@ button {
   align-items: center;
 }
 
-.welcome__container {
+.welcome-container {
   /* width: 300px; */
   /* height: 30px; */
   /* justify-content: flex-end; */
@@ -137,15 +137,15 @@ button {
 
 .add-task-form {
   grid-area: add-task-form;
-  border-top: 1px dotted #8C949D;
-  border-bottom: 1px dotted #8C949D;
+  border-top: 1px dotted rgba(140, 148, 157, .5);
+  border-bottom: 1px dotted rgba(140, 148, 157, .5);
   padding: 10px 18px;
 }
 
 .add-task-input {
   width: 100%;
-  height: 30px;
-  border: 1px solid #676767;
+  height: 35px;
+  border: 1px solid rgba(140, 148, 157, .5);
   border-radius: 3px;
   padding: 0 8px;
 }
@@ -172,7 +172,7 @@ button {
  color: #676767;
 }
 
-.mid-col-task-total {
+.task-total {
   grid-area: task-total;
   background-color: #DBE8F6;
   width: 60px;
@@ -193,7 +193,7 @@ button {
   /* line-height: 19px; */
 }
 
-.mid-col-completed-total {
+.completed-total {
   grid-area: completed-total;
   font-size: 13px;
   background-color: #DBE8F6;
@@ -230,23 +230,23 @@ button {
 
 .task-tab {
   width: 100px;
-  height: 30px;
+  height: 27px;
   background-color: white;
   font-size: 13px;
   padding: 5px;
   margin-left: 3px;
   position: relative;
   top:1px;
-  border: 1px dotted #8C949D;
+  border: 1px dotted rgba(140, 148, 157, .5);
   border-radius: 2px;
   border-bottom: none;
   /* background-color: lawngreen; */
 }
 
-.mid-col-task-bar {
+/* .mid-col-task-bar {
   grid-area: task-bar;
   background-color: blue;
-}
+} */
 
 .task-list-container {
   grid-area: task-list;
@@ -256,7 +256,7 @@ button {
 .task-container {
   height: 35px;
   padding: 3px 0 3px 15px;
-  border-bottom: 1px dotted #8C949D;
+  border-bottom: 1px dotted rgba(140, 148, 157, .5);
   /* background-color: turquoise; */
 }
 
