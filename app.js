@@ -1,7 +1,6 @@
 //external requires
 
 const express = require("express");
-const tasks_back_end = require('./routes/api/tasks_back')
 const morgan = require("morgan");
 const { ValidationError } = require("sequelize");
 const path = require("path");
@@ -12,7 +11,7 @@ const { environment } = require("./config");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/api/users");
 const searchRouter = require("./routes/api/search");
-
+const tasks_back_end = require('./routes/api/tasks_back')
 const app = express();
 
 app.set("view engine", "pug");
