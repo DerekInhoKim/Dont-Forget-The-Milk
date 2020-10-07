@@ -7,6 +7,8 @@ block content
     div(class="grid__left-col" id="")
       div(class="left-col__all-tasks") This holds all tasks
       dv(class="left-col__list-categories") THIS HOLDS THE LIST CATEGORIES
+        div(class="list-container")
+        script(type="module" src="js/list.js") 
 
     div(class="grid__mid-col")
 
@@ -23,9 +25,9 @@ block content
         button(class="task-tab") Incomplete
         button(class="task-tab") Completed
 
-      form(class="add-task-form" id="add-task")
-        input(class="add-task-input" id="add-task" type="input" placeholder="Add a task..." aria-label="Add a task..." name="")
-        button(class="add-task-btn" type="submit") Add Task
+      //- form(class="add-task-form" id="add-task")
+      //-   input(class="add-task-input" id="add-task" type="input" placeholder="Add a task..." aria-label="Add a task..." name="")
+      //-   button(class="add-task-btn" type="submit") Add Task
 
       div(class="task-list-container")
         div(class="task-container") 

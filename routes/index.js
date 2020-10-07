@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/lists", (req, res) => {
-  res.render("lists");
+  res.render("index");
 });
 
 
