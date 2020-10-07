@@ -140,13 +140,8 @@ button {
   box-shadow: 1px -2px 5px rgba(0, 0, 0, 0.2);
   display: grid;
   /* grid-template-columns: 1fr 1fr 3fr 3fr; */
-<<<<<<< HEAD
-  grid-template-columns: 75px 80px 80px 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1.5fr 13fr;
-=======
   grid-template-columns: 75px 80px 1fr 1fr;
   grid-template-rows: 1fr 0.7fr 1.5fr 13fr;
->>>>>>> master
   grid-template-areas:
     "list-header list-header list-header . ."
     "task-total overdue-total completed-total divider tab-container"
@@ -384,11 +379,11 @@ li:hover {
   opacity: 0.8;
 }
 
-.notes-input:-ms-input-placeholder { 
+.notes-input:-ms-input-placeholder {
  color: #676767;
 }
 
-.notes-input::-ms-input-placeholder { 
+.notes-input::-ms-input-placeholder {
  color: #676767;
 }
 
