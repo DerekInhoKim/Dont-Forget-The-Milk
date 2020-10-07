@@ -55,8 +55,8 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     })
 
     //We take the element with the class completed tasks-span and set the innerHTML of the div to display the number of tasks which have been filtered to show which ones are complete.
-    const allTasks = document.querySelector(".completed-tasks-span")
-    allTasks.innerHTML = completedTasks.length;
+    const completedTasksSpan = document.querySelector(".completed-tasks-span")
+    completedTasksSpan.innerHTML = completedTasks.length;
 
 
   } catch (e){

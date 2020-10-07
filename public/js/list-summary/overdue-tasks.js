@@ -59,8 +59,8 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     })
 
     //We take the element with the class overdue-tasks-span and set the innerHTML of the div to display the number of tasks which have been filtered to show which tasks have due dates less than today's date.
-    const allTasks = document.querySelector(".overdue-tasks-span")
-    allTasks.innerHTML = overdueTasks.length;
+    const overdueTasksSpan = document.querySelector(".overdue-tasks-span")
+    overdueTasksSpan.innerHTML = overdueTasks.length;
 
 
   } catch (e){

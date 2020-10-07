@@ -28,7 +28,7 @@ searchForm.addEventListener("keydown", async (e) => {
                   <div class="task"> ${task} </div>
                 </div>`
       });
-      
+
       taskListContainer.innerHTML = tasksHtml.join("")
 
     } catch (err) {
