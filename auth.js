@@ -1,10 +1,10 @@
 // external routes
 const jwt = require('jsonwebtoken');
-const { secret, expiresIn } = require('./config').jwtConfig;
 const bearerToken = require("express-bearer-token");
 
 //internal routes
 const { User } = require('./db/models');
+const { secret, expiresIn } = require('./config').jwtConfig;
 
 
 //function to create a user token
@@ -43,8 +43,8 @@ const authRefresh = (req, res, next) => {
 
     try {
       req.user = await User.findByPk(id);
-    } catch(e) {
-      return next(e);
+    } catch(error) {
+      return next(error);
     }
 
     if (!req.user) {

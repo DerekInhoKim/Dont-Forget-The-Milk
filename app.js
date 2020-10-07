@@ -9,7 +9,7 @@ const path = require("path");
 
 const { environment } = require("./config");
 const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
+const usersRouter = require("./routes/api/users");
 
 const app = express();
 
@@ -22,7 +22,7 @@ app.use(express.json());
 
 //internal use statements
 app.use("/", indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
 // app.use("/api/list", listsRouter);
 app.use(express.static(path.join(__dirname, "public")));
 

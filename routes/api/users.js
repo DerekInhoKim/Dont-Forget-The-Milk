@@ -1,9 +1,10 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const { check } = require("express-validator");
-const { asyncHandler, handleValidationErrors } = require("./utils");
-const { getUserToken } = require("../auth");
-const { User } = require("../db/models");
+
+const { asyncHandler, handleValidationErrors } = require("../utils");
+const { getUserToken } = require("../../auth");
+const { User } = require("../../db/models");
 
 const router = express.Router();
 
@@ -23,11 +24,6 @@ const signupValidations = [
     .withMessage("A last name is required.")
     .isLength({ min: 1, max: 50 })
     .withMessage("A last name must be between 1 and 50 characters."),
-  check("confirmPassword")
-    .exists({ checkFalsy: true })
-    .withMessage("Please confirm your password")
-    .custom((value, { req }) => value === req.body.password)
-    .withMessage("Confirm Password field does not match password."),
 ];
 
 const sharedAuthValidations = [
@@ -44,8 +40,13 @@ const sharedAuthValidations = [
 
 //sign up
 router.post("/",
-  sharedAuthValidations,
   signupValidations,
+  sharedAuthValidations,
+  check("confirmPassword")
+    .exists({ checkFalsy: true })
+    .withMessage("Please confirm your password")
+    .custom((value, { req }) => value === req.body.password)
+    .withMessage("Confirm Password field does not match password."),
   handleValidationErrors,
   asyncHandler(async(req, res) => {
     const {
@@ -77,7 +78,7 @@ router.post("/",
 );
 
 
-// log in
+// sign in
 router.post("/token", sharedAuthValidations,
   asyncHandler(async(req, res, next) => {
     const { email, password } = req.body;
@@ -94,7 +95,7 @@ router.post("/token", sharedAuthValidations,
       error.errors = ["Unable to authenticate provided information. Please check user name and/or password."];
       return next(error);
     }
-    
+
     const token = getUserToken(user);
     res.json({ token, user: { id: user.id }});
   })
