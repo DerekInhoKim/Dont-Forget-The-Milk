@@ -46,14 +46,14 @@ body {
 
 ::placeholder {
   color: white;
-  opacity: 1; 
+  opacity: 1;
 }
 
-:-ms-input-placeholder { 
+:-ms-input-placeholder {
  color: white;
 }
 
-::-ms-input-placeholder { 
+::-ms-input-placeholder {
  color: white;
 }
 
@@ -75,7 +75,7 @@ button {
   /* height: 30px; */
   /* justify-content: flex-end; */
   margin-right: 15px;
-} 
+}
 
 .logout-btn {
   width: 90px;
@@ -164,11 +164,11 @@ button {
   opacity: 0.8;
 }
 
-.add-task-input:-ms-input-placeholder { 
+.add-task-input:-ms-input-placeholder {
  color: #676767;
 }
 
-.add-task-input::-ms-input-placeholder { 
+.add-task-input::-ms-input-placeholder {
  color: #676767;
 }
 
@@ -323,7 +323,7 @@ button {
     /* border: 1px solid yellow; */
     background-color: yellow;
   }
-} 
+}
 
 /* @media screen and (max-width: 500px) {
   .tabbed-nav__group {
@@ -335,7 +335,7 @@ button {
   }
 } */
 
-/* @media screen and (min-width: 750px) and (max-width: 1280px) { 
+/* @media screen and (min-width: 750px) and (max-width: 1280px) {
   .boards__board {
     width: 33%;
   }
