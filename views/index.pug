@@ -1,5 +1,30 @@
 extends layout.pug
 
 block content
+  include includes/nav
+
   div
     h3 HOPE THIS WORKS.
+
+    div(class="grid__container")
+      div(class="grid__left-col" id="")
+        div(class="left-col__all-tasks") THIS HOLDS THE ALL TASKS BUTTON
+        dv(class="left-col__list-categories") THIS HOLDS THE LIST CATEGORIES
+
+      div(class="grid__mid-col")
+
+        div(class="mid-col-list-header")
+        div(class="mid-col-task-total")
+        div(class="mid-col-completed-total")
+        div(class="mid-col-completed-tab")
+        div(class="mid-col-incomplete-tab")
+
+        div(class="mid-col-task-bar")
+        div(class="mid-col-task-list")
+
+      div(class="grid__right-col")
+        div(class="right-col__task-info") TASK INFO
+        div(class="right-col__extra-options") EXTRA OPTIONS
+
+
+  script(type="module" src="js/search-feature.js")

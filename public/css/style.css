@@ -1,12 +1,59 @@
+body {
+  box-sizing: border-box;
+  color: white;
+}
+
+
+.header-nav__container {
+  background-color: #2060BF;
+  display: flex;
+  font-size: 16px;
+  /* line-height: 20px; */
+  color: white;
+  justify-content: space-between;
+  padding: 0 15px 0 10px;
+}
 
 .logo {
   width: 45px;
   height: auto;
 }
 
-.navbar {
-  background-color: #2060BF;
-  height: 50px;
+/* .logo-link {
+  margin: 0;
+} */
+
+.nav-left-container {
+  display: flex;
+  align-items: center;
+  /* background-color: violet; */
+}
+
+.search-form {
+  margin-left: 150px;
+}
+
+.search-input {
+  border: none;
+  border-radius: 3px;
+  width: 300px;
+  height: 30px;
+  background-color: #3D79C9;
+  color: white;
+  padding-left: 10px;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1; 
+}
+
+:-ms-input-placeholder { 
+ color: white;
+}
+
+::-ms-input-placeholder { 
+ color: white;
 }
 
 button {
@@ -18,13 +65,178 @@ button {
   width: 70px;
 }
 
-.form-inline {
-  font-size: 9px;
-  color: white;
+.nav-right-container {
+  display: flex;
+  /* background-color: red; */
+  align-items: center;
 }
 
-.form-control {
+.welcome__container {
+  /* width: 300px; */
+  /* height: 30px; */
+  /* justify-content: flex-end; */
+  margin-right: 15px;
+} 
+
+.logout-btn {
+  width: 90px;
   height: 30px;
-  background-color:#3D79C9;
+  /* justify-content: flex-end; */
 }
 
+/* Main Grid Styles */
+.grid__container {
+  /* background-color: red; */
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 2fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+   "left-col mid-col right-col";
+  height: 800px;
+}
+
+.grid__left-col {
+  grid-area: left-col;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2fr;
+  min-width: 200px;
+  border: 1px solid red;
+}
+
+.left-col__all-tasks {
+  border: 1px solid indigo;
+}
+
+.left-col__list-categories  {
+  border: 1px solid yellow;
+}
+
+.grid__mid-col {
+  grid-area: mid-col;
+  border: 1px solid cyan;
+  min-width: 550px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr 1fr 1fr 9fr;
+  grid-template-areas:
+    "list-header list-header list-header . "
+    "task-total completed-total completed-tab incomplete-tab"
+    "task-bar task-bar task-bar task-bar"
+    "task-list task-list task-list task-list";
+}
+
+.mid-col-list-header {
+  grid-area: list-header;
+  background-color: darkgreen;
+}
+
+.mid-col-task-total {
+  grid-area: task-total;
+  background-color: cornflowerblue;
+}
+
+.mid-col-completed-total {
+  grid-area: completed-total;
+  background-color: firebrick;
+}
+
+.mid-col-completed-tab {
+  grid-area: completed-tab;
+  background-color: wheat;
+}
+
+.mid-col-incomplete-tab {
+  grid-area: incomplete-tab;
+  background-color: burlywood;
+}
+
+.mid-col-task-bar {
+  grid-area: task-bar;
+  background-color: blue;
+}
+
+.mid-col-task-list {
+  grid-area: task-list;
+  background-color: coral;
+}
+
+.grid__right-col {
+  grid-area: right-col;
+  border: 1px solid green;
+  border: 1px solid red;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2fr;
+}
+
+.right-col__task-info {
+  border: 1px solid indigo;
+}
+
+.right-col__extra-options  {
+  border: 1px solid yellow;
+}
+
+
+
+@media screen and (max-width: 750px) {
+  .grid__container {
+    /* background-color: red; */
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    grid-template-rows: 1fr 2fr ;
+    grid-template-areas:
+    "left-col right-col"
+    "left-col mid-col";
+  }
+
+  .grid__mid-col {
+    grid-area: mid-col;
+    border: 1px solid cyan;
+    min-width: 300px;
+  }
+
+  .grid__right-col {
+    grid-area: right-col;
+    background-color:  green;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    /* height: 300px; */
+  }
+
+  .right-col__task-info {
+    /* border: 1px solid indigo; */
+    background-color: indigo;
+    /* height: 100px; */
+  }
+
+  .right-col__extra-options  {
+    /* border: 1px solid yellow; */
+    background-color: yellow;
+  }
+} 
+
+/* @media screen and (max-width: 500px) {
+  .tabbed-nav__group {
+    display: block;
+  }
+
+  .tabbed-nav__link {
+    display: block;
+  }
+} */
+
+/* @media screen and (min-width: 750px) and (max-width: 1280px) { 
+  .boards__board {
+    width: 33%;
+  }
+} */
+
+/* @media screen and (max-width: 750px) {
+  .boards__board {
+    width: 100%;
+    max-width: 100%;
+  }
+} */
