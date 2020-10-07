@@ -1,71 +1,62 @@
+//external requires
+
 const express = require("express");
 const morgan = require("morgan");
-// const cors = require("cors");
 const { ValidationError } = require("sequelize");
-const indexRouter = require("./routes/index");
-const searchRouter = require("./routes/api/search");
-const { environment } = require("./config");
 const path = require("path");
 
+// internal requires
+
+const { environment } = require("./config");
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/api/users");
+const searchRouter = require("./routes/api/search");
+
 const app = express();
-// Set the pug view engine.
+
 app.set("view engine", "pug");
+
+//external use statements
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.use("/", indexRouter);
 
+//internal use statements
+app.use("/", indexRouter);
+app.use("/api/users", usersRouter);
 app.use("/api/search", searchRouter);
 
 // app.use("/api/list", listsRouter);
-
 app.use(express.static(path.join(__dirname, "public")));
 
-// Catch unhandled requests and forward to error handler.
-app.use((req, res, next) => {
-  const err = new Error("The requested resource couldn't be found.");
-  err.title = "Resource not Found";
-  err.status = 404;
-  next(err);
+
+//TODO: error handlers
+// unhandled requests
+  app.use((req, res, next) => {
+    const error = new Error("Resource could not be found.");
+    error.errors = ["Resource could not be found."];
+    error.status = 404;
+    next(error);
+  });
+
+//sequelize errors
+app.use((error, req, res, next) => {
+  if(error instanceof ValidationError) {
+    error.errors = error.errors.map((err) => err.message);
+    error.title = "Sequelize Error";
+  };
+  next(error);
 });
 
-// Error handlers. (must have all four arguments to communicate to Express that
-// this is an error-handling middleware function)
-
-// Process sequelize errors
-app.use((err, req, res, next) => {
-  // check if error is a Sequelize error:
-  if (err instanceof ValidationError) {
-    // Add an errors property wtih all the different validation errors
-    err.errors = err.errors.map((e) => e.message);
-    err.title = "Sequelize Error";
-  }
-  next(err);
+//general error handler
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  const isProduction = environment === "production";
+  res.json({
+    title: error.title || "Server Error",
+    errors: error.errors,
+    stack: isProduction ? null : error.stack
+  });
 });
-
-// Error handler that returns the correct type of data
-// based on the `Accept` header
-
-// app.use((err, req, res, next) => {
-//   res.status(err.status || 500);
-//   const isProduction = environment === "production";
-//   const acceptHeader = req.get("Accept");
-//   console.log(acceptHeader);
-
-//   const errorData = {
-//     title: err.title || "Server Error",
-//     message: err.message,
-//     stack: isProduction ? null : err.stack,
-//     errors: err.errors || []
-//   }
-
-//   if (acceptHeader.startsWith('text/html')) {
-//     res.render('error-page', errorData)
-//   } else if (acceptHeader.startsWith('application/json')) {
-//     res.json(errorData);
-//   } else {
-//     res.send("Server Error");
-//   }
-// });
 
 module.exports = app;
