@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { User, List, Task } = require("../../db/models");
-const { asyncHandler } = require('./utils');
+const { asyncHandler } = require('../utils');
 const { Op } = require("sequelize");
 
 router.get('/:searchStr', asyncHandler(async (req, res) => {
