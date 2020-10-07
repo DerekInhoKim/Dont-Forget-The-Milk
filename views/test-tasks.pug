@@ -1,11 +1,6 @@
-doctype html
-html
-  head
-    title Tasks
+extends test-list.pug
 
-  body
-
+block content
+  h2 Tasks
     .tasks_container
-      each task in tasks
-        ul
-          li(id=`${task.listId}` class='task')= task.taskName
+    script(type="module" src="js/tasks.js")

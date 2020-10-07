@@ -1,13 +1,33 @@
+//- doctype html
+//- html
+//-   head
+//-     title Lists
+
+//-   body
+//-     h2 User One's Lists:
+//-     .lists_container
+//-       ul
+//-         li#1.listElement Personal
+//-         li#2.listElement Work
+//-         li#3.listElement Shopping
+//-       script(type="module" src="js/tasks.js")
+//-   block content
+
+
+
 doctype html
 html
   head
     title Lists
 
   body
-
+    h2 lists
     .lists_container
       ul
         li#1.listElement Personal
         li#2.listElement Work
         li#3.listElement Shopping
-      script(src="js/tasks_front.js")
+
+    h2 Tasks
+    .tasks_container
+      script(type="module" src="js/tasks.js")

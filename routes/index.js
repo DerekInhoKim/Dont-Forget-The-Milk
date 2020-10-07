@@ -1,29 +1,21 @@
 const express = require('express');
-const db = require('../db/models');
-const {asyncHandler} = require('../utils')
-const { Task } = db
-
 const router = express.Router();
 
 
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/lists', async (req, res) => {
 
   res.render('test-list')
+});
 
-}))
+// router.get('/lists/:id(\\d+)/tasks', async (req, res) => {
 
-router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
-  const listId = parseInt(req.params.id, 10)
-  const tasks = await Task.findAll({
+//   res.render('test-tasks')
+// });
 
-    where: { listId }
-  })
+router.get('/lists/:id/tasks', async (req, res) => {
 
-  res.render('test-tasks', {tasks})
-
-}))
-
-
+  res.render('test-list')
+});
 
 
 module.exports = router;
