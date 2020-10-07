@@ -5,13 +5,15 @@ block content
 
   div(class="grid__container")
     div(class="grid__left-col" id="")
-      div(class="left-col__all-tasks") This holds all tasks
-      dv(class="left-col__list-categories") THIS HOLDS THE LIST CATEGORIES
+      div(class="logo-container")
+      div(class="left-col__all-tasks") 
+        div(class="list-all-tasks-container") This holds all tasks
+      div(class="left-col__list-categories") 
+        div(class="list-cat-container") This holds the categories
 
     div(class="grid__mid-col")
-
       div(class="mid-col-list-header")
-        h5(id="list-header")
+        h5(id="list-header") placeholder...
       div(class="task-total")
         <span class="total-task-span"> 76 </span> <br> tasks
 
@@ -33,8 +35,16 @@ block content
 
 
     div(class="grid__right-col")
-      div(class="right-col__task-info") TASK INFO
-      div(class="right-col__extra-options") EXTRA OPTIONS
+      div(class="right-col__task-info")
+        div(class="info-header" ) due 
+          span(class="info-span") never
+        div(class="info-header") list
+          span(class="info-span")  Personal
+        div(class="task-description") THIS HOLDS THE DESCRIPTION
+      div(class="right-col__extra-options") 
+        form(class="notes-form")
+          label(for='notes') Notes
+          input(class="notes-input" type='notes', name="notes", placeholder='Add a note...')
 
 
   script(type="module" src="js/search-feature.js")
