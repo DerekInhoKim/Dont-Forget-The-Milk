@@ -6,8 +6,10 @@ const { Op } = require("sequelize");
 
 router.get('/:searchStr', asyncHandler(async (req, res) => {
 
-  const { searchString } = req.body;
-    // const searchString = req.params.searchStr;
+  // const { searchString } = req.body;
+  // const searchString = 'buy';
+  // console.log("REQ BODY:", req.body)
+    const searchString = req.params.searchStr;
 
   // Find matching tasks ======================================================
   const matchingTasks = await Task.findAll({
@@ -26,7 +28,7 @@ router.get('/:searchStr', asyncHandler(async (req, res) => {
     })
   }
 
-  res.json({})
+  res.json({ matchingTasks });
 
 }));
 

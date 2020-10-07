@@ -6,24 +6,32 @@ searchForm.addEventListener("keydown", async (e) => {
     alert(`KEY VALUE IS ${e.keyCode}`);
 
     const formData = new FormData(searchForm);
-    const searchStr = formData.get("searchStr")
+    const searchStr = formData.get("searchStr");
+    // const body = { searchStr };
     console.log("SEARCH STRING ", searchStr);
 
     try {
       const res = await fetch(`/api/search/${searchStr}`);
-      
-      console.log(res);
 
       if(!res.ok) {
-        throw res
+        throw res;
       }
 
-      const resJSON = await res.text();
-      console.log(resJSON);
+      const { matchingTasks } = await res.json();
+      // console.log("RES JSON: ", resJSON);
+
+      const taskListContainer = document.querySelector(".task-list-container");
+      const tasksHtml = matchingTasks.map(taskObj => {
+        const task = taskObj.taskName;
+        return `<div class="task-container">
+                  <div class="task"> ${task} </div>
+                </div>`
+      });
+      
+      taskListContainer.innerHTML = tasksHtml.join("")
 
     } catch (err) {
-      // console.error(err);
-      
+      console.error(err);
     }
 
   }
