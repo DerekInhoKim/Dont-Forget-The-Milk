@@ -11,10 +11,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
 
     where: { listId }
   })
-
-  // res.render('test-tasks', {tasks})
   res.json({tasks})
-
 }))
 
 

@@ -1,3 +1,4 @@
+import { handleErrors } from "../routes/utils.js";
 
 document.addEventListener('DOMContentLoaded', e => {
 
@@ -46,7 +47,7 @@ document.addEventListener('DOMContentLoaded', e => {
         }
 
         // clear old script tags
-        
+
         let scriptElement = document.querySelector('.script')
         if(scriptElement) {
           oldTaskContainer.removeChild(scriptElement)
@@ -84,7 +85,7 @@ document.addEventListener('DOMContentLoaded', e => {
           taskListContainer.appendChild(taskContainer)
         });
 
-        // Link Derek's file into current file so that when user clicks on a task, Derek's code will be run
+        // Set up event listeners so that information can be displayed after clicking on a task
 
         const script = document.createElement('script')
         script.setAttribute('src', './js/test.js')
@@ -94,13 +95,9 @@ document.addEventListener('DOMContentLoaded', e => {
         // deal with any errors that arise
 
       } catch(err) {
-        // const errorJSON = await err.json()
-        console.log(err)
-        // const { errors } = errorJSON
-        // if(err.status >= 400 && err.status < 600) {
-        //   // TODO: Do something with the errors
-        // }
+        handleErrors(err)
       }
+
     });
   });
 });
