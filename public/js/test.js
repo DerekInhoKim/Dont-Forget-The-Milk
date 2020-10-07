@@ -1,6 +1,9 @@
-const tasks = document.querySelectorAll('.tasks_container li')
-tasks.forEach((task) => {
-  task.addEventListener('click', (e) => {
-    alert(e.target.id)
+(() => {
+  let tasks = document.querySelectorAll('.task')
+  tasks.forEach((task) => {
+    task.addEventListener('click', (e) => {
+      console.log('hello')
+      alert(e.target.id)
+    })
   })
-})
+})();

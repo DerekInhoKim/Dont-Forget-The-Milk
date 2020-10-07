@@ -1,5 +1,6 @@
 
-window.addEventListener('DOMContentLoaded', e => {
+document.addEventListener('DOMContentLoaded', e => {
+
 
   // set up the variable for the list id that will be used to navigate to the correct endpoint
   // obtain the userId from the access token that is in the user's local storage, because it's needed for authentication
@@ -11,15 +12,17 @@ window.addEventListener('DOMContentLoaded', e => {
   // if not, then the user id will not be found and the user should be redirected to the log in page
 
   if(!userId) {
-    window.location.href = "/login"
+    window.location.href = "/log-in"
   }
 
   // find and add a click event listener to all the lists so that the list id can be extracted and used in the path for the GET request
+  // to obtain and display all tasks associated with the given list
 
   const lists = document.querySelectorAll('.listElement');
 
   lists.forEach(list => {
     list.addEventListener('click', async(e) => {
+
 
       e.stopImmediatePropagation();
 
@@ -27,7 +30,32 @@ window.addEventListener('DOMContentLoaded', e => {
 
       console.log(listId)
 
+
       try {
+
+        // clear old tasks
+
+        let oldTaskContainer = document.getElementById("task-list-container");
+        let oldTasks = document.querySelectorAll(".task-container");
+        if(oldTasks) {
+          oldTasks.forEach(task => {
+            oldTaskContainer.removeChild(task);
+
+          })
+
+        }
+
+        // clear old script tags
+        
+        let scriptElement = document.querySelector('.script')
+        if(scriptElement) {
+          oldTaskContainer.removeChild(scriptElement)
+        }
+
+        // make a get request to the end-point below
+        // check authorization of user by adding an authorization header in the GET request
+
+
         const res = await fetch(`http://localhost:8080/api/lists/${listId}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem(
@@ -39,27 +67,32 @@ window.addEventListener('DOMContentLoaded', e => {
         if(!res.ok) {
           throw res;
         }
-
-        // window.location.href= `/lists/${listId}/tasks`;
+        // extract tasks from the response and dynamically generate HTML that is used to display the tasks
 
         const { tasks } = await res.json()
 
-        const taskContainer = document.querySelector('.tasks_container')
-        const list = document.createElement('ul')
-        list.className = "task-list";
-        taskContainer.appendChild(list)
-
-        const tasksHtml = tasks.forEach(task => {
+        const taskListContainer = document.querySelector(".task-list-container")
+        tasks.forEach(task => {
           console.log(task)
-          let bullet = document.createElement("li")
-          bullet.setAttribute("id", `${task.listId}`)
-          bullet.classList.add("tasks")
-          bullet.innerHTML = task.taskName
-          list.appendChild(bullet)
+          const taskContainer = document.createElement('div')
+          taskContainer.classList.add("task-container")
+          const taskItem = document.createElement('div')
+          taskItem.classList.add("task");
+          taskItem.setAttribute("id", `${task.id}`)
+          taskItem.innerHTML = task.taskName
+          taskContainer.appendChild(taskItem)
+          taskListContainer.appendChild(taskContainer)
         });
+
+        // Link Derek's file into current file so that when user clicks on a task, Derek's code will be run
+
         const script = document.createElement('script')
         script.setAttribute('src', './js/test.js')
-        taskContainer.appendChild(script)
+        script.classList.add('script')
+        taskListContainer.appendChild(script)
+
+        // deal with any errors that arise
+
       } catch(err) {
         // const errorJSON = await err.json()
         console.log(err)
