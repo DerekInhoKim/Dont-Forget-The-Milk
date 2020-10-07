@@ -226,10 +226,10 @@ button {
   margin-bottom: 5px;
 }
 
-.overdie-tasks-span {
+.overdue-tasks-span {
   font-weight: bold;
   font-size: 18px;
-  color: #8C949D;
+  color: #B22222;
 }
 
 .divider {
