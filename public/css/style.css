@@ -1,0 +1,349 @@
+body {
+  box-sizing: border-box;
+  color: white;
+  background-color: #D7E7F5;
+}
+
+
+.header-nav__container {
+  background-color: #2060BF;
+  display: flex;
+  font-size: 16px;
+  /* line-height: 20px; */
+  color: white;
+  justify-content: space-between;
+  padding: 0 15px 0 10px;
+}
+
+.logo {
+  width: 45px;
+  height: auto;
+}
+
+/* .logo-link {
+  margin: 0;
+} */
+
+.nav-left-container {
+  display: flex;
+  align-items: center;
+  /* background-color: violet; */
+}
+
+.search-form {
+  margin-left: 150px;
+}
+
+.search-input {
+  border: none;
+  border-radius: 3px;
+  width: 300px;
+  height: 30px;
+  background-color: #3D79C9;
+  color: white;
+  padding-left: 10px;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1; 
+}
+
+:-ms-input-placeholder { 
+ color: white;
+}
+
+::-ms-input-placeholder { 
+ color: white;
+}
+
+button {
+  font-size: 14px;
+  border: none;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.nav-right-container {
+  display: flex;
+  /* background-color: red; */
+  align-items: center;
+}
+
+.welcome-container {
+  /* width: 300px; */
+  /* height: 30px; */
+  /* justify-content: flex-end; */
+  margin-right: 15px;
+} 
+
+.logout-btn {
+  width: 90px;
+  height: 30px;
+  background-color: #D7E7F5;
+  color: #3D79C9;
+}
+
+/* Main Grid Styles */
+.grid__container {
+  font-size: 14px;
+  color: black;
+  height: 800px;
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 2fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+   "left-col mid-col right-col";
+}
+
+.grid__left-col {
+  grid-area: left-col;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2fr;
+  min-width: 200px;
+  border: 1px solid red;
+}
+
+.left-col__all-tasks {
+  border: 1px solid indigo;
+}
+
+.left-col__list-categories  {
+  border: 1px solid yellow;
+}
+
+.grid__mid-col {
+  grid-area: mid-col;
+  border-radius: 7px;
+  background-color: white;
+  min-width: 550px;
+  display: grid;
+  /* grid-template-columns: 1fr 1fr 3fr 3fr; */
+  grid-template-columns: 75px 80px 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1.5fr 13fr;
+  grid-template-areas:
+    "list-header list-header list-header . "
+    "task-total completed-total divider tab-container"
+    "add-task-form add-task-form add-task-form add-task-form"
+    "task-list task-list task-list task-list";
+}
+
+.mid-col-list-header {
+  grid-area: list-header;
+  padding: 12px 0 0 16px;
+}
+
+.add-task-form {
+  grid-area: add-task-form;
+  border-top: 1px dotted rgba(140, 148, 157, .5);
+  border-bottom: 1px dotted rgba(140, 148, 157, .5);
+  padding: 10px 18px;
+}
+
+.add-task-input {
+  width: 100%;
+  height: 35px;
+  border: 1px solid rgba(140, 148, 157, .5);
+  border-radius: 3px;
+  padding: 0 8px;
+}
+
+.add-task-btn {
+  width: 90px;
+  background-color: #358CEB;
+  color: white;
+  padding: 5px;
+  float:right;
+  margin-top: 9px;
+}
+
+.add-task-input::placeholder {
+  color: #676767;
+  opacity: 0.8;
+}
+
+.add-task-input:-ms-input-placeholder { 
+ color: #676767;
+}
+
+.add-task-input::-ms-input-placeholder { 
+ color: #676767;
+}
+
+.task-total {
+  grid-area: task-total;
+  background-color: #DBE8F6;
+  width: 60px;
+  font-size: 13px;
+  border-radius: 5px;
+  text-align: center;
+  padding-top: 14px;
+  line-height: 16px;
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+
+.total-task-span {
+  font-weight: bold;
+  font-size: 18px;
+  color: #2060BF;
+  /* display: block; */
+  /* line-height: 19px; */
+}
+
+.completed-total {
+  grid-area: completed-total;
+  font-size: 13px;
+  background-color: #DBE8F6;
+  color: #8C949D;
+  width: 75px;
+  border-radius: 5px;
+  text-align: center;
+  padding-top: 14px;
+  line-height: 16px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+.completed-tasks-span {
+  font-weight: bold;
+  font-size: 18px;
+  color: #8C949D;
+}
+
+.divider {
+  grid-area: divider;
+  /* background-color: wheat; */
+}
+
+
+.tab-container {
+  grid-area: tab-container;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding-right: 10px;
+  /* background-color: burlywood; */
+}
+
+.task-tab {
+  width: 100px;
+  height: 27px;
+  background-color: white;
+  font-size: 13px;
+  padding: 5px;
+  margin-left: 3px;
+  position: relative;
+  top:1px;
+  border: 1px dotted rgba(140, 148, 157, .5);
+  border-radius: 2px;
+  border-bottom: none;
+  /* background-color: lawngreen; */
+}
+
+/* .mid-col-task-bar {
+  grid-area: task-bar;
+  background-color: blue;
+} */
+
+.task-list-container {
+  grid-area: task-list;
+  /* background-color: coral; */
+}
+
+.task-container {
+  height: 35px;
+  padding: 3px 0 3px 15px;
+  border-bottom: 1px dotted rgba(140, 148, 157, .5);
+  /* background-color: turquoise; */
+}
+
+.task {
+  border-left: 3px solid #CCCCCC;
+  padding: 6px 0 0 7px;
+  height: 100%;
+  line-height: 14px;
+  margin: 0;
+}
+
+.grid__right-col {
+  grid-area: right-col;
+  border: 1px solid green;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2fr;
+}
+
+.right-col__task-info {
+  border: 1px solid indigo;
+}
+
+.right-col__extra-options  {
+  border: 1px solid yellow;
+}
+
+
+
+@media screen and (max-width: 750px) {
+  .grid__container {
+    /* background-color: red; */
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    grid-template-rows: 1fr 2fr ;
+    grid-template-areas:
+    "left-col right-col"
+    "left-col mid-col";
+  }
+
+  .grid__mid-col {
+    grid-area: mid-col;
+    border: 1px solid cyan;
+    min-width: 300px;
+    grid-template-rows: 1fr 1fr 1.5fr 8fr;
+  }
+
+  .grid__right-col {
+    grid-area: right-col;
+    background-color:  green;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    /* height: 300px; */
+  }
+
+  .right-col__task-info {
+    /* border: 1px solid indigo; */
+    background-color: indigo;
+    /* height: 100px; */
+  }
+
+  .right-col__extra-options  {
+    /* border: 1px solid yellow; */
+    background-color: yellow;
+  }
+} 
+
+/* @media screen and (max-width: 500px) {
+  .tabbed-nav__group {
+    display: block;
+  }
+
+  .tabbed-nav__link {
+    display: block;
+  }
+} */
+
+/* @media screen and (min-width: 750px) and (max-width: 1280px) { 
+  .boards__board {
+    width: 33%;
+  }
+} */
+
+/* @media screen and (max-width: 750px) {
+  .boards__board {
+    width: 100%;
+    max-width: 100%;
+  }
+} */
