@@ -1,4 +1,4 @@
-import { handleErrors } from "../routes/utils.js";
+
 
 document.addEventListener('DOMContentLoaded', e => {
 
@@ -7,14 +7,11 @@ document.addEventListener('DOMContentLoaded', e => {
   // obtain the userId from the access token that is in the user's local storage, because it's needed for authentication
 
   let listId;
-  let userId = localStorage.getItem('DFTM_CURRENT_USER_ID')
 
-  // check to make sure that the access token is still valid
-  // if not, then the user id will not be found and the user should be redirected to the log in page
+  // localStorage.setItem("DFTM_USER_ID", 1)
+  let userId = localStorage.getItem("DFTM_USER_ID")
 
-  if(!userId) {
-    window.location.href = "/log-in"
-  }
+
 
   // find and add a click event listener to all the lists so that the list id can be extracted and used in the path for the GET request
   // to obtain and display all tasks associated with the given list
@@ -26,6 +23,13 @@ document.addEventListener('DOMContentLoaded', e => {
 
 
       e.stopImmediatePropagation();
+
+      // check to make sure that the access token is still valid
+      // if not, then the user id will not be found and the user should be redirected to the log in page
+
+      if(!userId) {
+        window.location.href = "/sign-in"
+      }
 
       listId = e.target.id
 
@@ -95,7 +99,8 @@ document.addEventListener('DOMContentLoaded', e => {
         // deal with any errors that arise
 
       } catch(err) {
-        handleErrors(err)
+        // handleErrors(err)
+        console.error(err)
       }
 
     });

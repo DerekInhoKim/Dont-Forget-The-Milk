@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('../../db/models');
-const {asyncHandler} = require('../../utils')
+const {asyncHandler} = require('../utils')
 const { Task } = db
 
 const router = express.Router();
