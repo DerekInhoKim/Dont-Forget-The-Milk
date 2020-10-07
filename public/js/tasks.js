@@ -1,17 +1,9 @@
-
-
 document.addEventListener('DOMContentLoaded', e => {
-
 
   // set up the variable for the list id that will be used to navigate to the correct endpoint
   // obtain the userId from the access token that is in the user's local storage, because it's needed for authentication
 
   let listId;
-
-  // localStorage.setItem("DFTM_USER_ID", 1)
-  let userId = localStorage.getItem("DFTM_USER_ID")
-
-
 
   // find and add a click event listener to all the lists so that the list id can be extracted and used in the path for the GET request
   // to obtain and display all tasks associated with the given list
@@ -21,8 +13,11 @@ document.addEventListener('DOMContentLoaded', e => {
   lists.forEach(list => {
     list.addEventListener('click', async(e) => {
 
-
       e.stopImmediatePropagation();
+
+      // localStorage.setItem("DFTM_USER_ID", 1)
+      let userId = localStorage.getItem("DFTM_USER_ID")
+
 
       // check to make sure that the access token is still valid
       // if not, then the user id will not be found and the user should be redirected to the log in page
@@ -32,9 +27,6 @@ document.addEventListener('DOMContentLoaded', e => {
       }
 
       listId = e.target.id
-
-      console.log(listId)
-
 
       try {
 
@@ -64,7 +56,7 @@ document.addEventListener('DOMContentLoaded', e => {
         const res = await fetch(`http://localhost:8080/api/lists/${listId}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem(
-              "DFTM_ACCESS_TOKEN"
+              "DFTM_USER_TOKEN"
             )}`
           }
         })
@@ -72,7 +64,7 @@ document.addEventListener('DOMContentLoaded', e => {
         if(!res.ok) {
           throw res;
         }
-        // extract tasks from the response and dynamically generate HTML that is used to display the tasks
+        // extract tasks from the server response and dynamically generate HTML that is used to display the tasks
 
         const { tasks } = await res.json()
 
@@ -89,7 +81,7 @@ document.addEventListener('DOMContentLoaded', e => {
           taskListContainer.appendChild(taskContainer)
         });
 
-        // Set up event listeners so that information can be displayed after clicking on a task
+        // Set up event listeners on tasks so that information can be displayed after clicking on them
 
         const script = document.createElement('script')
         script.setAttribute('src', './js/test.js')
