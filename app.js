@@ -3,6 +3,7 @@ const morgan = require("morgan");
 // const cors = require("cors");
 const { ValidationError } = require("sequelize");
 const indexRouter = require("./routes/index");
+const searchRouter = require("./routes/api/search");
 const { environment } = require("./config");
 const path = require("path");
 
@@ -13,6 +14,8 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 app.use("/", indexRouter);
+
+app.use("/api/search", searchRouter);
 
 // app.use("/api/list", listsRouter);
 
