@@ -17,14 +17,16 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     })
   })
 
-  const tasksList = await fetch(`/api/tasks/${taskId}`, {
-    headers: {
-      "Authorization": `Bearer: ${token}`
-    }
-  })
+  if(taskId){
+    const tasksList = await fetch(`/api/tasks/${taskId}`, {
+      headers: {
+        "Authorization": `Bearer: ${token}`
+      }
+    })
 
-  const listId = tasksList.listId
+    listId = tasksList.listId
 
+  }
 
   //If there is no list selected, we want to display our default inbox information.
   if(!listId){
@@ -47,9 +49,14 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
     const { tasks } = await res.json()
 
-    //We take the element with the class total-task-span and set the innerHTML of the div to display the number of all tasks.
-    const allTasks = document.querySelector(".total-task-span")
-    allTasks.innerHTML = tasks.length;
+    //Filter through all the tasks, to find which tasks are completed by accessing the column isComplete and checking the boolean value
+    const completedTasks = tasks.filter( task => {
+      task.isComplete === true
+    })
+
+    //We take the element with the class completed tasks-span and set the innerHTML of the div to display the number of tasks which have been filtered to show which ones are complete.
+    const allTasks = document.querySelector(".completed-tasks-span")
+    allTasks.innerHTML = completedTasks.length;
 
 
   } catch (e){
