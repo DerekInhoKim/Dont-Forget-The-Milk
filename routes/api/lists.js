@@ -11,12 +11,13 @@ const { User, List, Task} = db;
 
 // router.use(requireAuth);
 
-router.get('/', asyncHandler(async(req,res) => {
+router.get('/:id', asyncHandler(async(req,res) => {
+  const userId = parseInt(req.params.id, 10);
   const lists = await List.findAll({
     where: {
-      userId: 1
+      userId
     },
-    include: [{ model: Task,as:"task",attributes: ['taskName'] } ],
+    // include: [{ model: Task,as:"task",attributes: ['taskName'] } ],
     order: [['createdAt', 'DESC']],
   });
   console.log(lists.task);
