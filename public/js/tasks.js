@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', e => {
-
   // set up the variable for the list id that will be used to navigate to the correct endpoint
   // obtain the userId from the access token that is in the user's local storage, because it's needed for authentication
 
