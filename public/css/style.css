@@ -290,7 +290,7 @@ form.add-task-form{
 .grid__right-col {
   grid-area: right-col;
   background-color: #E4EEF8;
-  box-shadow: 1px -2px 5px rgba(0, 0, 0, 0.2);s
+  box-shadow: 1px -2px 5px rgba(0, 0, 0, 0.2);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 4fr;
