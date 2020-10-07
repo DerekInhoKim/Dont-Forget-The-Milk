@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const { ValidationError } = require("sequelize");
 const indexRouter = require("./routes/index");
 const listRouter = require("./routes/api/lists");
+const searchRouter = require("./routes/api/search");
 const { environment } = require("./config");
 const path = require("path");
 
@@ -15,6 +16,8 @@ app.use(express.json());
 
 app.use("/", indexRouter);
 app.use("/api/lists", listRouter);
+
+app.use("/api/search", searchRouter);
 
 // app.use("/api/list", listsRouter);
 
