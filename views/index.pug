@@ -1,5 +1,40 @@
 extends layout.pug
 
 block content
-  div
-    h3 HOPE THIS WORKS.
+  include includes/nav
+
+  div(class="grid__container")
+    div(class="grid__left-col" id="")
+      div(class="left-col__all-tasks") This holds all tasks
+      dv(class="left-col__list-categories") THIS HOLDS THE LIST CATEGORIES
+
+    div(class="grid__mid-col")
+
+      div(class="mid-col-list-header")
+        h5(id="list-header")
+      div(class="task-total")
+        <span class="total-task-span"> 76 </span> <br> tasks
+
+      div(class="completed-total")
+        <span class="completed-tasks-span"> 8 </span> <br> completed
+   
+      div(class="divider")
+      div(class="tab-container")
+        button(class="task-tab") Incomplete
+        button(class="task-tab") Completed
+
+      form(class="add-task-form" id="add-task")
+        input(class="add-task-input" id="add-task" type="input" placeholder="Add a task..." aria-label="Add a task..." name="")
+        button(class="add-task-btn" type="submit") Add Task
+
+      div(class="task-list-container")
+        div(class="task-container") 
+          div(class="task") FORGET the milk!
+
+
+    div(class="grid__right-col")
+      div(class="right-col__task-info") TASK INFO
+      div(class="right-col__extra-options") EXTRA OPTIONS
+
+
+  script(type="module" src="js/search-feature.js")
