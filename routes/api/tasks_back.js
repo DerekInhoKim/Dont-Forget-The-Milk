@@ -5,7 +5,7 @@ const { Task } = db
 
 const router = express.Router();
 
-router.get('/:id', asyncHandler(async (req, res) => {
+router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
   const listId = parseInt(req.params.id, 10)
   const tasks = await Task.findAll({
 
