@@ -118,6 +118,7 @@ document.addEventListener('DOMContentLoaded', e => {
 
           const taskContainer = document.createElement('div');
           taskContainer.classList.add("task-container")
+          taskContainer.dataset.taskId = task.id
           const taskItem = document.createElement('div')
           taskItem.classList.add("task");
           taskItem.setAttribute("id", `${task.id}`)
