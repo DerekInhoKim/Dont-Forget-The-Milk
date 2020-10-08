@@ -2,14 +2,17 @@ extends layout.pug
 
 block content
   include includes/nav
+  include includes/pop-up
 
   div(class="grid__container")
     div(class="grid__left-col" id="")
       div(class="logo-container")
+        img(src="" class="logo-dftm")
       div(class="left-col__all-tasks")
         div(class="list-all-tasks-container") This holds all tasks
       div(class="left-col__list-categories")
         div(class="list-cat-container") This holds the categories
+        script(type="module" src="js/list.js")
 
 
     div(class="grid__mid-col")
@@ -31,7 +34,7 @@ block content
 
       form(class="add-task-form" id="add-task")
         input(class="add-task-input" id="add-task" type="input" placeholder="Add a task..." aria-label="Add a task..." name="")
-        button(class="add-task-btn" type="submit") Add Task
+        button(class="generic-btn add-task-btn" type="submit") Add Task
 
       div(class="task-list-container" id="task-list-container")
         div(class="task-container")
@@ -49,6 +52,8 @@ block content
         form(class="notes-form")
           label(for='notes') Notes
           input(class="notes-input" type='notes', name="notes", placeholder='Add a note...')
+          button(class="generic-btn" type="submit") Save
+          button(class="generic-btn cancel-btn" type="submit") Cancel
 
 
   script(type="module" src="js/search-feature.js")

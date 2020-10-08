@@ -7,11 +7,10 @@ document.addEventListener('DOMContentLoaded', e => {
   // find and add a click event listener to all the lists so that the list id can be extracted and used in the path for the GET request
   // to obtain and display all tasks associated with the given list
 
-  const lists = document.querySelectorAll('.listElement');
+  const lists = document.querySelectorAll('.list-cat-container');
 
   lists.forEach(list => {
     list.addEventListener('click', async(e) => {
-
       e.stopImmediatePropagation();
 
       // localStorage.setItem("DFTM_USER_ID", 1)
@@ -26,7 +25,7 @@ document.addEventListener('DOMContentLoaded', e => {
       }
 
       listId = e.target.id
-
+    
       try {
 
         // clear old tasks
@@ -52,25 +51,23 @@ document.addEventListener('DOMContentLoaded', e => {
         // check authorization of user by adding an authorization header in the GET request
 
 
-        const res = await fetch(`http://localhost:8080/api/lists/${listId}`, {
+        const res = await fetch(`/api/lists/${listId}/tasks`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem(
               "DFTM_USER_TOKEN"
             )}`
           }
-        })
-
+        });
+        
         if(!res.ok) {
           throw res;
         }
         // extract tasks from the server response and dynamically generate HTML that is used to display the tasks
 
-        const { tasks } = await res.json()
-
+        const {tasks}  = await res.json()
         const taskListContainer = document.querySelector(".task-list-container")
         tasks.forEach(task => {
-          console.log(task)
-          const taskContainer = document.createElement('div')
+          const taskContainer = document.createElement('div');
           taskContainer.classList.add("task-container")
           const taskItem = document.createElement('div')
           taskItem.classList.add("task");
