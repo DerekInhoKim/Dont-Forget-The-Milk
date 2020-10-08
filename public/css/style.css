@@ -415,12 +415,15 @@ li:hover {
     grid-template-rows: auto;
   }
 
+<<<<<<< HEAD
   .right-col__task-info {
   }
 
 
   .right-col__extra-options  {
   }
+=======
+>>>>>>> master
 }
 
 /* @media screen and (max-width: 500px) {
