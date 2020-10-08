@@ -16,6 +16,13 @@ searchForm.addEventListener("keydown", async (e) => {
 
       const { matchingTasks } = await res.json();
 
+      if(matchingTasks.length ===  0) {
+        // alert("Sorry, no matches found =(");
+        // return;
+        const modal = document.getElementById("pop-up");
+        modal.style.display= "block";
+      }
+
       const header = document.getElementById("list-header")
       header.innerHTML = `Search : ${searchStr}`;
 
@@ -26,7 +33,7 @@ searchForm.addEventListener("keydown", async (e) => {
                   <div class="task" id=${taskObj.id}> ${task} </div>
                 </div>`
       });
-      
+
       taskListContainer.innerHTML = tasksHtml.join("")
 
       const script = document.createElement('script');

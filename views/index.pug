@@ -2,24 +2,28 @@ extends layout.pug
 
 block content
   include includes/nav
+  include includes/pop-up
 
   div(class="grid__container")
     div(class="grid__left-col" id="")
       div(class="logo-container")
+        img(src="" class="logo-dftm")
       div(class="left-col__all-tasks") 
         div(class="list-all-tasks-container") This holds all tasks
-      div(class="left-col__list-categories") 
+      div(class="left-col__list-categories")
         div(class="list-cat-container") This holds the categories
+        script(type="module" src="js/list.js")
+        
 
     div(class="grid__mid-col")
       div(class="mid-col-list-header")
-        h5(id="list-header") placeholder...
+        h2(id="list-header") placeholder...
       div(class="task-total")
         <span class="total-task-span"> 76 </span> <br> tasks
 
       div(class="completed-total")
         <span class="completed-tasks-span"> 8 </span> <br> completed
-   
+
       div(class="divider")
       div(class="tab-container")
         button(class="task-tab") Incomplete
@@ -27,24 +31,27 @@ block content
 
       form(class="add-task-form" id="add-task")
         input(class="add-task-input" id="add-task" type="input" placeholder="Add a task..." aria-label="Add a task..." name="")
-        button(class="add-task-btn" type="submit") Add Task
+        button(class="generic-btn add-task-btn" type="submit") Add Task
 
-      div(class="task-list-container")
-        div(class="task-container") 
-          div(class="task") FORGET the milk!
+      div(class="task-list-container" id="task-list-container")
+        div(class="task-container")
+          div(class="task-sample") FORGET the milk!
 
 
     div(class="grid__right-col")
       div(class="right-col__task-info")
-        div(class="info-header" ) due 
+        div(class="info-header" ) due
           span(class="info-span") never
         div(class="info-header") list
           span(class="info-span")  Personal
         div(class="task-description") THIS HOLDS THE DESCRIPTION
-      div(class="right-col__extra-options") 
+      div(class="right-col__extra-options")
         form(class="notes-form")
           label(for='notes') Notes
           input(class="notes-input" type='notes', name="notes", placeholder='Add a note...')
+          button(class="generic-btn" type="submit") Save
+          button(class="generic-btn cancel-btn" type="submit") Cancel
 
 
   script(type="module" src="js/search-feature.js")
+  script(type="module" src="js/tasks.js")
