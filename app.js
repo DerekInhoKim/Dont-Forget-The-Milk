@@ -11,6 +11,8 @@ const { environment } = require("./config");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/api/users");
 const searchRouter = require("./routes/api/search");
+const taskRouter = require("./routes/api/tasks")
+const listRouter = require("./routes/api/lists")
 
 const app = express();
 
@@ -25,6 +27,8 @@ app.use(express.json());
 app.use("/", indexRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/search", searchRouter);
+app.use("/api/list", listRouter);
+app.use("/api/task", taskRouter);
 
 // app.use("/api/list", listsRouter);
 app.use(express.static(path.join(__dirname, "public")));
