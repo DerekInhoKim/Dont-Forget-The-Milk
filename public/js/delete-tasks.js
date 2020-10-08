@@ -1,7 +1,5 @@
-document.addEventListener('DOMContentLoaded', e => {
+document.addEventListener("DOMContentLoaded", e => {
 
-  const addTask = document.querySelector(".add-task-btn")
-  const form = document.querySelector(".add-task-form")
 
   // update the list of tasks to show the newly created task
 
@@ -95,33 +93,19 @@ document.addEventListener('DOMContentLoaded', e => {
     script.setAttribute('src', './js/test.js')
     script.classList.add('script')
     taskListContainer.appendChild(script)
-
-    // set up event listeners on delete buttons
-
-    const scriptForDeleteButtons = document.createElement('script')
-    scriptForDeleteButtons.setAttribute('src', './js/delete-tasks.js')
-    scriptForDeleteButtons.classList.add('script')
-    taskListContainer.appendChild(scriptForDeleteButtons)
   }
 
 
-  const addTaskForm = document.querySelector(".add-task-form")
-  // send a post request to create a new task
+  //-------------------------------------------------------------------------------------------
 
-  addTaskForm.addEventListener("submit", async(e) => {
+  const deleteTask = async function (taskId) {
+    let listId = localStorage.getItem("CURRENT_LIST")
+    const body = {taskId}
+    
 
-    e.preventDefault()
-    e.stopPropagation();
-
-
-    let listId = localStorage.getItem('CURRENT_LIST')
-    const formData = new FormData(addTaskForm)
-    const newTask = formData.get("new-task")
-
-    const body = { newTask, listId }
     try{
-      const res = await fetch(`api/lists/${listId}/tasks/create-task`, {
-        method: "POST",
+      const res = await fetch(`/api/lists/${listId}/tasks/delete-task`, {
+        method: 'DELETE',
         body: JSON.stringify(body),
         headers: {
           "Content-Type": "application/json",
@@ -135,16 +119,33 @@ document.addEventListener('DOMContentLoaded', e => {
         window.location.href = "/log-in";
         return;
       }
-      if (!res.ok) {
+
+      if(!res.ok) {
         throw res;
       }
 
-      addTaskForm.reset();
       await fetchTasks()
-
 
     } catch(err) {
       console.error(err)
     }
+
+  }
+
+  // functionality for deleting a task
+
+  const tasksContainer = document.querySelector('.task-list-container');
+  console.log(tasksContainer)
+
+  tasksContainer.addEventListener("click", e=> {
+    e.preventDefault();
+    e.stopPropagation();
+    if(e.target.className.startsWith('delete')) {
+      console.log(e.target.dataset.id)
+      deleteTask(e.target.dataset.id)
+    } else if (e.target.className.startsWith('update')) {
+      updateTask(e.target.dataset.id)
+    }
+    return;
   })
 })

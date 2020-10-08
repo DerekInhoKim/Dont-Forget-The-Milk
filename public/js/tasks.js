@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', e => {
+  if(localStorage.getItem('CURRENT_LIST')) {
+    localStorage.removeItem('CURRENT_LIST')
+  }
+
   // set up the variable for the list id that will be used to navigate to the correct endpoint
   // obtain the userId from the access token that is in the user's local storage, because it's needed for authentication
 
@@ -7,11 +11,10 @@ document.addEventListener('DOMContentLoaded', e => {
   // find and add a click event listener to all the lists so that the list id can be extracted and used in the path for the GET request
   // to obtain and display all tasks associated with the given list
 
-  const lists = document.querySelectorAll('.listElement');
+  const lists = document.querySelectorAll('.list-cat-container');
 
   lists.forEach(list => {
     list.addEventListener('click', async(e) => {
-
       e.stopImmediatePropagation();
 
       // localStorage.setItem("DFTM_USER_ID", 1)
@@ -58,7 +61,7 @@ document.addEventListener('DOMContentLoaded', e => {
         // check authorization of user by adding an authorization header in the GET request
 
 
-        const res = await fetch(`http://localhost:8080/api/lists/${listId}/tasks`, {
+        const res = await fetch(`/api/lists/${listId}/tasks`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem(
               "DFTM_USER_TOKEN"
@@ -76,24 +79,44 @@ document.addEventListener('DOMContentLoaded', e => {
 
         // not finished... am going to add update and delete buttons
 
-        let buttonContainer = document.createElement('div')
-        let deleteButtonContainer = document.createElement('div')
-        let updateButtonContainer = document.createElement('div')
-        let deleteButton = document.createElement('button')
-        let updateButton = document.createElement('button')
 
-        buttonContainer.appendChild(deleteButtonContainer)
-        buttonContainer.appendChild(updateButtonContainer)
 
 
         // extract tasks from the server response and dynamically generate HTML that is used to display the tasks
-        console.log(res)
-        const { tasks } = await res.json()
+
+        const {tasks}  = await res.json()
 
         const taskListContainer = document.querySelector(".task-list-container")
         tasks.forEach(task => {
 
-          const taskContainer = document.createElement('div')
+          let buttonContainer = document.createElement('div')
+          let deleteButtonContainer = document.createElement('div')
+          let updateButtonContainer = document.createElement('div')
+          buttonContainer.classList.add("buttons-container")
+          deleteButtonContainer.classList.add("delete-button-container")
+          updateButtonContainer.classList.add("update-button-container")
+
+          let deleteButton = document.createElement('button')
+          let updateButton = document.createElement('button')
+
+          deleteButton.setAttribute("type", "submit")
+          updateButton.setAttribute("type", "submit")
+          // deleteButton.setAttribute("id", task.id)
+          // updateButton.setAttribute("id", task.id)
+          deleteButton.dataset.id = task.id
+          updateButton.dataset.id = task.id
+          deleteButton.classList.add("delete-task-btn")
+          updateButton.classList.add("update-task-btn")
+          deleteButton.innerHTML = "DELETE"
+          updateButton.innerHTML = "UPDATE"
+
+          deleteButtonContainer.appendChild(deleteButton)
+          updateButtonContainer.appendChild(updateButton)
+
+          buttonContainer.appendChild(deleteButtonContainer)
+          buttonContainer.appendChild(updateButtonContainer)
+
+          const taskContainer = document.createElement('div');
           taskContainer.classList.add("task-container")
           const taskItem = document.createElement('div')
           taskItem.classList.add("task");
@@ -110,6 +133,13 @@ document.addEventListener('DOMContentLoaded', e => {
         script.setAttribute('src', './js/test.js')
         script.classList.add('script')
         taskListContainer.appendChild(script)
+
+        // set up event listeners on delete buttons
+
+        const scriptForDeleteButtons = document.createElement('script')
+        scriptForDeleteButtons.setAttribute('src', './js/delete-tasks.js')
+        scriptForDeleteButtons.classList.add('script')
+        taskListContainer.appendChild(scriptForDeleteButtons)
 
         // deal with any errors that arise
 

@@ -2,18 +2,19 @@ extends layout.pug
 
 block content
   include includes/nav
+  include includes/pop-up
 
   div(class="grid__container")
     div(class="grid__left-col" id="")
       div(class="logo-container")
+        img(src="" class="logo-dftm")
       div(class="left-col__all-tasks")
         div(class="list-all-tasks-container") This holds all tasks
       div(class="left-col__list-categories")
         div(class="list-cat-container") This holds the categories
-          ul
-            li#4.listElement Personal
-            li#5.listElement Work
-            li#6.listElement Groceries
+
+        script(type="module" src="js/list.js")
+
 
     div(class="grid__mid-col")
       div(class="mid-col-list-header")
@@ -42,16 +43,19 @@ block content
     div(class="grid__right-col")
       div(class="right-col__task-info")
         div(class="info-header" ) due
-          span(class="info-span") never
+          span(class="date-span") never
         div(class="info-header") list
-          span(class="info-span")  Personal
+          span(class="list-span")  Personal
         div(class="task-description") THIS HOLDS THE DESCRIPTION
       div(class="right-col__extra-options")
         form(class="notes-form")
           label(for='notes') Notes
           input(class="notes-input" type='notes', name="notes", placeholder='Add a note...')
+          button(class="generic-btn" type="submit") Save
+          button(class="generic-btn cancel-btn" type="submit") Cancel
 
 
   script(type="module" src="js/search-feature.js")
   script(type="module" src="js/tasks.js")
   script(type="module" src="js/add-tasks.js")
+  script(type="module" src="js/delete-tasks.js")
