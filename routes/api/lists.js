@@ -20,7 +20,6 @@ router.get('/:id', asyncHandler(async(req,res) => {
     // include: [{ model: Task,as:"task",attributes: ['taskName'] } ],
     order: [['createdAt', 'DESC']],
   });
-  console.log(lists.task);
   res.json({lists});
 }));
 

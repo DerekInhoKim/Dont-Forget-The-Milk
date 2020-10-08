@@ -50,14 +50,14 @@ body {
 
 ::placeholder {
   color: white;
-  opacity: 1; 
+  opacity: 1;
 }
 
-:-ms-input-placeholder { 
+:-ms-input-placeholder {
  color: white;
 }
 
-::-ms-input-placeholder { 
+::-ms-input-placeholder {
  color: white;
 }
 
@@ -108,7 +108,7 @@ button {
   /* height: 30px; */
   /* justify-content: flex-end; */
   margin-right: 15px;
-} 
+}
 
 .logout-btn {
   width: 90px;
@@ -218,11 +218,11 @@ form.add-task-form{
   opacity: 0.8;
 }
 
-.add-task-input:-ms-input-placeholder { 
+.add-task-input:-ms-input-placeholder {
  color: #676767;
 }
 
-.add-task-input::-ms-input-placeholder { 
+.add-task-input::-ms-input-placeholder {
  color: #676767;
 }
 
@@ -389,11 +389,11 @@ li:hover {
   opacity: 0.8;
 }
 
-.notes-input:-ms-input-placeholder { 
+.notes-input:-ms-input-placeholder {
  color: #676767;
 }
 
-.notes-input::-ms-input-placeholder { 
+.notes-input::-ms-input-placeholder {
  color: #676767;
 }
 
@@ -425,13 +425,7 @@ li:hover {
     grid-template-rows: auto;
   }
 
-  .right-col__task-info {
-  }
-
-
-  .right-col__extra-options  {
-  }
-} 
+}
 
 /* @media screen and (max-width: 500px) {
   .tabbed-nav__group {
@@ -443,7 +437,7 @@ li:hover {
   }
 } */
 
-/* @media screen and (min-width: 750px) and (max-width: 1280px) { 
+/* @media screen and (min-width: 750px) and (max-width: 1280px) {
   .boards__board {
     width: 33%;
   }

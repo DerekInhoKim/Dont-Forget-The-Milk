@@ -19,12 +19,12 @@ const fetchList = async(userId) => {
   const listsContainer = document.querySelector(".list-cat-container");
   const listsHtml = lists.map(
     ({ listName, id}) => `
-      <div class="card">
+      <div class="lists">
         <div class="list-header" id="${id}">
           ${listName}
           <div class="dropdown">
             <button id="button-drop" class="button-drop">></button>
-            <div id="drop-content" style="display:none">
+            <div class="drop-content" style="display:none">
               <button id="remove-${id}" class="delete-button" >Remove list</button>
               <button id="edit-${id}" class="edit-button"> Renam list</button>
           </div>
@@ -69,16 +69,22 @@ document.addEventListener("DOMContentLoaded", async()=> {
     // }
     await fetchList(userId);
 
-    const dropButton = document.getElementById("button-drop");
-    const click = document.getElementById("drop-content");
+    const dropButtons = document.querySelectorAll(".button-drop");
+    // const click = document.getElementById("drop-content");
 
-    dropButton.addEventListener('click', (event) => {
-      if (click.style.display === "none") {
-        click.style.display = "block";
-      } else {
-        click.style.display = "none";
-      }
-    });
+    dropButtons.forEach(dropButton => {
+      
+      dropButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        let click = event.target.parentNode.querySelector('.drop-content')
+        console.log(click)
+        if (click.style.display === "none") {
+          click.style.display = "block";
+        } else {
+          click.style.display = "none";
+        }
+      });
+    })
 
     const deleteButtons = document.querySelectorAll(".delete-button");
     if (deleteButtons) {
