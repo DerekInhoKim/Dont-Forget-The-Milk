@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", async (event) => {
   //Access the user access token to pass into the header to authorize the user during our requests.
   const token = localStorage.getItem("DFTM_ACCESS_TOKEN");
+
   const overdueTasksSpan = document.querySelector(".overdue-tasks-span")
 
 
@@ -11,7 +12,48 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   //For each task, we set up an event listener to find which task is being selected.
   let listId;
   let taskId;
+  let counter; //Set up a counter, to count the number of tasks.
 
+  //If no list has been selected. We will fetch all of the completed tasks.
+
+  const allLists = await fetch(`/api/lists`, { //Returns a list of all lists.
+    headers: {
+      "Authorization": `Bearer: ${token}`
+    }
+  })
+
+
+  const listRes = await allLists.json()
+  // console.log(listRes.allLists)
+  counter = 0;
+  listRes.allLists.forEach( async list => {
+    const eachTask = await fetch(`/api/lists/${list.id}`, { //This request will get all the tasks for a list.
+      headers: {
+        "Authorization": `Bearer: ${token}`
+      }
+    })
+    const taskRes = await eachTask.json()
+    //Select only thet asks from the res.
+    const allTasks = taskRes.list.Tasks
+
+    //Loop through each task, to find the number of tasks that are complete
+    allTasks.forEach(tasks => {
+      const dueDate = (Date.parse(tasks.dueDate))
+      const today = (Date.parse(new Date()))
+      //Add one to the counter, if the parsed due date is less than today's date, and is not NaN
+      if(dueDate < new Date() && today !== NaN){
+        counter++
+      }
+    })
+
+    //Set the innerHTML of our completeTaskSpan to equal the count of all tasks from each list which have been filtered
+    overdueTasksSpan.innerHTML = counter;
+  })
+
+  //Set up event listeners for all tasks that are displayed on the page, to update the
+  //Number of completed tasks if someone selects a task on a particular list.
+
+  //TASKS/LISTS FUNCTIONALITY MUST BE COMPLETE BEFORE MOVING FORWARD
   //Add functionality to load the correct task's information when a task is selected on the page.
   selectedTask.forEach(async task => {
     task.addEventListener("click", async event => {
@@ -31,32 +73,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       }
 
       //If there is no list/task selected, we want to display a number for total tasks.
-      if(!listId){
-        const allLists = await fetch(`/api/lists`, { //Returns a list of all lists.
-          headers: {
-            "Authorization": `Bearer: ${token}`
-          }
-        })
-
-        let counter = 0; //Set up a counter, to count the number of tasks.
-        allLists.forEach(async list => {
-          const eachTask = await fetch(`/api/lists/${list.id}`, { //This request will get all the tasks for a list.
-            headers: {
-              "Authorization": `Bearer: ${token}`
-            }
-          })
-
-          const overdueTasks = eachTask.filter(task => {
-            task.date < new Date()
-          })
-
-          counter += overdueTasks.length
-        })
-        //Set the innerHTML of our overdueTaskSpan to equal the count of all tasks added from each list
-        overdueTasksSpan.innerHTML = counter;
-
-
-      }
 
       try {
         //We grab all the tasks, from the specific list
@@ -75,7 +91,10 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
         //Filter through all the tasks, to find which tasks are completed by accessing the column isComplete and checking the boolean value
         const overdueTasks = tasks.filter( task => {
-          task.dueDate < new Date()
+          const dueDate = (Date.parse(tasks.dueDate))
+          const today = (Date.parse(new Date()))
+
+          dueDate < new Date() && today !== NaN
 
         })
 
