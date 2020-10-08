@@ -83,6 +83,35 @@ button {
   border-radius: 3px;
 } */
 
+.dropdown {
+  position:relative;
+  display: inline-block;
+}
+
+.button-drop {
+  background-color:lightblue;
+  padding:0.2px 0.2px;
+  align-self: flex-end;
+}
+#drop-content {
+  position: absolute;
+  z-index: 1;
+}
+#drop-content a{
+  display:block;
+  background-color: white;
+  /* color: black; */
+}
+
+.delete-button {
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.edit-button {
+   font-size: 12px;
+     font-weight: lighter;
+}
 .nav-right-container {
   display: flex;
   /* background-color: red; */
