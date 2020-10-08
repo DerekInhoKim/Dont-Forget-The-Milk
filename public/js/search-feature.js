@@ -26,7 +26,7 @@ searchForm.addEventListener("keydown", async (e) => {
                   <div class="task" id=${taskObj.id}> ${task} </div>
                 </div>`
       });
-      
+
       taskListContainer.innerHTML = tasksHtml.join("")
 
       const script = document.createElement('script');
