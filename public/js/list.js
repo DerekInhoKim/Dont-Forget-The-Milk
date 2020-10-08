@@ -16,7 +16,7 @@ const fetchList = async(userId) => {
   }
 
   const {lists} = await res.json();
-  const listsContainer = document.querySelector(".list-container");
+  const listsContainer = document.querySelector(".list-cat-container");
   const listsHtml = lists.map(
     ({ listName, id}) => `
       <div class="card">
