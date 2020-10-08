@@ -37,9 +37,4 @@ searchForm.addEventListener("keydown", async (e) => {
       console.error(err);
     }
   }
-<<<<<<< HEAD
-
 });
-=======
-});
->>>>>>> master
