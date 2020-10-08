@@ -12,6 +12,34 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   const selectedTask = document.querySelectorAll("task")
   let listId;
   let taskId;
+  let counter; //Set up a counter, to count the number of tasks.
+
+  //If there is no list/task selected, we want to display a number for total tasks.
+
+  const allLists = await fetch(`/api/lists`, { //Returns a list of all lists.
+    headers: {
+      "Authorization": `Bearer: ${token}`
+    }
+  })
+
+  const listsRes = await allLists.json()
+  counter = 0;
+  listsRes.allLists.forEach( async list => {
+    const eachTask = await fetch(`/api/lists/${list.id}`, { //This request will get all the tasks for a list.
+      headers: {
+        "Authorization": `Bearer: ${token}`
+      }
+    })
+
+    const taskRes = await eachTask.json()
+    const allTasks = taskRes.list.Tasks
+    allTasks.forEach(task => {
+      counter++
+    })
+
+    totalTasksSpan.innerHTML = counter;
+  })
+    //Set the innerHTML of our totalTaskSpan to equal the count of all tasks added from each list
 
   //For each task, we set up an event listener to find which task is being selected.
   selectedTask.forEach(task => {
@@ -25,32 +53,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       })
 
       listId = tasksList.listId
-
-
-      //If there is no list/task selected, we want to display a number for total tasks.
-      if(!listId){
-        const allLists = await fetch(`/api/lists`, { //Returns a list of all lists.
-          headers: {
-            "Authorization": `Bearer: ${token}`
-          }
-        })
-
-        let counter = 0; //Set up a counter, to count the number of tasks.
-        const allListsRes = await allLists.json()
-        allListsRes.forEach( async list => {
-          const eachTask = await fetch(`/api/lists/${list.id}`, { //This request will get all the tasks for a list.
-            headers: {
-              "Authorization": `Bearer: ${token}`
-            }
-          })
-
-          counter += eachTask.length //Add the length of the array, to the counter.
-        })
-        //Set the innerHTML of our totalTaskSpan to equal the count of all tasks added from each list
-        totalTasksSpan.innerHTML = 10;
-
-
-      }
 
       try {
         //We grab all the tasks, from the specific list
