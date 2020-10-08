@@ -66,8 +66,8 @@ document.addEventListener("DOMContentLoaded", e => {
       updateButton.dataset.id = task.id
       deleteButton.classList.add("delete-task-btn")
       updateButton.classList.add("update-task-btn")
-      deleteButton.innerHTML = "DELETE"
-      updateButton.innerHTML = "UPDATE"
+      deleteButton.innerHTML = "Delete"
+      updateButton.innerHTML = "Update"
 
       deleteButtonContainer.appendChild(deleteButton)
       updateButtonContainer.appendChild(updateButton)
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", e => {
   const deleteTask = async function (taskId) {
     let listId = localStorage.getItem("CURRENT_LIST")
     const body = {taskId}
-    
+
 
     try{
       const res = await fetch(`/api/lists/${listId}/tasks/delete-task`, {

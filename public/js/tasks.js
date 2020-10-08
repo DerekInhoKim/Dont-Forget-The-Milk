@@ -107,8 +107,8 @@ document.addEventListener('DOMContentLoaded', e => {
           updateButton.dataset.id = task.id
           deleteButton.classList.add("delete-task-btn")
           updateButton.classList.add("update-task-btn")
-          deleteButton.innerHTML = "DELETE"
-          updateButton.innerHTML = "UPDATE"
+          deleteButton.innerHTML = "Delete"
+          updateButton.innerHTML = "Update"
 
           deleteButtonContainer.appendChild(deleteButton)
           updateButtonContainer.appendChild(updateButton)

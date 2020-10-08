@@ -325,38 +325,42 @@ form.add-task-form{
 
 .delete-button-container {
   display: flex;
+  border: 5px;
   margin: 2px;
   width: 75px;
-  align-content: flex-end;
-  border-right: 3px solid #CCCCCC;;
+  justify-content: center;
+  border-right: 3px solid #CCCCCC;
 }
 
 .update-button-container {
   display: flex;
-  align-content: flex-end;
+  justify-content: center;
+  border: 5px;
+  width: 75px;
   margin: 2px;
+
 }
 
 .delete-task-btn {
   height: 20px;
   transition: 0.3s;
-  color: rgb(31, 31, 31)
+  color:white
 }
 
 .update-task-btn{
   height: 20px;
   transition: 0.3s;
-  color:rgb(31, 31, 31)
+  color:white
 }
 
 .delete-task-btn:hover {
   background-color: #9dd1ff;
-  color: white;
+  /* color: white; */
 }
 
 .update-task-btn:hover{
   background-color:#9dd1ff;
-  color: white;
+  /* color: white; */
 }
 
 .task {

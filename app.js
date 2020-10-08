@@ -58,6 +58,7 @@ app.use((error, req, res, next) => {
 
 //general error handler
 app.use((error, req, res, next) => {
+  console.log(error)
   res.status(error.status || 500);
   const isProduction = environment === "production";
   res.json({

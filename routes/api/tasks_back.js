@@ -42,7 +42,7 @@ router.delete('/:id/tasks/delete-task', asyncHandler(async (req, res) => {
       id: Number(taskId) }
   })
 
-  res.json({response})
+  res.status(200).end()
 }))
 
 
