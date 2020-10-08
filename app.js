@@ -11,7 +11,7 @@ const { environment } = require("./config");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/api/users");
 const searchRouter = require("./routes/api/search");
-
+const tasks_back_end = require('./routes/api/tasks_back')
 const app = express();
 
 app.set("view engine", "pug");
@@ -19,15 +19,18 @@ app.set("view engine", "pug");
 //external use statements
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
+
+
+
 
 
 //internal use statements
 app.use("/", indexRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/search", searchRouter);
+app.use('/api/lists', tasks_back_end)
 
-// app.use("/api/list", listsRouter);
-app.use(express.static(path.join(__dirname, "public")));
 
 
 //TODO: error handlers
