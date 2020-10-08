@@ -10,7 +10,10 @@ block content
         div(class="list-all-tasks-container") This holds all tasks
       div(class="left-col__list-categories")
         div(class="list-cat-container") This holds the categories
-          
+          ul
+            li#4.listElement Personal
+            li#5.listElement Work
+            li#6.listElement Groceries
 
     div(class="grid__mid-col")
       div(class="mid-col-list-header")
@@ -27,7 +30,8 @@ block content
         button(class="task-tab") Completed
 
       form(class="add-task-form" id="add-task")
-        input(class="add-task-input" id="add-task" type="input" placeholder="Add a task..." aria-label="Add a task..." name="")
+        label(for="new-task")
+        input(class="add-task-input" id="add-task" type="input" placeholder="Add a task..." aria-label="Add a task..." name="new-task")
         button(class="add-task-btn" type="submit") Add Task
 
       div(class="task-list-container" id="task-list-container")
@@ -50,3 +54,4 @@ block content
 
   script(type="module" src="js/search-feature.js")
   script(type="module" src="js/tasks.js")
+  script(type="module" src="js/add-tasks.js")

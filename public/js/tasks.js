@@ -27,6 +27,12 @@ document.addEventListener('DOMContentLoaded', e => {
 
       listId = e.target.id
 
+      if(localStorage.getItem('CURRENT_LIST')) {
+        localStorage.removeItem('CURRENT_LIST')
+      }
+
+      localStorage.setItem('CURRENT_LIST', listId)
+
       try {
 
         // clear old tasks
@@ -52,24 +58,41 @@ document.addEventListener('DOMContentLoaded', e => {
         // check authorization of user by adding an authorization header in the GET request
 
 
-        const res = await fetch(`http://localhost:8080/api/lists/${listId}`, {
+        const res = await fetch(`http://localhost:8080/api/lists/${listId}/tasks`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem(
               "DFTM_USER_TOKEN"
             )}`
           }
         })
+        if (res.status === 401) {
+          window.location.href = "/log-in";
+          return;
+        }
 
         if(!res.ok) {
           throw res;
         }
-        // extract tasks from the server response and dynamically generate HTML that is used to display the tasks
 
+        // not finished... am going to add update and delete buttons
+
+        let buttonContainer = document.createElement('div')
+        let deleteButtonContainer = document.createElement('div')
+        let updateButtonContainer = document.createElement('div')
+        let deleteButton = document.createElement('button')
+        let updateButton = document.createElement('button')
+
+        buttonContainer.appendChild(deleteButtonContainer)
+        buttonContainer.appendChild(updateButtonContainer)
+
+
+        // extract tasks from the server response and dynamically generate HTML that is used to display the tasks
+        console.log(res)
         const { tasks } = await res.json()
 
         const taskListContainer = document.querySelector(".task-list-container")
         tasks.forEach(task => {
-          console.log(task)
+
           const taskContainer = document.createElement('div')
           taskContainer.classList.add("task-container")
           const taskItem = document.createElement('div')
@@ -77,6 +100,7 @@ document.addEventListener('DOMContentLoaded', e => {
           taskItem.setAttribute("id", `${task.id}`)
           taskItem.innerHTML = task.taskName
           taskContainer.appendChild(taskItem)
+          taskContainer.appendChild(buttonContainer)
           taskListContainer.appendChild(taskContainer)
         });
 
