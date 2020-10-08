@@ -29,7 +29,7 @@ registrationForm.addEventListener("submit", async (event) => {
       body: JSON.stringify(body),
       headers: { "Content-Type": "application/json" }
     });
-    console.log(res);
+    
     if (!res.ok) {
       throw res;
     }
