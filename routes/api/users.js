@@ -146,10 +146,6 @@ router.post('/:userId(\\d+)/lists', validateList, asyncHandler(async(req,res,nex
 
 }));
 
-
-
-
-
 ///gettin all the lists for specific user
 router.get('/:id/lists', asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10);
@@ -164,17 +160,6 @@ router.get('/:id/lists', asyncHandler(async (req, res) => {
   res.json({ lists });
 }));
 
-///validate list
-// const validateList = [
-//   check('listName')
-//     .exists({ checkFalsy: true })
-//     .withMessage("List name can't be undefined."),
-//   check('listName')
-//     .isLength({ max: 50 })
-//     .withMessage("List can't be longet than 50 characters."),
-//   handleValidationErrors,
-// ];
-
 //creating a new list for specific user
 
 router.post('/:id/lists', validateList, asyncHandler(async (req, res, next) => {
@@ -184,4 +169,48 @@ router.post('/:id/lists', validateList, asyncHandler(async (req, res, next) => {
   const list = await List.create({ listName, userId });
   res.json({ list });
 }));
+
+router.get('/:id/lists/completedTasks', asyncHandler(async ( req, res, next) => {
+  const userId = req.params.id
+  const allLists = await List.findAll({
+    where: {
+      userId: userId
+    }, include: [{model: Task, as: "task"}]
+  })
+
+
+  let completeTasks = []
+  // console.log(allLists.task)
+  allLists.forEach(list => {
+    list.task.forEach( task => {
+      if(task.dataValues.isComplete === true){
+        console.log(task)
+        completeTasks.push(task)
+      }
+    })
+  })
+  res.json({ completeTasks })
+}))
+
+router.get('/:id/lists/incompletedTasks', asyncHandler(async ( req, res, next) => {
+  const userId = req.params.id
+  const allLists = await List.findAll({
+    where: {
+      userId: userId
+    }, include: [{model: Task, as: "task"}]
+  })
+
+
+  let incompleteTasks = []
+  // console.log(allLists.task)
+  allLists.forEach(list => {
+    list.task.forEach( task => {
+      if(task.dataValues.isComplete === false){
+        incompleteTasks.push(task)
+      }
+    })
+  })
+  res.json({incompleteTasks})
+}))
+
 module.exports = router;
