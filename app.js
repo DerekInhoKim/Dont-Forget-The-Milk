@@ -12,7 +12,7 @@ const indexRouter = require("./routes/index");
 const listRouter = require("./routes/api/lists");
 const usersRouter = require("./routes/api/users");
 const searchRouter = require("./routes/api/search");
-const tasks_back_end = require('./routes/api/tasks_back')
+const tasksRouter = require('./routes/api/tasks_back')
 const app = express();
 
 app.set("view engine", "pug");
@@ -31,8 +31,7 @@ app.use("/", indexRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/lists", listRouter);
 app.use("/api/search", searchRouter);
-app.use('/api/lists', tasks_back_end);
-
+app.use('/api/tasks', tasksRouter);
 
 
 //TODO: error handlers

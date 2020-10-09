@@ -1,8 +1,10 @@
 // Async Handler function
+
+const { validationResult }= require('express-validator')
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 
 const handleValidationErrors = (req, res, next) => {
-  const validationErrors = validationResults(req);
+  const validationErrors = validationResult(req);
 
   if(!validationErrors.isEmpty()) {
     const errors = validationErrors.array().map((error) => error.msg)
@@ -14,7 +16,7 @@ const handleValidationErrors = (req, res, next) => {
     return next(err);
   }
   next();
-} 
+}
 
 module.exports = {
   asyncHandler,

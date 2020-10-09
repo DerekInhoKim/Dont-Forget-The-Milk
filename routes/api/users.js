@@ -4,7 +4,7 @@ const { check } = require("express-validator");
 
 const { asyncHandler, handleValidationErrors } = require("../utils");
 const { getUserToken } = require("../../auth");
-const { User } = require("../../db/models");
+const { User, List, Task } = require("../../db/models");
 
 const router = express.Router();
 
@@ -101,22 +101,44 @@ router.post("/token", sharedAuthValidations,
   })
 );
 
-// // /api/users/userId
-// router.get("/:id(\\d+)lists" , asyncHandler(async (req, res) => {
-//   //TODO return all lists for a specific user
+// /api/users/userId/lists
+// Display all lists for a specific user
+router.get('/:userId(\\d+)/lists', asyncHandler(async(req,res) => {
+  const lists = await List.findAll({
+    where: {
+      userId: req.params.userId
+    },
+    include: [{ model: Task, as:"task" } ],
+    order: [['createdAt', 'DESC']],
+  });
 
-//   const allUsers = await List.findall({
-//     where:{
-//       userId: req.params.id
-//     }, include: Tasks
-//   })
-//   res.json({allUsers})
-// });
+  res.json({lists});
 
-// // /api/users/userId/tweets/tweetId
-// router.get("/:id(\\d+)/list/:id(\\d+)", asyncHandler (async (req, res) => {
+}));
 
-// })
+const validateList = [
+  check('listName')
+    .exists({checkFalsy: true})
+    .withMessage("List name can't be undefined."),
+  check('listName')
+    .isLength({max: 50})
+    .withMessage("List can't be longer than 50 characters."),
+  handleValidationErrors,
+];
+
+// /api/users/userId/lists
+// Add a new list to a user
+router.post('/:userId(\\d+)/lists', validateList, asyncHandler(async(req,res,next) => {
+  const userId = req.params.userId
+  const {listName} = req.body;
+
+  const list = await List.create({listName, userId});
+  res.json({list});
+
+}));
+
+
+
 
 
 module.exports = router;
