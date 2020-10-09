@@ -17,16 +17,7 @@ router.get('/:id/tasks', asyncHandler(async (req, res) => {
   res.json({tasks})
 }))
 
-<<<<<<< HEAD
-router.get('/:id/list/task')
 
-// api/lists/userId/tasks/taskId
-// returns all tasks
-// localStorage.getItem(userid)
-// /api/lists/listId return info on one list
-// /api/lists/listId/tasks/ return a list of all tasks assocaited with the list
-// /api/lists/listId/tasks/id return info on one task
-=======
 // create a new task and store it in the database
 
 router.post('/:id/tasks/create-task', asyncHandler( async (req, res) => {
@@ -54,7 +45,7 @@ router.delete('/:id/tasks/delete-task', asyncHandler(async (req, res) => {
 
   res.json({deletedTask: taskId})
 }))
->>>>>>> master
+
 
 
 module.exports = router;
