@@ -20,4 +20,16 @@ router.get("/sign-in", (req, res) => {
   res.render("sign-in");
 });
 
+router.get("/terms", (req, res) => {
+  res.render("terms");
+});
+
+router.get("/privacy", (req, res) => {
+  res.render("privacy");
+});
+
+router.get("/reset-request", (req, res) => {
+  res.render("reset-request");
+});
+
 module.exports = router;

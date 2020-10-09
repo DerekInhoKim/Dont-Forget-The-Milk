@@ -1,4 +1,16 @@
+
 import { errorNotifications } from "./error-notifications.js";
+
+
+// (() => {
+//   const authorizedUser = localStorage.getItem("DFTM_USER_ID");
+
+//   if (authorizedUser) {
+//     window.location.href = "/";
+//   } else {
+//     return;
+//   }
+// })();
 
 const signInForm = document.querySelector(".sign-in-form");
 

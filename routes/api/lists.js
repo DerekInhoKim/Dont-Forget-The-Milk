@@ -1,13 +1,13 @@
 const express = require('express');
 const {check} = require('express-validator');
-const {handleValidationErrors, asyncHandler} = require('../../utils');
+const {handleValidationErrors, asyncHandler} = require('../utils');
 // const {requireAuth} = require('../../auth');
 const router = express.Router();
 const db = require('../../db/models');
 
 const { User, List, Task} = db;
 
-// { model: User, as: 'user', attributes: ['username'] }, 
+// { model: User, as: 'user', attributes: ['username'] },
 
 // router.use(requireAuth);
 
@@ -105,6 +105,3 @@ router.delete('/:id', asyncHandler(async(req,res,next) => {
 }));
 
 module.exports = router;
-
-
-
