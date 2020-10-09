@@ -17,7 +17,6 @@ siteTour.addEventListener("click", async (event) => {
       headers: { "Content-Type": "application/json" }
     });
     console.log(res);
-    debugger
     if (!res.ok) {
       throw res;
     }
