@@ -8,16 +8,16 @@
 
 //Display all lists for a user
 // /api/lists
-router.get('/', asyncHandler(async (req, res) => {
-  const allLists = await List.findAll({
-    include: Task
+// router.get('/', asyncHandler(async (req, res) => {
+//   const allLists = await List.findAll({
+//     include: Task
 
-  });
+//   });
 
 
-  res.json({ allLists });
+//   res.json({ allLists });
 
-}));
+// }));
 
 // // Display all tasks for a specific list.
 // // /api/lists/id/tasks
