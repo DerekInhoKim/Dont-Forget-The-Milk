@@ -14,31 +14,9 @@ const router = express.Router();
 
 
 // /api/tasks/id will return one task with the id of id
-router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
-  // console.log(req.params.id)
-  const taskId = parseInt(req.params.id, 10)
-  const tasks = await Task.findOne({
-    where: {
-      id: taskId
-    }
-  })
-
-  res.json({tasks})
-}))
 
 
-// create a new task and store it in the database
 
-router.post('/:id/tasks/create-task', asyncHandler( async (req, res) => {
-
-  const { newTask, listId } = req.body;
-  const task = await Task.create({
-    taskName: newTask,
-    listId: listId
-  })
-  console.log(task)
-  res.json({ task })
-}))
 
 // delete task and update the database
 

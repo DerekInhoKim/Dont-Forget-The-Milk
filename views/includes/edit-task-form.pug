@@ -1,0 +1,30 @@
+//- button(id="testBtn") test
+
+div(class="edit-task-form-holder")
+  div(class="edit-task-form-content")
+    h3 Edit task
+    form(class="" id="edit-task-form")
+      div
+        label(for='taskName') Task
+        input(type='text' name='taskName' placeholder='')
+      div
+        label(for='dueDate') Due Date
+        input(type='text', name="dueDate", placeholder='')
+      div
+        label(for='description') Description
+        input(type='password', name="description", placeholder='')
+      button(class="gen-button ") Update
+
+
+script(type="text/javascript").
+ const editTaskForm = document.querySelector(".edit-task-form-holder");
+
+  //- testBtn.onclick = () => {
+  //-   editTaskForm.style.display = "block";
+  //- }
+
+    window.onclick = function(event) {
+    if (event.target === editTaskForm) {
+      editTaskForm.style.display = "none";
+    }
+  }
