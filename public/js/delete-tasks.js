@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", e => {
 
-  // delete a task on the back end 
+  // delete a task on the back end
   const deleteTask = async function (taskId) {
     let listId = localStorage.getItem("CURRENT_LIST")
     const body = {taskId}
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", e => {
   // functionality for deleting a task on the front end
 
   const tasksContainer = document.querySelector('.task-list-container');
-  console.log(tasksContainer)
+  // console.log(tasksContainer)
 
   tasksContainer.addEventListener("click", e=> {
     e.preventDefault();

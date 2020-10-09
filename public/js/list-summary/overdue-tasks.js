@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async (event) => {
   //Access the user access token to pass into the header to authorize the user during our requests.
   const token = localStorage.getItem("DFTM_ACCESS_TOKEN");
-
+  const userId = localStorage.getItem("DFTM_USER_ID")
   const overdueTasksSpan = document.querySelector(".overdue-tasks-span")
 
 
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
   //If no list has been selected. We will fetch all of the completed tasks.
 
-  const allLists = await fetch(`/api/lists`, { //Returns a list of all lists.
+  const allLists = await fetch(`/api/users/${userId}/lists`, { //Returns a list of all lists.
     headers: {
       "Authorization": `Bearer: ${token}`
     }
@@ -24,23 +24,24 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
 
   const listRes = await allLists.json()
-  // console.log(listRes.allLists)
+  const listsArr = listRes.lists
   counter = 0;
-  listRes.allLists.forEach( async list => {
-    const eachTask = await fetch(`/api/lists/${list.id}`, { //This request will get all the tasks for a list.
+  listsArr.forEach( async list => {
+    const eachTask = await fetch(`/api/lists/${list.id}/tasks`, { //This request will get all the tasks for a list.
       headers: {
         "Authorization": `Bearer: ${token}`
       }
     })
+
     const taskRes = await eachTask.json()
     //Select only thet asks from the res.
-    console.log("TaskRes", taskRes.lists)
-    const allTasks = taskRes.lists
+    // console.log("TaskRes", taskRes)
+    const allTasks = taskRes.allTasks
 
     //Loop through each task, to find the number of tasks that are complete
     allTasks.forEach(tasks => {
       const dueDate = (Date.parse(tasks.dueDate))
-      console.log(dueDate)
+      // console.log(dueDate)
       const today = (Date.parse(new Date()))
       //Add one to the counter, if the parsed due date is less than today's date, and is not NaN
       if(dueDate < new Date() && today !== NaN){

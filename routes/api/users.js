@@ -108,6 +108,8 @@ router.delete("/token", asyncHandler(async(req, res, next) => {
   res.clearCookie("accessToken");
   res.status(200).end();
 }))
+
+
 // /api/users/userId/lists
 // Display all lists for a specific user
 router.get('/:userId(\\d+)/lists', asyncHandler(async(req,res) => {

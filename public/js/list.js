@@ -14,14 +14,7 @@ const fetchList = async(userId) => {
     window.location.href = "/sign-in";
     return;
   }
-<<<<<<< HEAD
-
-  const { lists } = await res.json();
-  // const something = await res.json()
-  console.log(lists)
-=======
   const {lists} = await res.json();
->>>>>>> master
   const listsContainer = document.querySelector(".list-cat-container");
   const listsHtml = lists.map(
     ({ listName, id}) => `
@@ -90,23 +83,16 @@ const handleDelete = async (listId) => {
 };
 
 const handleEdit = (listId) => {
-  console.log(listId)
+  // console.log(listId)
 }
 
 document.addEventListener("DOMContentLoaded", async()=> {
   try{
     localStorage.setItem('DFTM_USER_ID', 3)
     let userId = localStorage.getItem('DFTM_USER_ID');
-<<<<<<< HEAD
-    // let userId = 1;
-    // if(!userId) {
-    //   window.location.href = '/sign-in';
-    // }
-=======
     if(!userId) {
       window.location.href = '/sign-in';
     }
->>>>>>> master
     await fetchList(userId);
 
 

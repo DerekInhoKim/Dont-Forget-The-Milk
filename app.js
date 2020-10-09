@@ -39,9 +39,9 @@ app.use(express.static(path.join(__dirname, "public")));
 //internal use statements
 app.use("/", indexRouter);
 app.use("/api/users", usersRouter);
-app.use("/lists", listRouter);
+app.use("/api/lists", tasks_back_end);
+app.use("/api/lists", listRouter);
 app.use("/api/search", searchRouter);
-app.use('/api/lists', tasks_back_end);
 app.use('/api/tasks', displayTasks);
 // app.use('/api/lists', tasks_back_end);
 
