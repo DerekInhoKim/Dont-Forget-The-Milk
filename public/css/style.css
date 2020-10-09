@@ -708,12 +708,40 @@ button:hover {
 
 }
 
-.registration-form__button {
+.registration-form__button-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.registration-form__login-button {
   display: block;
-  width: 100%;
+  width: 25%;
   height: 48px;
   margin-top: 19px;
   margin-bottom: 0;
+  margin-right: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px 12px;
+  line-height: 1.5;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+  font-family: MuseoSansRounded, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #FFF;
+  background-color: #009dff;
+  border: 1px solid;
+  border-color: transparent;
+}
+
+.registration-form__demo-button {
+  display: block;
+  width: 25%;
+  height: 48px;
+  margin-top: 19px;
+  margin-bottom: 0;
+  margin-left: 5px;
   border-radius: 4px;
   cursor: pointer;
   padding: 10px 12px;
@@ -1034,6 +1062,61 @@ input::-webkit-input-placeholder {
   border-color: transparent;
 
 }
+
+.not-found-notify-container {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 100vh;
+  background-color: #fff;
+}
+
+.not-found-notify-container__text-container {
+  grid-column-start: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.not-found-notify-container__text {
+  color: #000;
+  margin-top: 50px;
+  font-family: MuseoSansRounded, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+
+}
+
+
+.not-found-notify-container__button-container {
+  grid-column-start: 2;
+  display: flex;
+  justify-content: center;
+
+}
+
+.not-found-notify-container__button {
+  width: 25%;
+  height: 50px;
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1.5;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  white-space: nowrap;
+  color: #FFF;
+  background-color: #009dff;
+  border: 1px solid;
+  border-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  padding-top: 13px;
+}
+/* 404 page */
+
+
 /* Screen sizes ================================================================= */
 
 @media screen and (max-width: 780px) {
@@ -1252,6 +1335,7 @@ input::-webkit-input-placeholder {
   }
 }
 
+
 /* @keyframes swing {
   0% {transform: translateY(650px) rotateZ(0deg)}
   40% {transform: translateY(650px) rotateZ(90deg)}
@@ -1259,4 +1343,3 @@ input::-webkit-input-placeholder {
   100% {transform: translateY(650px) rotateZ(75deg)}
 
 } */
-

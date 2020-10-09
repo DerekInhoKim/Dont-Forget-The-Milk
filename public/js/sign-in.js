@@ -1,16 +1,36 @@
 
 import { errorNotifications } from "./error-notifications.js";
 
+const siteTour = document.querySelector(".registration-form__demo-button");
 
-// (() => {
-//   const authorizedUser = localStorage.getItem("DFTM_USER_ID");
+siteTour.addEventListener("click", async (event) => {
+  event.preventDefault();
 
-//   if (authorizedUser) {
-//     window.location.href = "/";
-//   } else {
-//     return;
-//   }
-// })();
+  const email = "demo@dftm.com";
+  const password = "demo123";
+  const demoBody = { email, password };
+
+  try {
+    const res = await fetch("/api/users/token", {
+      method: "POST",
+      body: JSON.stringify(demoBody),
+      headers: { "Content-Type": "application/json" }
+    });
+
+    if (!res.ok) {
+      throw res;
+    }
+
+    const { token, user: { id } } = await res.json();
+
+    localStorage.setItem("DFTM_USER_TOKEN", token);
+    localStorage.setItem("DFTM_USER_ID", id);
+
+    window.location.href = "/";
+  } catch (error) {
+    errorNotifications(error);
+  }
+});
 
 const signInForm = document.querySelector(".sign-in-form");
 

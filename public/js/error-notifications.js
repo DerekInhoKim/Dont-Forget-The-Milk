@@ -1,6 +1,7 @@
 export const errorNotifications = async (error) => {
   if (error.status >= 400 && error.status < 600) {
     const errorJSON = await error.json();
+    console.log(errorJSON)
     const errorsContainer = document.querySelector(".errors-container");
     let errorsHtml = [
       `

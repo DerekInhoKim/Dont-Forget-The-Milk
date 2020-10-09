@@ -1,7 +1,7 @@
-// import {handleErrors} from "../../utils.js"
+// import {handleValidationErrors} from "../routes/api/utils.js"
 
 const fetchList = async(userId) => {
-  const res = await fetch(`/api/users/${userId}/lists`, 
+  const res = await fetch(`/api/users/${userId}/lists`,
   {
     headers: {
       Authorization: `Bearer ${localStorage.getItem(
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", async()=> {
     }
     await fetchList(userId);
 
-    
+
     const deleteButtons = document.querySelectorAll(".delete-button");
     if (deleteButtons) {
       deleteButtons.forEach((button) => {
@@ -151,11 +151,11 @@ document.addEventListener("DOMContentLoaded", async()=> {
         } else {
           click.style.display = "none";
         }
-      
+
       });
 
 
-      //ADDIN LIST 
+      //ADDIN LIST
 
       const form = document.querySelector(".add-list-form")
 
