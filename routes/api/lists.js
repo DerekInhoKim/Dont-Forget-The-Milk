@@ -63,11 +63,12 @@ const listNotFoundError = (id) => {
 //   res.json({list});
 // }));
 
-router.put('/:id', validateList, asyncHandler(async(req,res,next)=> {
+// /api/lists/id will update a list with the given information from the body.
+router.put('/:id(\\d+)', validateList, asyncHandler(async(req,res,next)=> {
   const list = await List.findOne({
     where: {
       id: req.params.id
-    }
+    }, inlcude: [{model: Task, as: "task"}]
   });
   if(req.params.id !== list.userId) {
     const err = new Error('Unauthorized');
@@ -84,7 +85,11 @@ router.put('/:id', validateList, asyncHandler(async(req,res,next)=> {
   }
 }));
 
-router.delete('/:id', asyncHandler(async(req,res,next) => {
+// /api/lists/listid
+// /api/lists/1
+//will delete a specific list with the list.id of id
+
+router.delete('/:id(\\d+)', asyncHandler(async(req,res,next) => {
   const list = await List.findOne({
     where: {
       id: req.params.id
@@ -105,5 +110,16 @@ router.delete('/:id', asyncHandler(async(req,res,next) => {
     next(listNotFoundError(req.params.id));
   }
 }));
+
+// /api/lists/listId/tasks will display all tasks for a specific list
+router.get('/:listId/tasks', asyncHandler(async (req, res) => {
+  const listId = req.params.listId
+  const allTasks = await Task.findAll({
+    where: {
+      listId
+    }
+  })
+  res.json({allTasks})
+}))
 
 module.exports = router;

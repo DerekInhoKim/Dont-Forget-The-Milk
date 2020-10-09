@@ -14,7 +14,6 @@ const fetchList = async(userId) => {
     window.location.href = "/sign-in";
     return;
   }
-
   const {lists} = await res.json();
   const listsContainer = document.querySelector(".list-cat-container");
   const listsHtml = lists.map(
@@ -51,6 +50,13 @@ const fetchList = async(userId) => {
       }
     });
   })
+
+  const deleteButtons = document.querySelectorAll(".delete-button");
+  if (deleteButtons) {
+    deleteButtons.forEach((button) => {
+      button.addEventListener("click", e => handleDelete(button.dataset.deletelistId))
+    });
+  }
 
 };
 
@@ -93,7 +99,6 @@ document.addEventListener("DOMContentLoaded", async()=> {
     const deleteButtons = document.querySelectorAll(".delete-button");
     if (deleteButtons) {
       deleteButtons.forEach((button) => {
-        console.log(button.dataset.deletelistId)
         button.addEventListener("click", e=>  handleDelete(button.dataset.deletelistId))
       });
     }
@@ -147,7 +152,7 @@ document.addEventListener("DOMContentLoaded", async()=> {
             throw res;
           }
           form.reset();
-          console.log(userId);
+          console.log('hello')
           await fetchList(userId);
         } catch (err) {
           handleErrors(err);

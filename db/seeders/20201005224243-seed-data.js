@@ -8,7 +8,6 @@ module.exports = {
       "Users",
       [
         {
-          // id: 1,
           firstName: 'Tester',
           lastName: 'One',
           email: 'testerone@test.com',
@@ -18,7 +17,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          // id: 2,
           firstName: 'Tester',
           lastName: 'Two',
           email: 'testertwo@test.com',
@@ -28,7 +26,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          // id: 3,
           firstName: 'Tester',
           lastName: 'Three',
           email: 'testerthree@test.com',
@@ -45,70 +42,60 @@ module.exports = {
       "Lists",
       [
         {
-          // id: 1,
           listName: 'Personal',
           userId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          // id: 2,
           listName: 'Work',
           userId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          // id: 3,
           listName: 'Shopping',
           userId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          // id: 4,
           listName: 'Personal',
           userId: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          // id: 5,
           listName: 'Work',
           userId: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          // id: 6,
           listName: 'Groceries',
           userId: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          // id: 7,
           listName: 'Personal',
           userId: 3,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          // id: 8,
           listName: 'Work',
           userId: 3,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          // id: 9,
           listName: 'Exercise',
           userId: 3,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          // id: 10,
           listName: 'Chores',
           userId: 3,
           createdAt: new Date(),
