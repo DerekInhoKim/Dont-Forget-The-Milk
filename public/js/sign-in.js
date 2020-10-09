@@ -30,7 +30,6 @@ signInForm.addEventListener("submit", async (event) => {
 
   const email = formData.get("email");
   const password = formData.get("password");
-  //const _csrf = formData-get("_csrf");
 
   const body = { email, password};
 
