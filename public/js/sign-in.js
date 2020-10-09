@@ -1,4 +1,25 @@
+import { get } from "../../routes/index.js";
 import { errorNotifications } from "./error-notifications.js";
+
+// (() => {
+//   const currentUser = localStorage.getItem("DFTM_USER_ID");
+
+//   if (currentUser) {
+//     window.location.href = "/";
+//   } else {
+//     return;
+//   }
+// })();
+
+(() => {
+  const authorizedUser = localStorage.getItem("DFTM_USER_ID");
+
+  if (authorizedUser) {
+    window.location.href = "/";
+  } else {
+    return;
+  }
+})();
 
 const signInForm = document.querySelector(".sign-in-form");
 
@@ -9,8 +30,9 @@ signInForm.addEventListener("submit", async (event) => {
 
   const email = formData.get("email");
   const password = formData.get("password");
+  //const _csrf = formData-get("_csrf");
 
-  const body = { email, password };
+  const body = { email, password};
 
   try {
     const res = await fetch ("/api/users/token", {

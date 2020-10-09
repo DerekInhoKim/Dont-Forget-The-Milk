@@ -20,6 +20,7 @@ block content
           div(class="errors-container")
           h3 Been here before? Welcome back!
           form(class="sign-in-form")
+            //- input(type='hidden' name='_csrf' value=csrfToken)
             include includes/shared-form-fields.pug
             button(type='submit' class='registration-form__button') Log in
   script(type='module' src='js/sign-in.js')

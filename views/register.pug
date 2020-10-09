@@ -17,6 +17,7 @@ block content
           div(class="errors-container")
           h3 Sign up for free.
           form(class="registration-form")
+            //- input(type='hidden' name='_csrf' value=csrfToken)
             .form-group
               label(for='firstname')
               input(type='text' name='firstname' class='registration-form__input-field' placeholder='First Name')
