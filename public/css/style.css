@@ -83,13 +83,25 @@ button {
   border-radius: 3px;
 } */
 
+#add-list-button {
+   background-color: #D7E7F5;
+  color:  royalblue;
+  padding:0.2px 0.2px;
+  align-self: flex-end;
+}
+
 .dropdown {
   position:relative;
   display: inline-block;
 }
 
+.list-header {
+  background-color: #D7E7F5;
+}
+
 .button-drop {
-  background-color:lightblue;
+  background-color: #D7E7F5;
+  color:  royalblue;
   padding:0.2px 0.2px;
   align-self: flex-end;
 }
@@ -99,18 +111,27 @@ button {
 }
 #drop-content a{
   display:block;
-  background-color: white;
+  background-color: #D7E7F5;
+
   /* color: black; */
 }
 
+
+#add-new-list {
+  background-color: #D7E7F5;
+  color:  royalblue;
+}
+
+
 .delete-button {
-  font-size: 12px;
-  font-weight: lighter;
+  background-color: #D7E7F5;
+  color:  royalblue;
 }
 
 .edit-button {
-   font-size: 12px;
-     font-weight: lighter;
+ background-color: #D7E7F5;
+  color:  royalblue;
+
 }
 .nav-right-container {
   display: flex;
