@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', e => {
       }
 
       listId = e.target.dataset.listId;
-    
+
       try {
 
         // clear old tasks
