@@ -28,7 +28,7 @@ const fetchList = async(userId) => {
             <button id="button-drop" class="button-drop">></button>
             <div class="drop-content" style="display:none">
               <button id="remove-${id}" class="delete-button" >Remove list</button>
-              <button id="edit-${id}" class="edit-button"> Renam list</button>
+              <button id="edit-${id}" class="edit-button"> Rename list</button>
           </div>
         </div>
         </div>
