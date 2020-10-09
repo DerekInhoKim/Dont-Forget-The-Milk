@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", e => {
     const updateTaskForm = document.getElementById("edit-task-form")
     console.log(updateTaskForm)
     updateTaskForm.addEventListener("submit", async(e) => {
-
+      editTaskForm.style.display = "none"
       e.preventDefault();
       e.stopImmediatePropagation();
 
@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", e => {
   // functionality for deleting a task on the front end
 
   const tasksContainer = document.querySelector('.task-list-container');
-  console.log(tasksContainer)
+  // console.log(tasksContainer)
 
   tasksContainer.addEventListener("click", e=> {
     e.preventDefault();

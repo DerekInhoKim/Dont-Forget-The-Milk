@@ -241,10 +241,10 @@ input:focus {
   grid-template-columns: 75px 80px 1fr 1fr;
   grid-template-rows: 1fr 0.7fr 1.5fr 13fr;
   grid-template-areas:
-    "list-header list-header list-header . "
-    "task-total completed-total divider tab-container"
-    "add-task-form add-task-form add-task-form add-task-form"
-    "task-list task-list task-list task-list";
+    "list-header list-header list-header . ."
+    "task-total overdue-total completed-total divider tab-container"
+    "add-task-form add-task-form add-task-form add-task-form add-task-form"
+    "task-list task-list task-list task-list task-list";
 }
 
 .mid-col-list-header {
@@ -330,6 +330,25 @@ form.add-task-form{
   font-weight: bold;
   font-size: 19px;
   color: #8C949D;
+}
+
+.overdue-total {
+  grid-area: overdue-total;
+  background-color: #DBE8F6;
+  width: 60px;
+  font-size: 13px;
+  border-radius: 5px;
+  text-align: center;
+  padding-top: 14px;
+  line-height: 16px;
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+
+.overdue-tasks-span {
+  font-weight: bold;
+  font-size: 18px;
+  color: #B22222;
 }
 
 .divider {
@@ -1398,7 +1417,7 @@ button:hover {
 
 
 .edit-task-form-holder {
-  display: block;
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;

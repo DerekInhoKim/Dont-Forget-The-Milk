@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', e => {
 
   const addTask = document.querySelector(".add-task-btn")
- 
+
 
   const addTaskForm = document.querySelector(".add-task-form")
   // send a post request to create a new task
@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', e => {
 
 
     let listId = localStorage.getItem('CURRENT_LIST')
+    console.log(listId)
     const formData = new FormData(addTaskForm)
     const newTask = formData.get("new-task")
 

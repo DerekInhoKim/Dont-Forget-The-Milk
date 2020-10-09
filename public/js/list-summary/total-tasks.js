@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", async (event) => {
   //Access the user access token to pass into the header to authorize the user during our requests.
   const token = localStorage.getItem("DFTM_ACCESS_TOKEN");
+  const userId = localStorage.getItem("DFTM_USER_ID")
   const totalTasksSpan = document.querySelector(".total-task-span")
 
 
@@ -15,33 +16,31 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   let counter; //Set up a counter, to count the number of tasks.
 
   //If there is no list/task selected, we want to display a number for total tasks.
-
-  const allLists = await fetch(`/api/lists`, { //Returns a list of all lists.
-    headers: {
-      "Authorization": `Bearer: ${token}`
-    }
-  })
-
-  const listsRes = await allLists.json()
-  counter = 0;
-  listsRes.allLists.forEach( async list => {
-    const eachTask = await fetch(`/api/lists/${list.id}`, { //This request will get all the tasks for a list.
+  const displayTotalTasks = async () => {
+    const allLists = await fetch(`/api/users/${userId}/lists`, { //Returns a list of all lists.
       headers: {
         "Authorization": `Bearer: ${token}`
       }
     })
 
-    const taskRes = await eachTask.json()
-    const allTasks = taskRes.list
-    allTasks.forEach(task => {
-      counter++
+    const listsRes = await allLists.json()
+    console.log(listsRes.lists)
+    counter = 0;
+    listsRes.lists.forEach( async list => {
+      // console.log(list.task.length)
+      counter += list.task.length
+
+      totalTasksSpan.innerHTML = counter;
     })
 
-    totalTasksSpan.innerHTML = counter;
-  })
+  }
+
+  displayTotalTasks()
     //Set the innerHTML of our totalTaskSpan to equal the count of all tasks added from each list
 
   //For each task, we set up an event listener to find which task is being selected.
+  //ADD EVENT LISTENERS TO DELETE BUTTON TO CHANGE THE NUMBERS UNDER THESE SPANS
+  //=================================================================================================================================================================
   selectedTask.forEach(task => {
     task.addEventListener("click", async event => {
       event.stopImmediatePropagation
@@ -79,6 +78,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
       }
     })
+    //==============================================================================================================================================================================
   })
 
 
