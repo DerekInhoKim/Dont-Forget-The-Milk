@@ -184,6 +184,7 @@ router.get('/:id/lists/completedTasks', asyncHandler(async ( req, res, next) => 
   allLists.forEach(list => {
     list.task.forEach( task => {
       if(task.dataValues.isComplete === true){
+        console.log(task)
         completeTasks.push(task)
       }
     })
