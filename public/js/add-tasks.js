@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', e => {
     e.stopPropagation();
 
 
-    let listId = localStorage.getItem('CURRENT_LIST')
-    console.log(listId)
+    let listId = localStorage.getItem("CURRENT_LIST")
+    // console.log(listId)
     const formData = new FormData(addTaskForm)
     const newTask = formData.get("new-task")
 

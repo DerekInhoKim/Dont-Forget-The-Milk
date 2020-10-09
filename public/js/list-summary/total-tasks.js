@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     })
 
     const listsRes = await allLists.json()
-    console.log(listsRes.lists)
+    // console.log(listsRes.lists)
     counter = 0;
     listsRes.lists.forEach( async list => {
       // console.log(list.task.length)
