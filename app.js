@@ -12,7 +12,8 @@ const indexRouter = require("./routes/index");
 const listRouter = require("./routes/api/lists");
 const usersRouter = require("./routes/api/users");
 const searchRouter = require("./routes/api/search");
-const tasksRouter = require('./routes/api/tasks_back')
+const tasks_back_end = require('./routes/api/tasks_back')
+const displayTasks = require('./routes/api/display-tasks')
 const app = express();
 
 app.set("view engine", "pug");
@@ -31,7 +32,10 @@ app.use("/", indexRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/lists", listRouter);
 app.use("/api/search", searchRouter);
-app.use('/api/tasks', tasksRouter);
+app.use('/api/lists', tasks_back_end);
+app.use('/api/tasks', displayTasks);
+
+
 
 
 //TODO: error handlers
@@ -54,6 +58,7 @@ app.use((error, req, res, next) => {
 
 //general error handler
 app.use((error, req, res, next) => {
+  console.log(error)
   res.status(error.status || 500);
   const isProduction = environment === "production";
   res.json({
