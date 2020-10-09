@@ -14,6 +14,7 @@ const usersRouter = require("./routes/api/users");
 const searchRouter = require("./routes/api/search");
 const tasks_back_end = require('./routes/api/tasks_back')
 const displayTasks = require('./routes/api/display-tasks')
+const updateTasks = require("./routes/api/tasks")
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use("/api/lists", listRouter);
 app.use("/api/search", searchRouter);
 app.use('/api/lists', tasks_back_end);
 app.use('/api/tasks', displayTasks);
+app.use('/api/tasks', updateTasks)
 
 
 

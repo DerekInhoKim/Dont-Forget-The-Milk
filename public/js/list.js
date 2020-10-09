@@ -1,7 +1,7 @@
 // import {handleErrors} from "../../utils.js"
 
 const fetchList = async(userId) => {
-  const res = await fetch(`/api/lists/${userId}`,
+  const res = await fetch(`/api/users/${userId}/lists`,
   {
     headers: {
       Authorization: `Bearer ${localStorage.getItem(
@@ -61,9 +61,11 @@ const fetchList = async(userId) => {
 // }
 
 document.addEventListener("DOMContentLoaded", async()=> {
+  localStorage.setItem("DFTM_USER_ID", 1)
   try{
     // localStorage.setItem('DFTM_USER_ID', 3)
     let userId = localStorage.getItem('DFTM_USER_ID');
+    console.log('user id:', userId)
     // if(!userId) {
     //   window.location.href = '/sign-in';
     // }

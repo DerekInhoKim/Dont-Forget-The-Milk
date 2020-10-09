@@ -84,10 +84,10 @@ document.addEventListener('DOMContentLoaded', e => {
 
         // extract tasks from the server response and dynamically generate HTML that is used to display the tasks
 
-        const {tasks}  = await res.json()
+        const {allTasks}  = await res.json()
 
         const taskListContainer = document.querySelector(".task-list-container")
-        tasks.forEach(task => {
+        allTasks.forEach(task => {
 
           // make all of the HTML elements for the buttons and tasks
 

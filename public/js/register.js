@@ -4,7 +4,7 @@ const registrationForm = document.querySelector(".registration-form");
 
 registrationForm.addEventListener("submit", async (event) => {
   event.preventDefault();
-  console.log('check');
+
   const formData = new FormData(registrationForm);
 
   const firstName = formData.get("firstname");
@@ -13,7 +13,7 @@ registrationForm.addEventListener("submit", async (event) => {
   const email = formData.get("email");
   const password = formData.get("password");
   const confirmPassword = formData.get("confirmpass");
-  console.log(firstName, lastName, password);
+  
   const body = {
     firstName,
     lastName,
@@ -29,7 +29,7 @@ registrationForm.addEventListener("submit", async (event) => {
       body: JSON.stringify(body),
       headers: { "Content-Type": "application/json" }
     });
-    console.log(res);
+
     if (!res.ok) {
       throw res;
     }
@@ -41,7 +41,7 @@ registrationForm.addEventListener("submit", async (event) => {
 
     window.location.href = "/";
   } catch (error) {
-    //errorNotifications(error);
-    console.log(error);
+    errorNotifications(error);
+
   }
 });

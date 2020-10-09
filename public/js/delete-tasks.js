@@ -1,5 +1,113 @@
 document.addEventListener("DOMContentLoaded", e => {
 
+
+  // display tasks after updating
+
+  const displayTasks = async function(task) {
+
+    // clear old tasks
+
+    let oldTaskContainer = document.getElementById("task-list-container");
+    let oldTasks = document.querySelectorAll(".task-container");
+    if(oldTasks) {
+      oldTasks.forEach(task => {
+        oldTaskContainer.removeChild(task);
+
+      })
+
+    }
+
+    // clear old script tags
+
+    let scriptElement = document.querySelector('.script')
+    if(scriptElement) {
+      oldTaskContainer.removeChild(scriptElement)
+    }
+
+    // make a get request to the end-point below
+    // check authorization of user by adding an authorization header in the GET request
+    let listId = localStorage.getItem("CURRENT_LIST")
+
+    const res = await fetch(`/api/lists/${listId}/tasks`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem(
+          "DFTM_USER_TOKEN"
+        )}`
+      }
+    })
+    if (res.status === 401) {
+      window.location.href = "/log-in";
+      return;
+    }
+
+    if(!res.ok) {
+      throw res;
+    }
+
+    // extract tasks from the server response and dynamically generate HTML that is used to display the tasks
+
+    const {allTasks}  = await res.json()
+
+    const taskListContainer = document.querySelector(".task-list-container")
+    allTasks.forEach(task => {
+
+      // make all of the HTML elements for the buttons and tasks
+
+      let buttonContainer = document.createElement('div')
+      let deleteButtonContainer = document.createElement('div')
+      let updateButtonContainer = document.createElement('div')
+      buttonContainer.classList.add("buttons-container")
+      deleteButtonContainer.classList.add("delete-button-container")
+      updateButtonContainer.classList.add("update-button-container")
+
+      let deleteButton = document.createElement('button')
+      let updateButton = document.createElement('button')
+
+      deleteButton.setAttribute("type", "submit")
+      updateButton.setAttribute("type", "submit")
+      deleteButton.dataset.id = task.id
+      updateButton.dataset.id = task.id
+      deleteButton.classList.add("delete-task-btn")
+      updateButton.classList.add("update-task-btn")
+      deleteButton.innerHTML = "Delete"
+      updateButton.innerHTML = "Update"
+
+      deleteButtonContainer.appendChild(deleteButton)
+      updateButtonContainer.appendChild(updateButton)
+
+      buttonContainer.appendChild(deleteButtonContainer)
+      buttonContainer.appendChild(updateButtonContainer)
+
+      const taskContainer = document.createElement('div');
+      taskContainer.classList.add("task-container")
+      taskContainer.dataset.taskId = task.id
+      const taskItem = document.createElement('div')
+      taskItem.classList.add("task");
+      taskItem.setAttribute("id", `${task.id}`)
+      taskItem.innerHTML = task.taskName
+      taskContainer.appendChild(taskItem)
+      taskContainer.appendChild(buttonContainer)
+      taskListContainer.appendChild(taskContainer)
+    });
+
+    // Set up event listeners on tasks so that information can be displayed after clicking on them
+
+    const script = document.createElement('script')
+    script.setAttribute('src', './js/test.js')
+    script.classList.add('script')
+    taskListContainer.appendChild(script)
+
+    // set up event listeners on delete buttons
+
+    const scriptForDeleteButtons = document.createElement('script')
+    scriptForDeleteButtons.setAttribute('src', './js/delete-tasks.js')
+    scriptForDeleteButtons.classList.add('script')
+    taskListContainer.appendChild(scriptForDeleteButtons)
+
+  }
+
+ //---------------------------------------------------------------------------------
+
   // delete a task on the back-end and render the change on the front-end
   const deleteTask = async function (taskId) {
     let listId = localStorage.getItem("CURRENT_LIST")
@@ -39,108 +147,58 @@ document.addEventListener("DOMContentLoaded", e => {
 
   }
 
+  //-----------------------------------------------------------------------------
+
   // Update tasks on the back-end and render the change on the front-end
 
   let taskId;
-  const updateTaskForm = document.querySelector(".edit-task-form")
-  console.log(updateTaskForm)
-  updateTaskForm.addEventListener("submit", async(e) => {
+  const runTaskForm = function() {
 
-    e.preventDefault();
-    e.stopPropagation();
+    const updateTaskForm = document.getElementById("edit-task-form")
+    console.log(updateTaskForm)
+    updateTaskForm.addEventListener("submit", async(e) => {
 
-    const formData = new FormData(updateTaskForm)
-    const taskName = formData.get("taskName")
-    const dueDate = formData.get("dueDate")
-    const description = formData.get("description")
+      e.preventDefault();
+      e.stopImmediatePropagation();
 
-    const body = {taskName, dueDate, description, taskId}
+      const formData = new FormData(updateTaskForm)
+      const taskName = formData.get("taskName")
+      const dueDate = formData.get("dueDate")
+      const description = formData.get("description")
 
-    try{
-      const res = await fetch(`api/tasks/${taskId}/update-task`, {
-        method: "POST",
-        body: JSON.stringify(body),
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem(
-            "DFTM_ACCESS_TOKEN"
-          )}`,
+      const body = {taskName, dueDate, description, taskId}
+
+      try{
+        const res = await fetch(`api/tasks/${taskId}/update-task`, {
+          method: "PUT",
+          body: JSON.stringify(body),
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem(
+              "DFTM_ACCESS_TOKEN"
+            )}`,
+          }
+        })
+
+        if (res.status === 401) {
+          window.location.href = "/log-in";
+          return;
         }
-      })
+        if (!res.ok) {
+          throw res;
+        }
 
-      if (res.status === 401) {
-        window.location.href = "/log-in";
-        return;
+        const { task } = await res.json()
+
+        await displayTasks(task)
+
+      }catch(err) {
+        console.error(err)
       }
-      if (!res.ok) {
-        throw res;
-      }
+    })
+  }
 
-      const { task } = await res.json()
-
-      // clear old script tags
-
-      const oldTaskContainer = document.getElementById("task-list-container")
-
-      let scriptElement = document.querySelector('.script')
-      if(scriptElement) {
-        oldTaskContainer.removeChild(scriptElement)
-      }
-
-
-      const taskListContainer = document.querySelector(".task-list-container")
-      let buttonContainer = document.createElement('div')
-      let deleteButtonContainer = document.createElement('div')
-      let updateButtonContainer = document.createElement('div')
-      buttonContainer.classList.add("buttons-container")
-      deleteButtonContainer.classList.add("delete-button-container")
-      updateButtonContainer.classList.add("update-button-container")
-
-      let deleteButton = document.createElement('button')
-      let updateButton = document.createElement('button')
-
-      deleteButton.setAttribute("type", "submit")
-      updateButton.setAttribute("type", "submit")
-      deleteButton.dataset.id = task.id
-      updateButton.dataset.id = task.id
-      deleteButton.classList.add("delete-task-btn")
-      updateButton.classList.add("update-task-btn")
-      deleteButton.innerHTML = "Delete"
-      updateButton.innerHTML = "Update"
-
-      deleteButtonContainer.appendChild(deleteButton)
-      updateButtonContainer.appendChild(updateButton)
-
-      buttonContainer.appendChild(deleteButtonContainer)
-      buttonContainer.appendChild(updateButtonContainer)
-
-      const taskContainer = document.createElement('div');
-      taskContainer.dataset.taskId = task.id
-      taskContainer.classList.add("task-container")
-      const taskItem = document.createElement('div')
-      taskItem.classList.add("task");
-      taskItem.setAttribute("id", `${task.id}`)
-      taskItem.innerHTML = task.taskName
-      taskContainer.appendChild(taskItem)
-      taskContainer.appendChild(buttonContainer)
-      taskListContainer.appendChild(taskContainer)
-
-      // add click event listeners on all of the tasks
-
-      const script = document.createElement('script')
-      script.setAttribute('src', './js/test.js')
-      script.classList.add('script')
-      taskListContainer.appendChild(script)
-
-    }catch(err) {
-      console.error(err)
-    }
-
-
-
-
-  })
-
+  //--------------------------------------------------------------------------------
 
   // functionality for deleting a task on the front end
 
@@ -151,10 +209,14 @@ document.addEventListener("DOMContentLoaded", e => {
     e.preventDefault();
     e.stopPropagation();
     if(e.target.className.startsWith('delete')) {
-      console.log('hello')
+
       deleteTask(e.target.dataset.id)
     } else if (e.target.className.startsWith('update')) {
       taskId = e.target.dataset.id
+      const editTaskForm = document.querySelector(".edit-task-form-holder")
+      editTaskForm.style.display = "block"
+      runTaskForm()
+
     }
     return;
   })

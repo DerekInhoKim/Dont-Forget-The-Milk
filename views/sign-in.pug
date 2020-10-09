@@ -1,11 +1,34 @@
+
 extends layout.pug
 
 block content
-  div
-    div(class="errors-container")
-    h2 Sign in
-    form(class="sign-in-form")
-      include includes/shared-form-fields.pug
-      button(type='submit') Sign In
-    a(href='/register') Need to sign up?
-  script(type="module" src="js/sign-in.js")
+  div(class="registration-page")
+    div(class="registration-page__left-panel")
+      div(class="left-panel__logo-container")
+        img(src="./images/rtm-logo-noshadow.png")
+      div(class="left-panel__top-filler")
+      div(class="left-panel__inspiration-container")
+        Blockquote(class='left-panel__blockquote')
+          p(class="left-panel__quote-text") "Placeholder for random quotes"
+          footer(class="left-panel__quoted-person") -random famous person
+        div(class="left-panel__monkey")
+          img(src="./images/bob_the_monkey.png" class="left-panel__monkey-picture")
+          p(class="left-panel__monkey-text")  Quotes curated by Bob T. Monkey, renowned productivity expert
+    div(class="registration-page__right-panel")
+      div(class="right-panel__elements-container")
+        div(class="right-panel__login-button-container")
+          a(href="/register" class="right-panel__login-button") Sign up for free
+        div(class="registration-container")
+          div(class="errors-container")
+          h3(class="right-panel__welcome-text") Been here before? Welcome back!
+          form(class="sign-in-form")
+            include includes/shared-form-fields.pug
+            div(class="right-panel__form-bottom")
+              div(class="right-panel__checkbox-container")
+                //- label::before
+                //- input(type="checkbox" class="right-panel__checkbox")
+                //- p(class="right-panel__checkbox-text") Stay logged in
+              a(href="/reset-request" class="right-panel__reset-link") Forgot password?
+
+            button(type='submit' class='registration-form__button') Log in
+  script(type='module' src='js/sign-in.js')

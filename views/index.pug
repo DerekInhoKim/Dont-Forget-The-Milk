@@ -2,14 +2,17 @@ extends layout.pug
 
 block content
   include includes/nav
-  include includes/pop-up
+  include includes/modal-no-match
+  include includes/edit-task-form
+
+
 
   div(class="grid__container")
     div(class="grid__left-col" id="")
       div(class="logo-container")
         img(src="" class="logo-dftm")
-      div(class="left-col__all-tasks")
-        div(class="list-all-tasks-container") This holds all tasks
+      //- div(class="left-col__all-tasks")
+      //-   div(class="list-all-tasks-container") This holds all tasks
       div(class="left-col__list-categories")
         div(class="list-cat-container") This holds the categories
 
@@ -32,7 +35,7 @@ block content
 
       form(class="add-task-form" id="add-task")
         label(for="new-task")
-        input(class="add-task-input" id="add-task" type="input" placeholder="Add a task..." aria-label="Add a task..." name="new-task")
+        input(class="add-task-input" type="input" placeholder="Add a task..." aria-label="Add a task..." name="new-task")
         button(class="add-task-btn generic-btn" type="submit") Add Task
 
       div(class="task-list-container" id="task-list-container")
