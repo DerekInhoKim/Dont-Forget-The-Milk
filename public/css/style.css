@@ -94,6 +94,7 @@ button {
 .dropdown {
   /* position:relative; */
   display: inline-block;
+  align-items: stretch;
 }
 
 .list-header {
@@ -101,7 +102,8 @@ button {
 }
 
 .button-drop {
-  align-self: center;
+  display: flex;
+  align-self: flex-end;
   background-color: #D7E7F5;
   color:  royalblue;
   padding:0.2px 0.2px;
@@ -118,14 +120,25 @@ button {
 
   /* color: black; */
 }
-
+.all-lists {
+  font-size: medium;
+  font-weight: bolder;
+  padding: 4px;
+  padding-left: 15px;
+  
+}
 .lists {
+  font-size: medium;
   display: flex;
   justify-content: space-between;
   position: relative;
   padding: 4px;
   background-color: #D7E7F5;
+  padding-left: 15px;
 }
+/* .lists:hover {
+   background-color: blue;
+} */
 
 
 #add-new-list {

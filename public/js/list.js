@@ -54,7 +54,7 @@ const fetchList = async(userId) => {
   const deleteButtons = document.querySelectorAll(".delete-button");
   if (deleteButtons) {
     deleteButtons.forEach((button) => {
-      button.addEventListener("click", e => handleDelete(button.dataset.deletelistId))
+      button.addEventListener("click", e => handleDelete(button.dataset.deletelistId));
     });
   }
 
@@ -75,16 +75,37 @@ const handleDelete = async (listId) => {
       if(!res.ok) {
         throw res;
       }
-      document.querySelector(`[data-list-id="${listId}"]`).remove();
+      document.querySelector(`[data-list-id="${listId}"]`);
     } catch(err) {
       console.error(err);
     }
   // };
 };
 
-const handleEdit = (listId) => {
-  console.log(listId)
-}
+// const handleEdit = async (listId) => {
+//   const form = document.querySelector(".edit-list-form");
+//   const formData = new FormData(form);
+//   const newListName = formData.get("listName");
+//   const body = {listName}; 
+//   try {
+//     const res = await fetch(`/api/lists/${listId}`, {
+//       method: "PUT",
+//       body: JSON.stringify(body),
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${localStorage.getItem(
+//           "DFTM_USER_TOKEN"
+//         )}`,
+//       }
+//     });
+//     if (!res.ok) {
+//       throw res;
+//     }
+//     document.querySelector(`[data-list-id="${listId}"]`).remove();
+//   } catch (err) {
+//     console.error(err);
+//   }
+// }
 
 document.addEventListener("DOMContentLoaded", async()=> {
   try{
@@ -102,12 +123,21 @@ document.addEventListener("DOMContentLoaded", async()=> {
         button.addEventListener("click", e=>  handleDelete(button.dataset.deletelistId))
       });
     }
+    ///// EDIT BUTTON 
 
     const editButtons = document.querySelectorAll(".edit-button");
     if (editButtons) {
       editButtons.forEach((button) => {
-        button.addEventListener("click", handleEdit(button.id));
+        button.addEventListener("click", (e)=> {
+          let click = document.querySelector(".edit-drop-content");
+          if (click.style.display === "none") {
+            click.style.display = "block";
+          } else {
+            click.style.display = "none";
+          }
       });
+    })
+  }
 
 
     //add a list button
@@ -160,8 +190,9 @@ document.addEventListener("DOMContentLoaded", async()=> {
       });
 
   }
-  } catch(e) {
+  catch(e) {
     console.error(e);
   }
 
 });
+
