@@ -546,7 +546,7 @@ li:hover {
   margin-left: 60px;
   width: 420px;
   display: grid;
-  grid-template-rows: 165px 1fr;
+  grid-template-rows: 310px 1fr;
 }
 .right-panel__login-button{
   grid-row-start: 1;
