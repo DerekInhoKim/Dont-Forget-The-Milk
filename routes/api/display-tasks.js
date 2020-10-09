@@ -32,4 +32,18 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     next(taskNotFoundError(taskId))
   }
 }))
+
+
+router.post('/:id/tasks/create-task', asyncHandler( async (req, res) => {
+
+  const { newTask, listId } = req.body;
+  const task = await Task.create({
+    taskName: newTask,
+    listId: listId
+  })
+  console.log(task)
+  res.json({ task })
+}))
+
+
 module.exports = router;
