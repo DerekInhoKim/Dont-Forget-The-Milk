@@ -15,13 +15,14 @@ router.get('/:id/tasks', asyncHandler(async (req, res) => {
   res.json({tasks})
 }))
 
-router.get('/:id/tasks/:id')
+router.get('/:id/list/task')
 
 // api/lists/userId/tasks/taskId
 // returns all tasks
-//
-
-
+// localStorage.getItem(userid)
+// /api/lists/listId return info on one list
+// /api/lists/listId/tasks/ return a list of all tasks assocaited with the list
+// /api/lists/listId/tasks/id return info on one task
 
 
 module.exports = router;
