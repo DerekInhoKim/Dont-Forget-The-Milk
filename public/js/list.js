@@ -107,6 +107,7 @@ const handleDelete = async (listId) => {
 //   }
 // }
 
+////DOM CONTENT LOADED
 document.addEventListener("DOMContentLoaded", async()=> {
   try{
     // localStorage.setItem('DFTM_USER_ID', 3)
