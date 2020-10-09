@@ -24,8 +24,8 @@ const fetchList = async(userId) => {
           <div class="dropdown">
             <button id="button-drop" class="button-drop fa fa-bars"></button>
             <div class="drop-content" style="display:none">
-              <button data-editlist-id="${id}" class="edit-button">Edit<i class="fa fa-close"></i></button>
-              <button data-deletelist-id="${id}" class="delete-button fa fa-trash" ></button>
+              <button data-editlist-id="${id}" class="edit-button">Rename<i class="fa fa-close"></i></button>
+              <button data-deletelist-id="${id}" class="delete-button fa fa-trash"></button>
           </div>
         </div>
         </div>
@@ -75,12 +75,30 @@ const handleDelete = async (listId) => {
       if(!res.ok) {
         throw res;
       }
-      document.querySelector(`[data-list-id="${listId}"]`);
+      document.querySelector(`[data-list-id="${listId}"]`).remove();
     } catch(err) {
       console.error(err);
     }
+  }
+
+
+  
+
+
+    //add a list button
+      const addListButton = document.getElementById("add-list-button");
+      addListButton.addEventListener("click",e => {
+        event.stopPropagation();
+        let click = document.querySelector(".list-drop-content");
+        if (click.style.display === "none") {
+          click.style.display = "block";
+        } else {
+          click.style.display = "none";
+        }
+
+      });
+
   // };
-};
 
 // const handleEdit = async (listId) => {
 //   const form = document.querySelector(".edit-list-form");
@@ -107,6 +125,7 @@ const handleDelete = async (listId) => {
 //   }
 // }
 
+
 ////DOM CONTENT LOADED
 document.addEventListener("DOMContentLoaded", async()=> {
   try{
@@ -118,27 +137,16 @@ document.addEventListener("DOMContentLoaded", async()=> {
     await fetchList(userId);
 
 
-    const deleteButtons = document.querySelectorAll(".delete-button");
-    if (deleteButtons) {
-      deleteButtons.forEach((button) => {
-        button.addEventListener("click", e=>  handleDelete(button.dataset.deletelistId))
-      });
-    }
+    // const deleteButtons = document.querySelectorAll(".delete-button");
+    // if (deleteButtons) {
+    //   deleteButtons.forEach((button) => {
+    //     button.addEventListener("click", e=>  handleDelete(button.dataset.deletelistId))
+    //   });
+    // }
     ///// EDIT BUTTON 
 
-    const editButtons = document.querySelectorAll(".edit-button");
-    if (editButtons) {
-      editButtons.forEach((button) => {
-        button.addEventListener("click", (e)=> {
-          let click = document.querySelector(".edit-drop-content");
-          if (click.style.display === "none") {
-            click.style.display = "block";
-          } else {
-            click.style.display = "none";
-          }
-      });
-    })
-  }
+
+  
 
 
     //add a list button
@@ -183,7 +191,6 @@ document.addEventListener("DOMContentLoaded", async()=> {
             throw res;
           }
           form.reset();
-          console.log('hello')
           await fetchList(userId);
         } catch (err) {
           handleErrors(err);
