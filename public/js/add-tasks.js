@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', e => {
 
   const addTask = document.querySelector(".add-task-btn")
-  const form = document.querySelector(".add-task-form")
+ 
 
   const addTaskForm = document.querySelector(".add-task-form")
   // send a post request to create a new task
