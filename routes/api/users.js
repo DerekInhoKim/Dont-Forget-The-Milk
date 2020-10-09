@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const { check } = require("express-validator");
 
+
 const { asyncHandler, handleValidationErrors } = require("../utils");
 const { getUserToken } = require("../../auth");
 const { User, List, Task } = require("../../db/models");
@@ -141,4 +142,38 @@ router.post('/:userId(\\d+)/lists', validateList, asyncHandler(async(req,res,nex
 
 
 
+///gettin all the lists for specific user
+router.get('/:id/lists', asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  console.log(userId);
+  const lists = await List.findAll({
+    where: {
+      userId
+    },
+    // include: [{ model: Task,as:"task",attributes: ['taskName'] } ],
+    order: [['createdAt', 'DESC']],
+  });
+  res.json({ lists });
+}));
+
+///validate list
+// const validateList = [
+//   check('listName')
+//     .exists({ checkFalsy: true })
+//     .withMessage("List name can't be undefined."),
+//   check('listName')
+//     .isLength({ max: 50 })
+//     .withMessage("List can't be longet than 50 characters."),
+//   handleValidationErrors,
+// ];
+
+//creating a new list for specific user
+
+router.post('/:id/lists', validateList, asyncHandler(async (req, res, next) => {
+  const userId = req.params.id;
+  const { listName } = req.body;
+  console.log(req.params);
+  const list = await List.create({ listName, userId });
+  res.json({ list });
+}));
 module.exports = router;
