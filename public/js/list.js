@@ -1,7 +1,7 @@
 // import {handleErrors} from "../../utils.js"
 
 const fetchList = async(userId) => {
-  const res = await fetch(`/api/lists/${userId}`, 
+  const res = await fetch(`/api/lists/${userId}`,
   {
     headers: {
       Authorization: `Bearer ${localStorage.getItem(
@@ -26,7 +26,7 @@ const fetchList = async(userId) => {
             <button id="button-drop" class="button-drop">></button>
             <div class="drop-content" style="display:none">
               <button id="remove-${id}" class="delete-button" >Remove list</button>
-              <button id="edit-${id}" class="edit-button"> Renam list</button>
+              <button id="edit-${id}" class="edit-button"> Rename list</button>
           </div>
         </div>
         </div>
@@ -57,7 +57,7 @@ const fetchList = async(userId) => {
 // }
 
 // const handleEdit = (listId) => {
-  
+
 // }
 
 document.addEventListener("DOMContentLoaded", async()=> {
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", async()=> {
     // const click = document.getElementById("drop-content");
 
     dropButtons.forEach(dropButton => {
-      
+
       dropButton.addEventListener('click', (event) => {
         event.stopPropagation();
         let click = event.target.parentNode.querySelector('.drop-content')

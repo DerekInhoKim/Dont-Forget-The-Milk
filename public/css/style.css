@@ -310,10 +310,57 @@ form.add-task-form{
 }
 
 .task-container {
+  display: flex;
+  justify-content: space-between;
   font-size: 14px;
   height: 35px;
   padding: 3px 0 3px 15px;
   border-bottom: 1px dotted rgba(140, 148, 157, .5);
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.delete-button-container {
+  display: flex;
+  border: 5px;
+  margin: 2px;
+  width: 75px;
+  justify-content: center;
+  border-right: 3px solid #CCCCCC;
+}
+
+.update-button-container {
+  display: flex;
+  justify-content: center;
+  border: 5px;
+  width: 75px;
+  margin: 2px;
+
+}
+
+.delete-task-btn {
+  height: 20px;
+  transition: 0.3s;
+  color:white
+}
+
+.update-task-btn{
+  height: 20px;
+  transition: 0.3s;
+  color:white
+}
+
+.delete-task-btn:hover {
+  background-color: #9dd1ff;
+  /* color: white; */
+}
+
+.update-task-btn:hover{
+  background-color:#9dd1ff;
+  /* color: white; */
 }
 
 .task {
@@ -368,6 +415,14 @@ li:hover {
 }
 
 .task:hover {
+  cursor: pointer;
+}
+
+.lists:hover {
+  cursor: pointer;
+}
+
+button:hover {
   cursor: pointer;
 }
 
@@ -701,3 +756,4 @@ li:hover {
   100% {transform: translateY(650px) rotateZ(75deg)}
 
 } */
+
