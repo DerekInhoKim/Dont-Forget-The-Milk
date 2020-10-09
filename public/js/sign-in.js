@@ -1,4 +1,4 @@
-import { get } from "../../routes/index.js";
+
 import { errorNotifications } from "./error-notifications.js";
 
 
@@ -22,7 +22,7 @@ signInForm.addEventListener("submit", async (event) => {
   const email = formData.get("email");
   const password = formData.get("password");
 
-  const body = { email, password};
+  const body = { email, password };
 
   try {
     const res = await fetch ("/api/users/token", {
