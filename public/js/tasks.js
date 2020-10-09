@@ -17,18 +17,14 @@ document.addEventListener('DOMContentLoaded', e => {
     list.addEventListener('click', async(e) => {
       e.stopImmediatePropagation();
 
+
+
       // localStorage.setItem("DFTM_USER_ID", 1)
-      let userId = localStorage.getItem("DFTM_USER_ID")
-
-
-      // check to make sure that the access token is still valid
-      // if not, then the user id will not be found and the user should be redirected to the log in page
-
-      if(!userId) {
-        window.location.href = "/sign-in"
-      }
+      // let userId = localStorage.getItem("DFTM_USER_ID")
 
       listId = e.target.dataset.listId;
+
+      localStorage.setItem("CURRENT_LIST", listId)
 
       try {
 
@@ -78,10 +74,10 @@ document.addEventListener('DOMContentLoaded', e => {
 
         // extract tasks from the server response and dynamically generate HTML that is used to display the tasks
 
-        const {tasks}  = await res.json()
+        const {allTasks}  = await res.json()
 
         const taskListContainer = document.querySelector(".task-list-container")
-        tasks.forEach(task => {
+        allTasks.forEach(task => {
 
           // make all of the HTML elements for the buttons and tasks
 
