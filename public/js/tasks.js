@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', e => {
+  if(localStorage.getItem('CURRENT_LIST')) {
+    localStorage.removeItem('CURRENT_LIST')
+  }
+
   // set up the variable for the list id that will be used to navigate to the correct endpoint
   // obtain the userId from the access token that is in the user's local storage, because it's needed for authentication
 
@@ -57,23 +61,64 @@ document.addEventListener('DOMContentLoaded', e => {
               "DFTM_USER_TOKEN"
             )}`
           }
-        });
-        
+        })
+        if (res.status === 401) {
+          window.location.href = "/log-in";
+          return;
+        }
+
         if(!res.ok) {
           throw res;
         }
+
+        // not finished... am going to add update and delete buttons
+
+
+
+
         // extract tasks from the server response and dynamically generate HTML that is used to display the tasks
 
         const {tasks}  = await res.json()
+
         const taskListContainer = document.querySelector(".task-list-container")
         tasks.forEach(task => {
+
+          // make all of the HTML elements for the buttons and tasks
+
+          let buttonContainer = document.createElement('div')
+          let deleteButtonContainer = document.createElement('div')
+          let updateButtonContainer = document.createElement('div')
+          buttonContainer.classList.add("buttons-container")
+          deleteButtonContainer.classList.add("delete-button-container")
+          updateButtonContainer.classList.add("update-button-container")
+
+          let deleteButton = document.createElement('button')
+          let updateButton = document.createElement('button')
+
+          deleteButton.setAttribute("type", "submit")
+          updateButton.setAttribute("type", "submit")
+          deleteButton.dataset.id = task.id
+          updateButton.dataset.id = task.id
+          deleteButton.classList.add("delete-task-btn")
+          updateButton.classList.add("update-task-btn")
+          deleteButton.innerHTML = "Delete"
+          updateButton.innerHTML = "Update"
+
+          deleteButtonContainer.appendChild(deleteButton)
+          updateButtonContainer.appendChild(updateButton)
+
+          buttonContainer.appendChild(deleteButtonContainer)
+          buttonContainer.appendChild(updateButtonContainer)
+
           const taskContainer = document.createElement('div');
           taskContainer.classList.add("task-container")
+          taskContainer.dataset.taskId = task.id
           const taskItem = document.createElement('div')
           taskItem.classList.add("task");
           taskItem.setAttribute("id", `${task.id}`)
           taskItem.innerHTML = task.taskName
           taskContainer.appendChild(taskItem)
+          taskContainer.appendChild(buttonContainer)
           taskListContainer.appendChild(taskContainer)
         });
 
@@ -83,6 +128,13 @@ document.addEventListener('DOMContentLoaded', e => {
         script.setAttribute('src', './js/test.js')
         script.classList.add('script')
         taskListContainer.appendChild(script)
+
+        // set up event listeners on delete buttons
+
+        const scriptForDeleteButtons = document.createElement('script')
+        scriptForDeleteButtons.setAttribute('src', './js/delete-tasks.js')
+        scriptForDeleteButtons.classList.add('script')
+        taskListContainer.appendChild(scriptForDeleteButtons)
 
         // deal with any errors that arise
 

@@ -30,7 +30,8 @@ const authRefresh = (req, res, next) => {
   const { token } = req;
 
   if (!token) {
-    return next();
+    //return next();
+    return res.set("WWW-Authenticate", "Bearer").status(401).end();
   }
 
   return jwt.verify( token, secret, null, async (error, jwtPayload) => {

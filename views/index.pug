@@ -17,8 +17,9 @@ block content
               input(id="add-list-input" class="add-list-input" type="input" name="listName" placeholder="List name..." aria-label="List name...")
               button(id="add-new-list" type="submit") Add
         div(class="list-cat-container") This holds the categories
+
         script(type="module" src="js/list.js")
-        
+
 
     div(class="grid__mid-col")
       div(class="mid-col-list-header")
@@ -35,8 +36,9 @@ block content
         button(class="task-tab") Completed
 
       form(class="add-task-form" id="add-task")
-        input(class="add-task-input" id="add-task" type="input" placeholder="Add a task..." aria-label="Add a task..." name="")
-        button(class="generic-btn add-task-btn" type="submit") Add Task
+        label(for="new-task")
+        input(class="add-task-input" id="add-task" type="input" placeholder="Add a task..." aria-label="Add a task..." name="new-task")
+        button(class="add-task-btn generic-btn" type="submit") Add Task
 
       div(class="task-list-container" id="task-list-container")
         div(class="task-container")
@@ -46,9 +48,9 @@ block content
     div(class="grid__right-col")
       div(class="right-col__task-info")
         div(class="info-header" ) due
-          span(class="info-span") never
+          span(class="date-span") never
         div(class="info-header") list
-          span(class="info-span")  Personal
+          span(class="list-span")  Personal
         div(class="task-description") THIS HOLDS THE DESCRIPTION
       div(class="right-col__extra-options")
         form(class="notes-form")
@@ -60,3 +62,5 @@ block content
 
   script(type="module" src="js/search-feature.js")
   script(type="module" src="js/tasks.js")
+  script(type="module" src="js/add-tasks.js")
+  script(type="module" src="js/delete-tasks.js")

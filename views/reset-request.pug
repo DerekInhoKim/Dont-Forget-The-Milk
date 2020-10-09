@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    link(rel='stylesheet' href='css/style.css')
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.css")
+    title Forgot Password
+  body
+    div(class='reset-page')
+      div(class='fine-print-page__banner')
+        div(class='fine-print-page__banner-logo')
+          img(src="./images/rtm-logo-noshadow.png")
+        a(href="/sign-in" class='fine-print-page__banner-button') Log in
+        div(class='fine-print-page__banner-text')
+          h1 Account
+          h2 Your Don't Forget The Milk account.
+
+      article(class="reset-container")
+        div(class="reset-body")
+          div(class="reset-errors-container")
+          h1(class="reset-header") Forgot Password
+          alert(class="reset-instructions") Enter your email address below.  An email containing instructions on how to reset your password will be sent.
+          form(class="password-reset-form")
+            .form-group
+              label(for='email' class='password-reset-form__label') EMAIL
+              input(type='email' name='email' class='password-reset-form__input-field')
+            button(type='submit' class='password-reset-form__button') Reset Password
+  script(type='module' src='js/reset-request.js')

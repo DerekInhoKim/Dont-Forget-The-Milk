@@ -1,23 +1,32 @@
 extends layout.pug
 
 block content
-  div(class="registration-container")
-    div(class="errors-container")
-    h2 Create an account
-    form(class="registration-form")
-      .form-group
-        label(for='firstname') First Name
-        input(type='text' name='firstname' placeholder='Enter first name')
-      .form-group
-        label(for='lastname') Last Name
-        input(type='text' name='lastname' placeholder='Enter last name')
-      .form-group
-        label(for='username') Username
-        input(type='text' name='username' placeholder='Enter a username')
-      include includes/shared-form-fields.pug
-      .form-group
-        label(for='confirmpass') Confirm Password
-        input(type='password' name='confirmpass' placeholder='Confirm password')
-      button(type='submit') Register
-    a(href='/sign-in') Already registered?
+  div(class="registration-page")
+    div(class="registration-page__left-panel")
+      div(class="left-panel__logo-container")
+        img(src="./images/rtm-logo-noshadow.png")
+      div(class="left-panel__top-filler")
+      div(class="left-panel__people-container")
+        img(src="./images/peoplewhoneedmilk.jpg")
+        h2(class="left-panel__panel-text") Join millions of people getting more organized and productive!
+    div(class="registration-page__right-panel")
+      div(class="right-panel__elements-container")
+        div(class="right-panel__login-button-container")
+          a(href="/sign-in" class="right-panel__login-button") Log in
+        div(class="registration-container")
+          div(class="errors-container")
+          h3 Sign up for free.
+          form(class="registration-form")
+            .form-group
+              label(for='firstname')
+              input(type='text' name='firstname' class='registration-form__input-field' placeholder='First Name')
+            .form-group
+              input(type='text' name='lastname' class='registration-form__input-field' placeholder='Last Name')
+            .form-group
+              input(type='text' name='username' class='registration-form__input-field' placeholder='Username')
+            include includes/shared-form-fields.pug
+            .form-group
+              input(type='password' name='confirmpass' class='registration-form__input-field' placeholder='Confirm password')
+            button(type='submit' class='registration-form__button') Sign Up!
+        p(class="fine-print-container") By proceeding to create your account and use Don't Forget The Milk, you are agreeing to our #[a(class="fine-print-container__nested-link" href="/terms") Terms of Service] and #[a(class="fine-print-container__nested-link" href="/privacy") Privacy Policy].  If you do not agree, you cannot use Don't Forget The Milk.
   script(type='module' src='js/register.js')
