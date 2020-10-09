@@ -29,6 +29,7 @@ block content
                 //- input(type="checkbox" class="right-panel__checkbox")
                 //- p(class="right-panel__checkbox-text") Stay logged in
               a(href="/reset-request" class="right-panel__reset-link") Forgot password?
-
-            button(type='submit' class='registration-form__button') Log in
+            div(class="registration-form__button-container")
+              button(type='submit' class='registration-form__login-button') Log in
+              button(type='button' class='registration-form__demo-button') Try me
   script(type='module' src='js/sign-in.js')
