@@ -8,9 +8,14 @@ block content
     div(class="grid__left-col" id="")
       div(class="logo-container")
         img(src="" class="logo-dftm")
-      div(class="left-col__all-tasks")
-        div(class="list-all-tasks-container") This holds all tasks
       div(class="left-col__list-categories")
+        a(class="all-lists" id="all-lists") Lists
+          button(id="add-list-button" class="add-list-button fa fa-plus fa-fw")
+          div(id="list-drop-content" class="list-drop-content" style="display:none")
+            form(class="add-list-form" id="add-list-form")
+              label(for='listName')
+              input(id="add-list-input" class="add-list-input" type="input" name="listName" placeholder="List name..." aria-label="List name...")
+              button(id="add-new-list" type="submit") Add
         div(class="list-cat-container") This holds the categories
 
         script(type="module" src="js/list.js")

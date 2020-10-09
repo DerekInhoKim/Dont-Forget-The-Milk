@@ -3,11 +3,14 @@
 const express = require("express");
 const morgan = require("morgan");
 const { ValidationError } = require("sequelize");
+const cookieParser = require('cookie-parser');
+const bearerToken = require('express-bearer-token');
 const path = require("path");
 
 // internal requires
 
-const { environment } = require("./config");
+const { environment, cookieConfig } = require("./config");
+const { userValidation } = require("./auth");
 const indexRouter = require("./routes/index");
 const listRouter = require("./routes/api/lists");
 const usersRouter = require("./routes/api/users");
@@ -23,10 +26,12 @@ const displayTasks = require('./routes/api/display-tasks')
 
 const app = express();
 
+//app.use(bearerToken({ cookie: {signed: true, secret, key: accessToken}}));
 app.set("view engine", "pug");
 
 //external use statements
 app.use(morgan("dev"));
+app.use(cookieParser(cookieConfig));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -55,7 +60,7 @@ app.use('/api/tasks', displayTasks);
     const error = new Error("Resource could not be found.");
     error.errors = ["Resource could not be found."];
     error.status = 404;
-    next(error);
+    res.render("404page");  //create 404 add button to go to home
   });
 
 //sequelize errors

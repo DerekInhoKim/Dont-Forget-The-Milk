@@ -32,7 +32,11 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     })
 
     const taskRes = await eachTask.json()
+<<<<<<< HEAD
     const allTasks = taskRes.list.Tasks
+=======
+    const allTasks = taskRes.list
+>>>>>>> master
     allTasks.forEach(task => {
       counter++
     })
@@ -44,6 +48,10 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   //For each task, we set up an event listener to find which task is being selected.
   selectedTask.forEach(task => {
     task.addEventListener("click", async event => {
+<<<<<<< HEAD
+=======
+      event.stopImmediatePropagation
+>>>>>>> master
       taskId = event.target.id
 
       const tasksList = await fetch(`/api/tasks/${taskId}`, {

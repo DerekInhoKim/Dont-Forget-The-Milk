@@ -84,34 +84,65 @@ button {
   border-radius: 3px;
 } */
 
-.dropdown {
-  position:relative;
-  display: inline-block;
-}
-
-.button-drop {
-  background-color:lightblue;
+#add-list-button {
+   background-color: #D7E7F5;
+  color:  royalblue;
   padding:0.2px 0.2px;
   align-self: flex-end;
 }
-#drop-content {
+
+.dropdown {
+  /* position:relative; */
+  display: inline-block;
+}
+
+.list-header {
+  background-color: #D7E7F5;
+}
+
+.button-drop {
+  align-self: center;
+  background-color: #D7E7F5;
+  color:  royalblue;
+  padding:0.2px 0.2px;
+  align-self: flex-end;
+}
+.drop-content {
   position: absolute;
   z-index: 1;
+  background-color: white;
 }
 #drop-content a{
   display:block;
-  background-color: white;
+  background-color: #D7E7F5;
+
   /* color: black; */
 }
 
+.lists {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 4px;
+  background-color: #D7E7F5;
+}
+
+
+#add-new-list {
+  background-color: #D7E7F5;
+  color:  royalblue;
+}
+
+
 .delete-button {
-  font-size: 12px;
-  font-weight: lighter;
+   background-color: white;
+  color:  royalblue;
 }
 
 .edit-button {
-   font-size: 12px;
-     font-weight: lighter;
+  background-color: white;
+  color:  royalblue;
+
 }
 .nav-right-container {
   display: flex;
@@ -1009,6 +1040,61 @@ input::-webkit-input-placeholder {
   border-color: transparent;
 
 }
+
+.not-found-notify-container {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 100vh;
+  background-color: #fff;
+}
+
+.not-found-notify-container__text-container {
+  grid-column-start: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.not-found-notify-container__text {
+  color: #000;
+  margin-top: 50px;
+  font-family: MuseoSansRounded, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+
+}
+
+
+.not-found-notify-container__button-container {
+  grid-column-start: 2;
+  display: flex;
+  justify-content: center;
+
+}
+
+.not-found-notify-container__button {
+  width: 25%;
+  height: 50px;
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1.5;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  white-space: nowrap;
+  color: #FFF;
+  background-color: #009dff;
+  border: 1px solid;
+  border-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  padding-top: 13px;
+}
+/* 404 page */
+
+
 /* Screen sizes ================================================================= */
 
 @media screen and (max-width: 780px) {
@@ -1227,6 +1313,7 @@ input::-webkit-input-placeholder {
   }
 }
 
+
 /* @keyframes swing {
   0% {transform: translateY(650px) rotateZ(0deg)}
   40% {transform: translateY(650px) rotateZ(90deg)}
@@ -1234,4 +1321,3 @@ input::-webkit-input-placeholder {
   100% {transform: translateY(650px) rotateZ(75deg)}
 
 } */
-
