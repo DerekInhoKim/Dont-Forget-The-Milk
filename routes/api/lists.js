@@ -11,17 +11,17 @@ const { User, List, Task} = db;
 
 // router.use(requireAuth);
 
-router.get('/:id', asyncHandler(async(req,res) => {
-  const userId = parseInt(req.params.id, 10);
-  const lists = await List.findAll({
-    where: {
-      userId
-    },
-    // include: [{ model: Task,as:"task",attributes: ['taskName'] } ],
-    order: [['createdAt', 'DESC']],
-  });
-  res.json({lists});
-}));
+// router.get('/:id', asyncHandler(async(req,res) => {
+//   const userId = parseInt(req.params.id, 10);
+//   const lists = await List.findAll({
+//     where: {
+//       userId
+//     },
+//     // include: [{ model: Task,as:"task",attributes: ['taskName'] } ],
+//     order: [['createdAt', 'DESC']],
+//   });
+//   res.json({lists});
+// }));
 
 const validateList = [
   check('listName')
@@ -55,11 +55,13 @@ const listNotFoundError = (id) => {
 //   }
 // }));
 
-router.post('/',validateList, asyncHandler(async(req,res,next) => {
-  const {listName, userId} = req.body;
-  const list = await List.create({listName,userId});
-  res.json({list});
-}));
+// router.post('/:id/lists',validateList, asyncHandler(async(req,res,next) => {
+//   const userId = req.params.id;
+//   const {listName} = req.body;
+//   console.log(req.params);
+//   const list = await List.create({listName,userId});
+//   res.json({list});
+// }));
 
 router.put('/:id', validateList, asyncHandler(async(req,res,next)=> {
   const list = await List.findOne({
@@ -82,7 +84,7 @@ router.put('/:id', validateList, asyncHandler(async(req,res,next)=> {
   }
 }));
 
-router.delete('/:id/tasks', asyncHandler(async(req,res,next) => {
+router.delete('/:id', asyncHandler(async(req,res,next) => {
   const list = await List.findOne({
     where: {
       id: req.params.id

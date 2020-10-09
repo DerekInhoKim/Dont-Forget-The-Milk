@@ -91,7 +91,7 @@ button {
 }
 
 .dropdown {
-  position:relative;
+  /* position:relative; */
   display: inline-block;
 }
 
@@ -100,20 +100,30 @@ button {
 }
 
 .button-drop {
+  align-self: center;
   background-color: #D7E7F5;
   color:  royalblue;
   padding:0.2px 0.2px;
   align-self: flex-end;
 }
-#drop-content {
+.drop-content {
   position: absolute;
   z-index: 1;
+  background-color: white;
 }
 #drop-content a{
   display:block;
   background-color: #D7E7F5;
 
   /* color: black; */
+}
+
+.lists {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 4px;
+  background-color: #D7E7F5;
 }
 
 
@@ -124,12 +134,12 @@ button {
 
 
 .delete-button {
-  background-color: #D7E7F5;
+   background-color: white;
   color:  royalblue;
 }
 
 .edit-button {
- background-color: #D7E7F5;
+  background-color: white;
   color:  royalblue;
 
 }

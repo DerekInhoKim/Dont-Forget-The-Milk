@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', e => {
         window.location.href = "/sign-in"
       }
 
-      listId = e.target.id
+      listId = e.target.dataset.listId;
     
       try {
 
