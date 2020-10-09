@@ -11,22 +11,17 @@ const { User, List, Task} = db;
 
 // router.use(requireAuth);
 
-//Route to grab all lists will be referenced from within users route
-//===========================================================================================
-// router.get('/', asyncHandler(async(req,res) => {
-//   // const userId = localStorage.getItem("DFTM_USER_ID")
-//   // const {userId} = req.body
+// router.get('/:id', asyncHandler(async(req,res) => {
+//   const userId = parseInt(req.params.id, 10);
 //   const lists = await List.findAll({
 //     where: {
-//       userId: userId
+//       userId
 //     },
-//     include: [{ model: Task, as:"task" } ],
+//     // include: [{ model: Task,as:"task",attributes: ['taskName'] } ],
 //     order: [['createdAt', 'DESC']],
 //   });
 //   res.json({lists});
-
 // }));
-//===========================================================================================
 
 const validateList = [
   check('listName')
@@ -47,29 +42,26 @@ const listNotFoundError = (id) => {
   return err;
 };
 
-// /api/list/listId
-// Will fetch a single list with the id of
-router.get('/:id(\\d+)', asyncHandler(async(req,res,next) => {
-  const list = await List.findOne({
-    where: {
-      id: req.params.id
-    }
-  });
-  if(list) {
-    res.json({list});
-  } else {
-    next(listNotFoundError(req.params.id));
-  }
-}));
+// router.get('/:id', asyncHandler(async(req,res,next) => {
+//   const list = await List.findOne({
+//     where: {
+//       id: req.params.id
+//     }
+//   });
+//   if(list) {
+//     res.json({list});
+//   } else {
+//     next(listNotFoundError(req.params.id));
+//   }
+// }));
 
-router.post('/',validateList, asyncHandler(async(req,res,next) => {
-  const userId = localStorage.getItem("DFTM_USER_ID")
-  const {listName} = req.body;
-
-  const list = await List.create({listName,userId});
-  res.json({list});
-
-}));
+// router.post('/:id/lists',validateList, asyncHandler(async(req,res,next) => {
+//   const userId = req.params.id;
+//   const {listName} = req.body;
+//   console.log(req.params);
+//   const list = await List.create({listName,userId});
+//   res.json({list});
+// }));
 
 // /api/lists/id will update a list with the given information from the body.
 router.put('/:id(\\d+)', validateList, asyncHandler(async(req,res,next)=> {
@@ -103,13 +95,13 @@ router.delete('/:id(\\d+)', asyncHandler(async(req,res,next) => {
       id: req.params.id
     }
   });
-  if(req.params.id !== list.userId) {
-    const err = new Error('Unauthorized');
-    err.status = 401;
-    err.message = 'You are not authorized to edit this List';
-    err.title = 'Unauthorized';
-    throw err;
-  }
+  // if(req.params.id !== list.userId) {
+  //   const err = new Error('Unauthorized');
+  //   err.status = 401;
+  //   err.message = 'You are not authorized to edit this List';
+  //   err.title = 'Unauthorized';
+  //   throw err;
+  // }
 
   if(list) {
     await list.destroy();

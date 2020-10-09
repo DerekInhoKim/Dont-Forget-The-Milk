@@ -96,36 +96,66 @@ input:focus {
   border-radius: 3px;
 } */
 
-.dropdown {
-  position:relative;
-  display: inline-block;
-}
-
-.button-drop {
-  background-color:lightblue;
+#add-list-button {
+   background-color: #D7E7F5;
+  color:  royalblue;
   padding:0.2px 0.2px;
   align-self: flex-end;
 }
 
-#drop-content {
+.dropdown {
+  /* position:relative; */
+  display: inline-block;
+}
+
+.list-header {
+  background-color: #D7E7F5;
+}
+
+.button-drop {
+  align-self: center;
+  background-color: #D7E7F5;
+  color:  royalblue;
+  padding:0.2px 0.2px;
+  align-self: flex-end;
+}
+.drop-content {
   position: absolute;
   z-index: 1;
+  background-color: white;
 }
 
 #drop-content a{
   display:block;
-  background-color: white;
+  background-color: #D7E7F5;
+
   /* color: black; */
 }
 
+.lists {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 4px;
+  background-color: #D7E7F5;
+}
+
+
+#add-new-list {
+  background-color: #D7E7F5;
+  color:  royalblue;
+}
+
+
 .delete-button {
-  font-size: 12px;
-  font-weight: lighter;
+   background-color: white;
+  color:  royalblue;
 }
 
 .edit-button {
-   font-size: 12px;
-     font-weight: lighter;
+  background-color: white;
+  color:  royalblue;
+
 }
 
 .nav-right-container {
@@ -731,12 +761,40 @@ button:hover {
 
 }
 
-.registration-form__button {
+.registration-form__button-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.registration-form__login-button {
   display: block;
-  width: 100%;
+  width: 25%;
   height: 48px;
   margin-top: 19px;
   margin-bottom: 0;
+  margin-right: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px 12px;
+  line-height: 1.5;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+  font-family: MuseoSansRounded, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #FFF;
+  background-color: #009dff;
+  border: 1px solid;
+  border-color: transparent;
+}
+
+.registration-form__demo-button {
+  display: block;
+  width: 25%;
+  height: 48px;
+  margin-top: 19px;
+  margin-bottom: 0;
+  margin-left: 5px;
   border-radius: 4px;
   cursor: pointer;
   padding: 10px 12px;
@@ -1057,6 +1115,61 @@ button:hover {
   border-color: transparent;
 
 }
+
+.not-found-notify-container {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 100vh;
+  background-color: #fff;
+}
+
+.not-found-notify-container__text-container {
+  grid-column-start: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.not-found-notify-container__text {
+  color: #000;
+  margin-top: 50px;
+  font-family: MuseoSansRounded, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+
+}
+
+
+.not-found-notify-container__button-container {
+  grid-column-start: 2;
+  display: flex;
+  justify-content: center;
+
+}
+
+.not-found-notify-container__button {
+  width: 25%;
+  height: 50px;
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1.5;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  white-space: nowrap;
+  color: #FFF;
+  background-color: #009dff;
+  border: 1px solid;
+  border-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  padding-top: 13px;
+}
+/* 404 page */
+
+
 /* Screen sizes ================================================================= */
 
 @media screen and (max-width: 780px) {
@@ -1283,85 +1396,9 @@ button:hover {
   }
 }
 
-/* TASK NAME EDIT MODAL ================================================================ */
-
-/* #edit-task-modal {
-  display: none;
-  position: absolute;
-  z-index: 1;
-  width: 115px;
-  margin: 0 auto;
-  color: black;
-  background-color: rgba(0,0,0,0.4);
-} */
-
-/* #edit-task-modal .task-modal-container {
-  background-color: #FFFAC0;
-  background-size: 100px;
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.2);
-  padding: 15px 10px 15px 15px;
-  width: 100%;
-} */
-
-/* #edit-task-modal {
-  top:0px;
-  /* left: 130px; */
-  /* left: 1%;
-  transform-origin: 10px 10px;
-  animation: slide 0.4s ease forwards; */
-/* }  */
-
-/* .modal-logo {
-  width: 100px;
-} */
-
-/* .task-modal-container h5 {
-  margin: 0;
-  line-height: 8px;
-} */
-
-/* .task-modal-container p {
-  margin-top: 10px;
-} */
-
-/* @keyframes slide {
-  0%{
-  }
-  70% {
-    transform: translateY(31px);
-    /* transform: scale(0.9); */
-  /* }
-  100% {
-    transform: translateY(26px);
-    /* transform: scale(1.0); */
-  /* }  */
-/* }  */
-
-#edit-task-modal {
-  z-index: 9;
-  background-color: #FFFAC0;
-  top: 20px;
-  left: -105px;
-  font-size: 12px;
-  font-weight: bold;
-  width: 120px;
-  padding: 10px 5px;
-  display: block;
-  position: absolute;
-  opacity: 0.9;
-  text-align: center;
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.2);
-  display: none;
-}
-
-/* EDIT TASK FORM ========================================================== */
 
 .edit-task-form-holder {
-  display: none;
+  display: block;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -1372,28 +1409,25 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.3);
   font-size: 14px;
 }
-
 .edit-task-form-content {
   background-color: rgba(32,96,191, 0.9);
   margin: 15% auto;
-  padding: 40px 50px;
+  padding: 25px 40px;
   box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(140, 148, 157, .8);
   border-radius: 7px;
   width: 40%;
+  min-width: 300px;
 }
-
 .edit-task-form-content h3 {
   margin: 0 0 10px 0;
   padding-bottom: 5px;
   border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
 }
-
 .edit-task-form-content label {
   display: block;
   margin-bottom: 5px;
 }
-
 .edit-task-form-content input {
   width: 100%;
   margin-bottom: 10px;
@@ -1401,7 +1435,6 @@ button:hover {
   border: none;
   border-radius: 3px;;
 }
-
 .edit-task-form-holder button {
   width: 90px;
   height: 30px;
@@ -1409,18 +1442,32 @@ button:hover {
   color: #3D79C9;
   margin-top: 10px;
 }
-
-
 .close {
   color: black;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
-
 .close:hover,
 .close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
+
+
+
+
+
+
+
+
+/* @keyframes swing {
+  0% {transform: translateY(650px) rotateZ(0deg)}
+  40% {transform: translateY(650px) rotateZ(90deg)}
+  70% {transform: translateY(650px) rotateZ(70deg)}
+  100% {transform: translateY(650px) rotateZ(75deg)}
+
+/* .task-modal-container p {
+  margin-top: 10px;
+} */

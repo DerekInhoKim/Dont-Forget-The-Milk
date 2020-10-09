@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', e => {
     list.addEventListener('click', async(e) => {
       e.stopImmediatePropagation();
 
+
+
       // localStorage.setItem("DFTM_USER_ID", 1)
       let userId = localStorage.getItem("DFTM_USER_ID")
 
@@ -28,13 +30,9 @@ document.addEventListener('DOMContentLoaded', e => {
         window.location.href = "/sign-in"
       }
 
-      listId = e.target.id
+      listId = e.target.dataset.listId;
 
-      if(localStorage.getItem('CURRENT_LIST')) {
-        localStorage.removeItem('CURRENT_LIST')
-      }
-
-      localStorage.setItem('CURRENT_LIST', listId)
+      localStorage.setItem("CURRENT_LIST", listId)
 
       try {
 
