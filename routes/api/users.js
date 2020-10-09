@@ -101,5 +101,22 @@ router.post("/token", sharedAuthValidations,
   })
 );
 
+// // /api/users/userId
+// router.get("/:id(\\d+)lists" , asyncHandler(async (req, res) => {
+//   //TODO return all lists for a specific user
+
+//   const allUsers = await List.findall({
+//     where:{
+//       userId: req.params.id
+//     }, include: Tasks
+//   })
+//   res.json({allUsers})
+// });
+
+// // /api/users/userId/tweets/tweetId
+// router.get("/:id(\\d+)/list/:id(\\d+)", asyncHandler (async (req, res) => {
+
+// })
+
 
 module.exports = router;
