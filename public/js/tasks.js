@@ -89,6 +89,8 @@ document.addEventListener('DOMContentLoaded', e => {
         const taskListContainer = document.querySelector(".task-list-container")
         tasks.forEach(task => {
 
+          // make all of the HTML elements for the buttons and tasks
+
           let buttonContainer = document.createElement('div')
           let deleteButtonContainer = document.createElement('div')
           let updateButtonContainer = document.createElement('div')
@@ -101,8 +103,6 @@ document.addEventListener('DOMContentLoaded', e => {
 
           deleteButton.setAttribute("type", "submit")
           updateButton.setAttribute("type", "submit")
-          // deleteButton.setAttribute("id", task.id)
-          // updateButton.setAttribute("id", task.id)
           deleteButton.dataset.id = task.id
           updateButton.dataset.id = task.id
           deleteButton.classList.add("delete-task-btn")
