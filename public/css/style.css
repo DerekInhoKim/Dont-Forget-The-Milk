@@ -1052,11 +1052,10 @@ input::-webkit-input-placeholder {
   grid-column-start: 2;
   display: flex;
   justify-content: center;
-  align-items: center;
+
 }
 
 .not-found-notify-container__button {
-  display: block;
   width: 25%;
   height: 50px;
   border-radius: 4px;
@@ -1070,6 +1069,9 @@ input::-webkit-input-placeholder {
   background-color: #009dff;
   border: 1px solid;
   border-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  padding-top: 13px;
 }
 /* 404 page */
 
