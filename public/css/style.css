@@ -465,16 +465,37 @@ li:hover {
   line-height: 120%;
 }
 
-div(class="left-panel__monkey")
-          img(src="./images/avatar_bob_60.png")
-          p(class="left-panel__monkey-text")  Quotes curated by Bob T. Monkey, renowned productivity expert
 
-.left-panel__monkey
+.left-panel__monkey {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-row-start: 1;
+  max-height: 50px;
+}
+
+.left-panel__monkey-picture {
+  grid-column-start: 1;
+}
+
+.left-panel__monkey-text {
+  grid-column-start: 2;
+  font-size: 14px;
+  opacity: .6;
+  font-weight: 500;
+  font-family: MuseoSansRounded, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+  padding-top: 15px;
+  max-width: 360px;
+  line-height: 1.5;
+}
+
 .registration-page__right-panel {
   grid-column-start: 2;
   height: 100%;
   background-color: #fff;
 }
+
+
 
 .right-panel__elements-container {
   margin-left: 60px;
@@ -516,13 +537,9 @@ div(class="left-panel__monkey")
   box-sizing: border-box;
 }
 
-.registration-form {
 
-}
 
-.registration-form__input-field {
 
-}
 
 .fine-print-container {
   margin-bottom: 100px;
@@ -551,7 +568,6 @@ div(class="left-panel__monkey")
   font-size: 20px;
   text-align: center;
   white-space: nowrap;
-  vertical-align: middle;
   font-family: MuseoSansRounded, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #FFF;
   background-color: #009dff;
@@ -587,7 +603,7 @@ input::-webkit-input-placeholder {
   font-family: MuseoSansRounded, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
-}
+
 .fine-print-container__nested-link {
   text-decoration: none;
   cursor: pointer;
