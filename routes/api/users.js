@@ -189,7 +189,7 @@ router.get('/:id/lists/completedTasks', asyncHandler(async ( req, res, next) => 
       }
     })
   })
-  res.json({completeTasks})
+  res.json({ completeTasks })
 }))
 
 router.get('/:id/lists/incompletedTasks', asyncHandler(async ( req, res, next) => {

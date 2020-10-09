@@ -6,17 +6,21 @@ document.addEventListener("DOMContentLoaded", event => {
 
   completeTab.addEventListener("click", async event => {
 
-    const makeTasks = async () => {
-      const allTasksJson = await fetch(`/api/users/${userId}/completedTasks`, {
+    // TODO TALK WITH RYAN ABOUT ADDING NEW TASKS WITH BUTTONS AND DELETING OLD TASKS FROM THE SCREEN
+    // const makeTasks = async () => {
+      const allTasksJson = await fetch(`/api/users/${userId}/lists/completedTasks`, {
         headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
           "Authorization": `Bearer: ${token}`
         }
       })
 
-
-      const allTasksArr = await allTasksJson.json()
+      const allTasksObj = await allTasksJson.json()
+      const allTasksArr = allTasksObj.completeTasks
       console.log(allTasksArr)
       allTasksArr.forEach(task => {
+
         const taskContainer = document.createElement('div');
         taskContainer.dataset.taskId = task.id
         taskContainer.classList.add("task-container")
@@ -25,7 +29,7 @@ document.addEventListener("DOMContentLoaded", event => {
         taskItem.setAttribute("id", `${task.id}`)
         taskItem.innerHTML = task.taskName
         taskContainer.appendChild(taskItem)
-        taskContainer.appendChild(buttonContainer)
+        // taskContainer.appendChild(buttonContainer)
         taskListContainer.appendChild(taskContainer)
 
         // add click event listeners on all of the tasks
@@ -36,8 +40,8 @@ document.addEventListener("DOMContentLoaded", event => {
         taskListContainer.appendChild(script)
       })
 
-      makeTasks()
 
-    }
+    // }
+    // makeTasks()
   })
 })
