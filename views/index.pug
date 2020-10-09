@@ -2,7 +2,10 @@ extends layout.pug
 
 block content
   include includes/nav
-  include includes/pop-up
+  include includes/modal-no-match
+  include includes/edit-task-form
+
+
 
   div(class="grid__container")
     div(class="grid__left-col" id="")
@@ -38,24 +41,27 @@ block content
       div(class="mid-col-list-header")
         h2(id="list-header") placeholder...
       div(class="task-total")
-        <span class="total-task-span"> 76 </span> <br> tasks
+        <span class="total-task-span"> </span>  <br> tasks
 
       div(class="completed-total")
-        <span class="completed-tasks-span"> 8 </span> <br> completed
+        <span class="completed-tasks-span"> </span> <br> completed
+
+      div(class="overdue-total")
+        <span class="overdue-tasks-span">  </span> <br> overdue
 
       div(class="divider")
       div(class="tab-container")
-        button(class="task-tab") Incomplete
-        button(class="task-tab") Completed
+        button(class="incomplete-task-tab") Incomplete
+        button(class="complete-task-tab") Completed
 
       form(class="add-task-form" id="add-task")
         label(for="new-task")
-        input(class="add-task-input" id="add-task" type="input" placeholder="Add a task..." aria-label="Add a task..." name="new-task")
+        input(class="add-task-input" type="input" placeholder="Add a task..." aria-label="Add a task..." name="new-task")
         button(class="add-task-btn generic-btn" type="submit") Add Task
 
       div(class="task-list-container" id="task-list-container")
         div(class="task-container")
-          div(class="task-sample") FORGET the milk!
+          div(class="task") FORGET the milk!
 
 
     div(class="grid__right-col")
@@ -75,5 +81,11 @@ block content
 
   script(type="module" src="js/search-feature.js")
   script(type="module" src="js/tasks.js")
+  script(type="module" src="js/list-summary/total-tasks.js")
+  script(type="module" src="js/list-summary/overdue-tasks.js")
+  script(type="module" src="js/list-summary/completed-tasks.js")
   script(type="module" src="js/add-tasks.js")
   script(type="module" src="js/delete-tasks.js")
+  script(type="module" src="js/update-tasks.js")
+  script(type="module" src="js/complete-incomplete-tab/complete-tab.js")
+  script(type="module" src="js/complete-incomplete-tab/incomplete-tab.js")
