@@ -695,12 +695,40 @@ button:hover {
 
 }
 
-.registration-form__button {
+.registration-form__button-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.registration-form__login-button {
   display: block;
-  width: 100%;
+  width: 25%;
   height: 48px;
   margin-top: 19px;
   margin-bottom: 0;
+  margin-right: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px 12px;
+  line-height: 1.5;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+  font-family: MuseoSansRounded, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #FFF;
+  background-color: #009dff;
+  border: 1px solid;
+  border-color: transparent;
+}
+
+.registration-form__demo-button {
+  display: block;
+  width: 25%;
+  height: 48px;
+  margin-top: 19px;
+  margin-bottom: 0;
+  margin-left: 5px;
   border-radius: 4px;
   cursor: pointer;
   padding: 10px 12px;
