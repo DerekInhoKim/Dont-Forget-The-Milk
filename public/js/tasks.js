@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', e => {
 
       listId = e.target.dataset.listId;
 
+      localStorage.setItem("CURRENT_LIST", listId)
+
       try {
 
         // clear old tasks
