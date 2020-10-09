@@ -2,9 +2,10 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const { check } = require("express-validator");
 
+
 const { asyncHandler, handleValidationErrors } = require("../utils");
 const { getUserToken } = require("../../auth");
-const { User } = require("../../db/models");
+const { User, List, Task } = require("../../db/models");
 
 const router = express.Router();
 
@@ -107,5 +108,78 @@ router.delete("/token", asyncHandler(async(req, res, next) => {
   res.clearCookie("accessToken");
   res.status(200).end();
 }))
+// /api/users/userId/lists
+// Display all lists for a specific user
+router.get('/:userId(\\d+)/lists', asyncHandler(async(req,res) => {
+  const lists = await List.findAll({
+    where: {
+      userId: req.params.userId
+    },
+    include: [{ model: Task, as:"task" } ],
+    order: [['createdAt', 'DESC']],
+  });
 
+  res.json({lists});
+
+}));
+
+const validateList = [
+  check('listName')
+    .exists({checkFalsy: true})
+    .withMessage("List name can't be undefined."),
+  check('listName')
+    .isLength({max: 50})
+    .withMessage("List can't be longer than 50 characters."),
+  handleValidationErrors,
+];
+
+// /api/users/userId/lists
+// Add a new list to a user
+router.post('/:userId(\\d+)/lists', validateList, asyncHandler(async(req,res,next) => {
+  const userId = req.params.userId
+  const {listName} = req.body;
+
+  const list = await List.create({listName, userId});
+  res.json({list});
+
+}));
+
+
+
+
+
+///gettin all the lists for specific user
+router.get('/:id/lists', asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  console.log(userId);
+  const lists = await List.findAll({
+    where: {
+      userId
+    },
+    // include: [{ model: Task,as:"task",attributes: ['taskName'] } ],
+    order: [['createdAt', 'DESC']],
+  });
+  res.json({ lists });
+}));
+
+///validate list
+// const validateList = [
+//   check('listName')
+//     .exists({ checkFalsy: true })
+//     .withMessage("List name can't be undefined."),
+//   check('listName')
+//     .isLength({ max: 50 })
+//     .withMessage("List can't be longet than 50 characters."),
+//   handleValidationErrors,
+// ];
+
+//creating a new list for specific user
+
+router.post('/:id/lists', validateList, asyncHandler(async (req, res, next) => {
+  const userId = req.params.id;
+  const { listName } = req.body;
+  console.log(req.params);
+  const list = await List.create({ listName, userId });
+  res.json({ list });
+}));
 module.exports = router;

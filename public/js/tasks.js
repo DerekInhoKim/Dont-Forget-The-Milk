@@ -28,14 +28,8 @@ document.addEventListener('DOMContentLoaded', e => {
         window.location.href = "/sign-in"
       }
 
-      listId = e.target.id
-
-      if(localStorage.getItem('CURRENT_LIST')) {
-        localStorage.removeItem('CURRENT_LIST')
-      }
-
-      localStorage.setItem('CURRENT_LIST', listId)
-
+      listId = e.target.dataset.listId;
+    
       try {
 
         // clear old tasks
