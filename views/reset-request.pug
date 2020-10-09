@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    link(rel='stylesheet' href='css/style.css')
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.css")
+    title Terms
+  body
+    div(class='fine-print-page')
+      div(class='fine-print-page__banner')
+        div(class='fine-print-page__banner-logo')
+          img(src="./images/rtm-logo-noshadow.png")
+        a(href="/register" class='fine-print-page__banner-button') Sign up for free
+        div(class='fine-print-page__banner-text')
+          h1 Account
+          h2 Your Don't Forget The Milk account.
+    div(class="registration-page")
+      div(class="registration-page__left-panel")
+        div(class="left-panel__logo-container")
+          img(src="./images/rtm-logo-noshadow.png")
+        div(class="left-panel__top-filler")
+        div(class="left-panel__people-container")
+          h2(class="left-panel__panel-text") Placeholder for random quotes
+          div(class="left-panel__monkey")
+            img(src="./images/avatar_bob_60.png" class="left-panel__monkey-picture")
+            p(class="left-panel__monkey-text")  Quotes curated by Bob T. Monkey, renowned productivity expert
+      div(class="registration-page__right-panel")
+        div(class="right-panel__elements-container")
+          div(class="right-panel__login-button-container")
+            a(href="/register" class="right-panel__login-button") Sign up for free
+          div(class="registration-container")
+            div(class="errors-container")
+            h3 Been here before? Welcome back!
+            form(class="Sign-in-form")
+              include includes/shared-form-fields.pug
+              button(type='submit' class='registration-form__button') Log in
+  script(type='module' src='js/reset-request.js')

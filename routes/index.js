@@ -26,4 +26,9 @@ router.get("/terms", (req, res) => {
 router.get("/privacy", (req, res) => {
   res.render("privacy");
 });
+
+router.get("/reset-request", (req, res) => {
+  res.render("reset-request");
+});
+
 module.exports = router;
