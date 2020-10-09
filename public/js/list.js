@@ -1,7 +1,7 @@
 // import {handleErrors} from "../../utils.js"
 
 const fetchList = async(userId) => {
-  const res = await fetch(`/api/lists/${userId}`, 
+  const res = await fetch(`/api/lists/${userId}`,
   {
     headers: {
       Authorization: `Bearer ${localStorage.getItem(
@@ -15,7 +15,9 @@ const fetchList = async(userId) => {
     return;
   }
 
-  const {lists} = await res.json();
+  const { lists } = await res.json();
+  // const something = await res.json()
+  console.log(lists)
   const listsContainer = document.querySelector(".list-cat-container");
   const listsHtml = lists.map(
     ({ listName, id}) => `
@@ -57,13 +59,14 @@ const fetchList = async(userId) => {
 // }
 
 // const handleEdit = (listId) => {
-  
+
 // }
 
 document.addEventListener("DOMContentLoaded", async()=> {
   try{
-    // localStorage.setItem('DFTM_USER_ID', 3)
+    localStorage.setItem('DFTM_USER_ID', 3)
     let userId = localStorage.getItem('DFTM_USER_ID');
+    // let userId = 1;
     // if(!userId) {
     //   window.location.href = '/sign-in';
     // }
@@ -73,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async()=> {
     // const click = document.getElementById("drop-content");
 
     dropButtons.forEach(dropButton => {
-      
+
       dropButton.addEventListener('click', (event) => {
         event.stopPropagation();
         let click = event.target.parentNode.querySelector('.drop-content')

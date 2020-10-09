@@ -15,6 +15,7 @@ const taskNotFoundError = (id) => {
   return err;
 };
 
+// /api/tasks/ return all tasks
 router.get('/', asyncHandler(async (req, res) => {
   const tasks = await Task.findAll({
     include: List
@@ -24,12 +25,14 @@ router.get('/', asyncHandler(async (req, res) => {
 
 }))
 
+
+// /api/tasks/1 returns info on tasks with the id 1
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
   const taskId = req.params.id
   const tasks = await Task.findOne({
     where: {
       id: taskId
-    },
+    }, include: List
   })
 
   if(tasks) {

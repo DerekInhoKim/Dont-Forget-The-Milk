@@ -15,7 +15,6 @@ const searchRouter = require("./routes/api/search");
 const tasks_back_end = require('./routes/api/tasks_back');
 
 // TESTING PURPOSES ONLY
-const listRouter = require("./routes/api/lists")
 const tasksRouter = require("./routes/api/display_tasks");
 
 
@@ -41,8 +40,8 @@ app.use("/api/search", searchRouter);
 
 
 // TESTING URPOSES ONLY
-app.use("/api/lists", listRouter);
-app.use("/api/tasks", tasksRouter)
+// app.use("/api/lists", listRouter);
+app.use("/api/tasks", tasksRouter);
 
 
 

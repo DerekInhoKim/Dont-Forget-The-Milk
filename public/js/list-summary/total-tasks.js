@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
         const { tasks } = await res.json()
 
         //We take the element with the class total-task-span and set the innerHTML of the div to display the number of all tasks.
-        totalTasksSpan.innerHTML = 10;
+        totalTasksSpan.innerHTML = tasks.length;
 
 
       } catch (e){

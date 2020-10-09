@@ -34,11 +34,13 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     })
     const taskRes = await eachTask.json()
     //Select only thet asks from the res.
-    const allTasks = taskRes.list.Tasks
+    console.log("TaskRes", taskRes.lists)
+    const allTasks = taskRes.lists
 
     //Loop through each task, to find the number of tasks that are complete
     allTasks.forEach(tasks => {
       const dueDate = (Date.parse(tasks.dueDate))
+      console.log(dueDate)
       const today = (Date.parse(new Date()))
       //Add one to the counter, if the parsed due date is less than today's date, and is not NaN
       if(dueDate < new Date() && today !== NaN){

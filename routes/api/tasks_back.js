@@ -15,6 +15,12 @@ router.get('/:id/tasks', asyncHandler(async (req, res) => {
   res.json({tasks})
 }))
 
+router.get('/:id/tasks/:id')
+
+// api/lists/userId/tasks/taskId
+// returns all tasks
+//
+
 
 
 
