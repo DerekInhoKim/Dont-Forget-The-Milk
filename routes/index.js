@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const { userValidation } = require('../auth');
 
 
 
 
-router.get("/", (req, res) => {
+router.get("/", userValidation, (req, res) => {
   res.render("index");
 });
 
@@ -12,11 +13,11 @@ router.get("/lists", (req, res) => {
   res.render("index");
 });
 
-router.get("/register", (req, res) => {
+router.get("/register", userValidation, (req, res) => {
   res.render("register");
 });
 
-router.get("/sign-in", (req, res) => {
+router.get("/sign-in", userValidation, (req, res) => {
   res.render("sign-in");
 });
 

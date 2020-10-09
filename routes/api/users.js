@@ -69,6 +69,7 @@ router.post("/",
     );
 
     const token = await getUserToken(user);
+    res.cookie("accessToken", token, { httpOnly: true });
 
     res.status(201).json({
       user: { id: user.id },
@@ -97,9 +98,14 @@ router.post("/token", sharedAuthValidations,
     }
 
     const token = getUserToken(user);
+    res.cookie("accessToken", token, { httpOnly: true });
     res.json({ token, user: { id: user.id }});
   })
 );
 
+router.delete("/token", asyncHandler(async(req, res, next) => {
+  res.clearCookie("accessToken");
+  res.status(200).end();
+}))
 
 module.exports = router;
