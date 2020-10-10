@@ -104,6 +104,11 @@ document.addEventListener('DOMContentLoaded', e => {
       scriptForDeleteButtons.classList.add('script')
       taskListContainer.appendChild(scriptForDeleteButtons)
 
+      //Functionality to add one to the innerHTML of allTasks container
+      const allTasksSpan = document.querySelector(".total-task-span")
+      let allTasksValue = allTasksSpan.innerHTML
+      allTasksSpan.innerHTML = Number(`${allTasksValue}`) + 1
+
     } catch(err) {
       console.error(err)
     }

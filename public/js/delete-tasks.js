@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", e => {
 
   const displayTasks = async function(task) {
 
+
     // clear old tasks
 
     let oldTaskContainer = document.getElementById("task-list-container");
@@ -104,6 +105,8 @@ document.addEventListener("DOMContentLoaded", e => {
     scriptForDeleteButtons.classList.add('script')
     taskListContainer.appendChild(scriptForDeleteButtons)
 
+
+
   }
 
  //---------------------------------------------------------------------------------
@@ -176,10 +179,20 @@ document.addEventListener("DOMContentLoaded", e => {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem(
               "DFTM_ACCESS_TOKEN"
-            )}`,
-          }
-        })
+              )}`,
+            }
+          })
 
+        //Functionality to display increment overdue tasks span if new task has a due date that has passed.
+        // console.log("DueDate", new Date(dueDate))
+        // console.log(new Date())
+        if(new Date(dueDate) < new Date()){
+          const overdueTasksSpan = document.querySelector(".overdue-tasks-span")
+          let overdueTasksValue = overdueTasksSpan.innerHTML
+          overdueTasksSpan.innerHTML = Number(`${overdueTasksValue}`) + 1
+
+        }
+        // console.log(res)
         if (res.status === 401) {
           window.location.href = "/log-in";
           return;
@@ -191,6 +204,7 @@ document.addEventListener("DOMContentLoaded", e => {
         const { task } = await res.json()
 
         await displayTasks(task)
+
 
       }catch(err) {
         console.error(err)
@@ -211,6 +225,12 @@ document.addEventListener("DOMContentLoaded", e => {
     if(e.target.className.startsWith('delete')) {
 
       deleteTask(e.target.dataset.id)
+
+      //Functionality to subtract one from allTasks if a task is successfully deleted
+      const allTasksSpan = document.querySelector(".total-task-span")
+      let allTasksValue = allTasksSpan.innerHTML
+      allTasksSpan.innerHTML = Number(`${allTasksValue}`) - 1
+
     } else if (e.target.className.startsWith('update')) {
       taskId = e.target.dataset.id
       const editTaskForm = document.querySelector(".edit-task-form-holder")
