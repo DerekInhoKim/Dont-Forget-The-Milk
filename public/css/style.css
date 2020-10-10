@@ -692,6 +692,7 @@ button:hover {
 .left-panel__monkey-picture {
   grid-column-start: 1;
   margin-left: 20px;
+  height: 85%;
 }
 
 .left-panel__monkey-text {
@@ -703,6 +704,7 @@ button:hover {
   color: #fff;
   max-width: 275px;
   line-height: 1.5;
+  margin-left: 2px;
 }
 
 .registration-page__right-panel {

@@ -15,8 +15,8 @@ block content
           p(class="left-panel__quote-text")
           footer(class="left-panel__quoted-person")
         div(class="left-panel__monkey")
-          img(src="./images/bob_the_monkey.png" class="left-panel__monkey-picture")
-          p(class="left-panel__monkey-text")  Quotes curated by Bob T. Monkey, renowned productivity expert
+          img(src="./images/monkeybob.png" class="left-panel__monkey-picture")
+          p(class="left-panel__monkey-text")  Quotes curated by Bob A. Monkey, renowned productivity expert
     div(class="registration-page__right-panel")
       div(class="right-panel__elements-container")
         div(class="right-panel__login-button-container")
@@ -28,9 +28,9 @@ block content
             include includes/shared-form-fields.pug
             div(class="right-panel__form-bottom")
               div(class="right-panel__checkbox-container")
-                label::before
-                input(type="checkbox" class="right-panel__checkbox")
-                p(class="right-panel__checkbox-text") Stay logged in
+                //- label::before
+                //- input(type="checkbox" class="right-panel__checkbox")
+                //- p(class="right-panel__checkbox-text") Stay logged in
               a(href="/reset-request" class="right-panel__reset-link") Forgot password?
             div(class="registration-form__button-container")
               button(type='submit' class='registration-form__login-button') Log in
