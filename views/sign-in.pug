@@ -1,6 +1,9 @@
 
 extends layout.pug
 
+//- append head
+//-   script(src='js/sign-in.js' type='module')
+
 block content
   div(class="registration-page")
     div(class="registration-page__left-panel")
@@ -8,9 +11,9 @@ block content
         img(src="./images/rtm-logo-noshadow.png")
       div(class="left-panel__top-filler")
       div(class="left-panel__inspiration-container")
-        Blockquote(class='left-panel__blockquote')
-          p(class="left-panel__quote-text") "Placeholder for random quotes"
-          footer(class="left-panel__quoted-person") -random famous person
+        blockquote(class='left-panel__blockquote')
+          p(class="left-panel__quote-text")
+          footer(class="left-panel__quoted-person")
         div(class="left-panel__monkey")
           img(src="./images/bob_the_monkey.png" class="left-panel__monkey-picture")
           p(class="left-panel__monkey-text")  Quotes curated by Bob T. Monkey, renowned productivity expert
@@ -32,4 +35,4 @@ block content
             div(class="registration-form__button-container")
               button(type='submit' class='registration-form__login-button') Log in
               button(type='button' class='registration-form__demo-button') Try me
-  script(type='module' src='js/sign-in.js')
+  script(type='module' defer src='js/sign-in.js')

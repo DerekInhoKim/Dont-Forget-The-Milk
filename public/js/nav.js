@@ -1,3 +1,4 @@
+
 document.querySelector(".logout-btn").addEventListener("click", async () => {
   try {
     const res = await fetch("/api/users/token", {
