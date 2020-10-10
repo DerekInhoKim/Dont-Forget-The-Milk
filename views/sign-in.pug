@@ -28,12 +28,11 @@ block content
             include includes/shared-form-fields.pug
             div(class="right-panel__form-bottom")
               div(class="right-panel__checkbox-container")
-                //- label::before
-                //- input(type="checkbox" class="right-panel__checkbox")
-                //- p(class="right-panel__checkbox-text") Stay logged in
+                label::before
+                input(type="checkbox" class="right-panel__checkbox")
+                p(class="right-panel__checkbox-text") Stay logged in
               a(href="/reset-request" class="right-panel__reset-link") Forgot password?
             div(class="registration-form__button-container")
               button(type='submit' class='registration-form__login-button') Log in
               button(type='button' class='registration-form__demo-button') Try me
   script(type='module' defer src='js/sign-in.js')
-
