@@ -2,7 +2,10 @@ extends layout.pug
 
 block content
   include includes/nav
-  include includes/pop-up
+  include includes/modal-no-match
+  include includes/edit-task-form
+
+
 
   div(class="grid__container")
     div(class="grid__left-col" id="")
@@ -40,7 +43,7 @@ block content
 
       form(class="add-task-form" id="add-task")
         label(for="new-task")
-        input(class="add-task-input" id="add-task" type="input" placeholder="Add a task..." aria-label="Add a task..." name="new-task")
+        input(class="add-task-input" type="input" placeholder="Add a task..." aria-label="Add a task..." name="new-task")
         button(class="add-task-btn generic-btn" type="submit") Add Task
 
       div(class="task-list-container" id="task-list-container")
@@ -70,3 +73,6 @@ block content
   script(type="module" src="js/list-summary/completed-tasks.js")
   script(type="module" src="js/add-tasks.js")
   script(type="module" src="js/delete-tasks.js")
+  script(type="module" src="js/update-tasks.js")
+  script(type="module" src="js/complete-incomplete-tab/complete-tab.js")
+  script(type="module" src="js/complete-incomplete-tab/incomplete-tab.js")
