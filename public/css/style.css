@@ -673,12 +673,12 @@ button:hover {
   grid-row-start: 2;
   font-weight: 500;
   font-family: MuseoSansRounded, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 18px;
+  font-size: 17px;
   color: #fff;
   opacity: .75;
   padding-left: 4px;
   line-height: 1.5;
-  margin-top: -35px;
+  margin-top: -25px;
 }
 
 .left-panel__monkey {
