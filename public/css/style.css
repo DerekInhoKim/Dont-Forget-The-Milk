@@ -920,9 +920,12 @@ button:hover {
 .fine-print-page {
   background-color: #fff;
   margin-top: -20px;
-  height: 100vh;
+  height: 100%;
 }
 
+.fine-print-page__body {
+  background-color: #fff;
+}
 .fine-print-page__banner {
   height: 315px;
   background-color: #2060BF;
@@ -999,11 +1002,23 @@ button:hover {
 
 .fine-print-page__text {
   color: #000;
-  text-align: center;
   margin: 50px;
   font-weight: 700;
+  display: grid;
+  grid-template-columns: 1fr 8fr;
 }
 
+.fine-print-page__tos {
+  grid-column-start: 2;
+  max-width: 87%;
+  margin-bottom: 100px;
+}
+
+.fine-print-page__privacy {
+  grid-column-start: 2;
+  max-width: 87%;
+  margin-bottom: 100px;
+}
 /* Reset form page */
 
 .reset-page {
