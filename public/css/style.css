@@ -46,7 +46,7 @@ input:focus {
 
 .logo-dftm {
   width: auto;
-  height: 100px;
+  height: auto;
 }
 
 .nav-left-container {
@@ -196,18 +196,22 @@ input:focus {
   grid-area: left-col;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.5fr 4fr;
+  grid-template-rows: 0.5fr 3fr 1fr;
   min-width: 200px;
   /* max-width: 300px; */
 }
 
 .logo-container {
   /* background-color: royalblue; */
-  margin-left: -20px;
+  margin-left: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
+
 .logo-dftm {
-  width: 200px;
+  width: auto;
   height: auto;
 }
 /* .left-col__all-tasks {
@@ -228,6 +232,11 @@ input:focus {
   margin-bottom: 8px;
 }
 
+.left-col__cow-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
 /* MID COLUMN ================================================================== */
 
 .grid__mid-col {
@@ -584,7 +593,8 @@ button:hover {
 .registration-page {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 100vh
+  height: 100vh;
+  width: 100%;
 }
 
 .registration-page__left-panel {
@@ -598,7 +608,7 @@ button:hover {
 
 .left-panel__logo-container {
   display:grid;
-  grid-template-columns: 2fr 6fr;
+  grid-template-columns: 2fr 8fr;
   height: 120px;
 }
 
@@ -721,7 +731,7 @@ button:hover {
 .registration-page__right-panel {
   grid-column-start: 2;
   height: 100%;
-  max-width: 100%;
+  width: 100%;
   background-color: #fff;
 }
 
@@ -958,7 +968,9 @@ button:hover {
 
 .fine-print-page__body {
   background-color: #fff;
+  height: 100%;
 }
+
 .fine-print-page__banner {
   height: 315px;
   background-color: #2060BF;
@@ -972,14 +984,15 @@ button:hover {
   font-weight: 700;
   display: grid;
   grid-template-columns: 1fr 4fr 3fr 140px 1fr;
-  grid-template-rows: 100px 1fr
+  grid-template-rows: 140px 1fr
 }
 
 .fine-print-page__banner-logo {
   grid-column-start: 2;
   display: flex;
   justify-content: flex-start;
-  max-height: 83px;
+  max-height: 100%;
+  max-width: 100%
 }
 
 .fine-print-page__banner-button {
@@ -1059,6 +1072,17 @@ button:hover {
   background-color: #fff;
 }
 
+.reset-page__bottom {
+  height: 350px;
+  background-color: #fff;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.reset-page__bottom-cow {
+  height: 150px;
+}
 .registration-form__button {
   display: block;
   width: 30%;
@@ -1182,6 +1206,7 @@ button:hover {
   border-color: transparent;
 
 }
+/* 404 page */
 
 .not-found-notify-container {
   display: grid;
@@ -1234,13 +1259,21 @@ button:hover {
   cursor: pointer;
   padding-top: 13px;
 }
-/* 404 page */
 
 
 /* Screen sizes ================================================================= */
 
 @media screen and (max-width: 780px) {
+  /* .registration-page {
+    max-width: 780px;
+  }
+  .registration-page__left-panel {
 
+    max-width: 50%;
+  }
+  .registration-page__right-panel {
+    width: 100%;
+  } */
   .search-form {
     margin-left: 50px;
   }
@@ -1259,6 +1292,9 @@ button:hover {
 
   .grid__left-col {
     min-width: 150px;
+  }
+  .left-col__cow-container-image {
+    max-width: 100%;
   }
   .grid__mid-col {
     grid-template-rows: 1fr 0.7fr 1.5fr 8fr;
@@ -1281,12 +1317,23 @@ button:hover {
 
 }
 
-@media screen and (max-width: 550px) {
+@media only screen and (max-width: 550px) {
+  .registration-page__left-panel {
+    display: none;
+  }
+  .registration-page__right-panel {
 
+    float: left;
+    width: 100%;
+
+
+  }
   .search-form {
     margin-left: 15px;
   }
-
+  .logo-dftm {
+    width: 75%;
+  }
   .welcome-container {
     font-size: 15px;
   }
