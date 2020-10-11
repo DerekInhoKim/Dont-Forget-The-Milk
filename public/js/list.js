@@ -86,10 +86,10 @@ const handleEdit = (listId) => {
   // console.log(listId)
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", async()=> {
 
-  try {
-    localStorage.setItem('DFTM_USER_ID', 3)
+  try{
+    // localStorage.setItem('DFTM_USER_ID', 3)
     let userId = localStorage.getItem('DFTM_USER_ID');
     if (!userId) {
       window.location.href = '/sign-in';

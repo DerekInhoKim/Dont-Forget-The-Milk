@@ -4,14 +4,19 @@ const db = config.db;
 const username = db.username;
 const password = db.password;
 const database = db.database;
-const host = db.host;
+// const host = db.host;
 
 module.exports = {
   development: {
     username,
     password,
     database,
-    host,
+    // host,
     dialect: "postgres",
+  },
+  production: {
+    use_env_variable: 'DATABASE_URL',
+    dialect: 'postgres',
+    seederStorage: 'sequelize',
   },
 };
