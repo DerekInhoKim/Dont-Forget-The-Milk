@@ -39,6 +39,24 @@ const sharedAuthValidations = [
     .withMessage("User password is required"),
 ];
 
+// router.get("/:id(\\d+)", (req, res) => {
+//   id = req.params.id;
+//   user = User.id;
+//   username = user.userName;
+//   res.json(data);
+// });
+
+router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
+  const userId = req.params.id;
+  const user = await User.findByPk(userId);
+  //console.log(user);
+  const name = user.firstName;
+
+
+  res.json({name});
+}));
+
+
 //sign up
 router.post("/",
   signupValidations,
@@ -212,5 +230,6 @@ router.get('/:id/lists/incompletedTasks', asyncHandler(async ( req, res, next) =
   })
   res.json({incompleteTasks})
 }))
+
 
 module.exports = router;

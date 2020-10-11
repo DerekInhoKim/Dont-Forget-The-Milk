@@ -46,7 +46,7 @@ input:focus {
 
 .logo-dftm {
   width: auto;
-  height: 100px;
+  height: auto;
 }
 
 .nav-left-container {
@@ -196,18 +196,22 @@ input:focus {
   grid-area: left-col;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.5fr 4fr;
+  grid-template-rows: 0.5fr 3fr 1fr;
   min-width: 200px;
   /* max-width: 300px; */
 }
 
 .logo-container {
   /* background-color: royalblue; */
-  margin-left: -20px;
+  margin-left: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
+
 .logo-dftm {
-  width: 200px;
+  width: auto;
   height: auto;
 }
 /* .left-col__all-tasks {
@@ -228,6 +232,11 @@ input:focus {
   margin-bottom: 8px;
 }
 
+.left-col__cow-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
 /* MID COLUMN ================================================================== */
 
 .grid__mid-col {
@@ -583,7 +592,9 @@ button:hover {
 /* registration page styling */
 .registration-page {
   display: grid;
-  grid-template-columns: 515px 1fr;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  width: 100%;
 }
 
 .registration-page__left-panel {
@@ -592,12 +603,12 @@ button:hover {
   display: grid;
   grid-template-rows: 120px 175px 1fr;
   max-width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 
 .left-panel__logo-container {
   display:grid;
-  grid-template-columns: 2fr 6fr;
+  grid-template-columns: 2fr 8fr;
   height: 120px;
 }
 
@@ -609,11 +620,12 @@ button:hover {
 
 .left-panel__people-container {
   display:grid;
-  grid-template-columns: 2fr 7fr;
-  grid-template-rows: 1fr 100px;
+  grid-template-columns: 2fr 6fr 1fr;
+  grid-template-rows: 275px 100px 1fr;
   /* display:flex;
   justify-content: flex-end; */
-  height: 375px;
+  height: 100%;
+
 }
 
 .left-panel__inspiration-container {
@@ -625,12 +637,12 @@ button:hover {
   height: 375px;
 }
 
-.left-panel__people-container img{
+.left-panel__people-image{
   grid-column-start: 2;
   grid-row-start: 1;
   display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-template-rows: 2fr 1fr 1fr;
+  /* grid-template-columns: 1fr 4fr;
+  grid-template-rows: 2fr 1fr 1fr; */
   max-height: 275px;
 }
 
@@ -646,6 +658,15 @@ button:hover {
   margin: 0 0 0 25px;
   line-height: 120%;
 }
+
+.left-panel__cow-box {
+  grid-row-start: 3;
+  grid-column-start: 3;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
 
 .left-panel__blockquote {
   grid-column-start: 2;
@@ -692,6 +713,7 @@ button:hover {
 .left-panel__monkey-picture {
   grid-column-start: 1;
   margin-left: 20px;
+  height: 85%;
 }
 
 .left-panel__monkey-text {
@@ -703,11 +725,13 @@ button:hover {
   color: #fff;
   max-width: 275px;
   line-height: 1.5;
+  margin-left: 2px;
 }
 
 .registration-page__right-panel {
   grid-column-start: 2;
   height: 100%;
+  width: 100%;
   background-color: #fff;
 }
 
@@ -715,7 +739,7 @@ button:hover {
 
 .right-panel__elements-container {
   margin-left: 60px;
-  width: 420px;
+  max-width: 515px;
   display: grid;
   grid-template-rows: 310px 1fr;
 }
@@ -742,16 +766,35 @@ button:hover {
 
 }
 
+.right-panel__welcome-group {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.right-panel__welcome-text-container{
+  grid-column-start: 1;
+  grid-row-start: 2;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
 .right-panel__welcome-text {
   font-size: 22px;
   color: #000;
-  margin-bottom: 28px;
-  margin-top: 20px;
+  margin-bottom: 2px;
   font-weight: 550;
   line-height: 1;
 
 }
 
+.right-panel__welcome-cow {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  height: 250%;
+
+}
 .registration-container {
   font-size: 21px;
   color: #000;
@@ -920,7 +963,12 @@ button:hover {
 .fine-print-page {
   background-color: #fff;
   margin-top: -20px;
-  height: 100vh;
+  height: 100%;
+}
+
+.fine-print-page__body {
+  background-color: #fff;
+  height: 100%;
 }
 
 .fine-print-page__banner {
@@ -936,14 +984,15 @@ button:hover {
   font-weight: 700;
   display: grid;
   grid-template-columns: 1fr 4fr 3fr 140px 1fr;
-  grid-template-rows: 100px 1fr
+  grid-template-rows: 140px 1fr
 }
 
 .fine-print-page__banner-logo {
   grid-column-start: 2;
   display: flex;
   justify-content: flex-start;
-  max-height: 83px;
+  max-height: 100%;
+  max-width: 100%
 }
 
 .fine-print-page__banner-button {
@@ -999,11 +1048,23 @@ button:hover {
 
 .fine-print-page__text {
   color: #000;
-  text-align: center;
   margin: 50px;
   font-weight: 700;
+  display: grid;
+  grid-template-columns: 1fr 8fr;
 }
 
+.fine-print-page__tos {
+  grid-column-start: 2;
+  max-width: 87%;
+  margin-bottom: 100px;
+}
+
+.fine-print-page__privacy {
+  grid-column-start: 2;
+  max-width: 87%;
+  margin-bottom: 100px;
+}
 /* Reset form page */
 
 .reset-page {
@@ -1011,6 +1072,17 @@ button:hover {
   background-color: #fff;
 }
 
+.reset-page__bottom {
+  height: 350px;
+  background-color: #fff;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.reset-page__bottom-cow {
+  height: 150px;
+}
 .registration-form__button {
   display: block;
   width: 30%;
@@ -1134,6 +1206,7 @@ button:hover {
   border-color: transparent;
 
 }
+/* 404 page */
 
 .not-found-notify-container {
   display: grid;
@@ -1186,13 +1259,21 @@ button:hover {
   cursor: pointer;
   padding-top: 13px;
 }
-/* 404 page */
 
 
 /* Screen sizes ================================================================= */
 
 @media screen and (max-width: 780px) {
+  /* .registration-page {
+    max-width: 780px;
+  }
+  .registration-page__left-panel {
 
+    max-width: 50%;
+  }
+  .registration-page__right-panel {
+    width: 100%;
+  } */
   .search-form {
     margin-left: 50px;
   }
@@ -1211,6 +1292,9 @@ button:hover {
 
   .grid__left-col {
     min-width: 150px;
+  }
+  .left-col__cow-container-image {
+    max-width: 100%;
   }
   .grid__mid-col {
     grid-template-rows: 1fr 0.7fr 1.5fr 8fr;
@@ -1233,12 +1317,23 @@ button:hover {
 
 }
 
-@media screen and (max-width: 550px) {
+@media only screen and (max-width: 550px) {
+  .registration-page__left-panel {
+    display: none;
+  }
+  .registration-page__right-panel {
 
+    float: left;
+    width: 100%;
+
+
+  }
   .search-form {
     margin-left: 15px;
   }
-
+  .logo-dftm {
+    width: 75%;
+  }
   .welcome-container {
     font-size: 15px;
   }
