@@ -34,7 +34,7 @@ registrationForm.addEventListener("submit", async (event) => {
       throw res;
     }
 
-    const { token, user: { id } } = await res.json();
+    const { token, user: { id, userName } } = await res.json();
 
     localStorage.setItem("DFTM_USER_TOKEN", token);
     localStorage.setItem("DFTM_USER_ID", id);

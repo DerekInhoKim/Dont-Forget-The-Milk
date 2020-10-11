@@ -10,7 +10,7 @@ const path = require("path");
 // internal requires
 
 const { environment, cookieConfig } = require("./config");
-const { userValidation } = require("./auth");
+// const { userValidation } = require("./auth");
 const indexRouter = require("./routes/index");
 const listRouter = require("./routes/api/lists");
 const usersRouter = require("./routes/api/users");
@@ -22,7 +22,8 @@ const usersRouter = require("./routes/api/users");
 // const tasksRouter = require("./routes/api/display_tasks");
 
 const tasks_back_end = require('./routes/api/tasks_back')
-const displayTasks = require('./routes/api/display-tasks')
+const displayTasks = require('./routes/api/display-tasks');
+const { Server } = require("http");
 
 const app = express();
 
@@ -53,8 +54,6 @@ app.use('/api/tasks', displayTasks);
 
 
 
-
-//TODO: error handlers
 // unhandled requests
   app.use((req, res, next) => {
     const error = new Error("Resource could not be found.");

@@ -1,6 +1,8 @@
 
 div(class="edit-task-form-holder")
   div(class="edit-task-form-content")
+    span(class="close-edit-task-form") Close
+    div(class="clear")
     h3 Edit task
     form(class="" id="edit-task-form")
       div
@@ -13,13 +15,18 @@ div(class="edit-task-form-holder")
         label(for='description') Description
         textarea(class="descriptionField" name="description", placeholder='')
       button(class="gen-button ") Update
+//- script(type="text/javascript").
+//-  const editTaskForm = document.querySelector(".edit-task-form-holder");
 
-
+//-     window.onclick = function(event) {
+//-     if (event.target === editTaskForm) {
+//-       editTaskForm.style.display = "none";
+//-     }
+//-   }
 script(type="text/javascript").
- const editTaskForm = document.querySelector(".edit-task-form-holder");
+  const editTaskForm = document.querySelector(".edit-task-form-holder")
+  const closeAddButton = document.querySelector(".close-edit-task-form");
 
-    window.onclick = function(event) {
-    if (event.target === editTaskForm) {
+    closeAddButton.onclick = function() {
       editTaskForm.style.display = "none";
     }
-  }

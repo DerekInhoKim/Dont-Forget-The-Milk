@@ -39,6 +39,23 @@ const sharedAuthValidations = [
     .withMessage("User password is required"),
 ];
 
+// router.get("/:id(\\d+)", (req, res) => {
+//   id = req.params.id;
+//   user = User.id;
+//   username = user.userName;
+//   res.json(data);
+// });
+
+router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
+  const userId = req.params.id;
+  const user = await User.findByPk(userId);
+  const name = user.firstName;
+
+
+  res.json({name});
+}));
+
+
 //sign up
 router.post("/",
   signupValidations,
@@ -68,6 +85,16 @@ router.post("/",
        hashedPassword
       }
     );
+
+    const newUser = await User.findOne({
+      where: {
+        email
+      }
+    });
+    const userId = newUser.id;
+
+    await List.create({listName: "Work", userId})
+    await List.create({listName: "Personal", userId})
 
     const token = await getUserToken(user);
     res.cookie("accessToken", token, { httpOnly: true });
