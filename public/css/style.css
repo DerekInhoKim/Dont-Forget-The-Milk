@@ -1358,6 +1358,14 @@ button:hover {
     max-width: 75%;
   }
 
+  .registration-form__button {
+    width: 100%;
+  }
+
+  .not-found-notify-container__button {
+    width: 25%;
+  }
+
   .search-form {
     margin-left: 50px;
   }
@@ -1373,9 +1381,7 @@ button:hover {
       "left-col right-col"
       "left-col mid-col";
   }
-  .registration-form__button {
-    width: 100%;
-  }
+
   .grid__left-col {
     min-width: 150px;
   }
@@ -1452,10 +1458,14 @@ button:hover {
     margin-left: 135px;
     width: 100%;
   }
-  
+
   .password-reset-form__button {
     width: 50%;
 
+  }
+
+  .not-found-notify-container__button {
+    width: 30%;
   }
   .grid__left-col {
     min-width: 120px;
