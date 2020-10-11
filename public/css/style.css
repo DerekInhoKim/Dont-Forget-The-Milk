@@ -606,16 +606,30 @@ button:hover {
   height: 100%;
 }
 
+.login-page__left-panel {
+  background-color: #2060BF;
+  grid-column-start: 1;
+  display: grid;
+  grid-template-rows: 120px 175px 1fr;
+  max-width: 100%;
+  height: 100%;
+}
+
 .left-panel__logo-container {
   display:grid;
   grid-template-columns: 2fr 8fr;
   height: 120px;
 }
 
-.left-panel__logo-container img{
+.left-panel__login__logo {
   grid-column-start: 2;
   margin-top: 30px;
 
+}
+
+.left-panel__register__logo {
+  grid-column-start: 2;
+  margin-top: 30px;
 }
 
 .left-panel__people-container {
@@ -1264,26 +1278,21 @@ button:hover {
 /* Screen sizes ================================================================= */
 
 @media screen and (max-width: 780px) {
-  /* .registration-page {
-    max-width: 780px;
-  }
-  .registration-page__left-panel {
 
-    max-width: 50%;
-  }
-  .registration-page__right-panel {
-    width: 100%;
-  } */
     .registration-page__body{
     background-color: #fff;
     height: 100%;
   }
 
   .registration-page{
+    height: 100%;
     margin-left: -20px;
     margin-right: -20px;
   }
   .registration-page__left-panel {
+    max-width: 68%;
+  }
+  .login-page__left-panel {
     max-width: 90%;
   }
   .registration-page__right-panel {
@@ -1293,20 +1302,62 @@ button:hover {
     margin-left: -40px;
     margin-right: 30px;
   }
-  .left-panel__logo-container img {
-    width: 75%;
+  .left-panel__login-logo {
+    width: 62.4%;
+    margin-top: 10px;
+    margin-left: 30px;
   }
 
+  .left-panel__register-logo {
+    width: 78%;
+    margin-left: 30px;
+    margin-top: 10px;
+  }
   .left-panel__inspiration-container {
     width: 20%;
   }
 
-  .left-panel__blockquote {
+  .left-panel__people-container {
+    width: 20%;
+  }
+  .left-panel__people-image{
     width: 100%;
+    margin-left: 20px;
+  }
+
+  .left-panel__panel-text {
+    margin-top: -150px;
+  }
+  .left-panel__blockquote {
+    width: 80%;
   }
   .right-panel__welcome-cow{
     height: 235%;
   }
+
+  .left-panel__cow-box {
+    grid-column-start: 3;
+    grid-row-start: 3;
+    width: 100%;
+  }
+
+  .left-panel__register-cow {
+
+  height: 60%;
+  margin-left: -86px;
+  }
+
+  .left-panel__top-filler {
+    width: 20%;
+  }
+  .left-panel__login-logo-container {
+    max-width: 90%;
+  }
+
+  .left-panel__register-logo-container {
+    max-width: 75%;
+  }
+
   .search-form {
     margin-left: 50px;
   }
@@ -1322,7 +1373,9 @@ button:hover {
       "left-col right-col"
       "left-col mid-col";
   }
-
+  .registration-form__button {
+    width: 100%;
+  }
   .grid__left-col {
     min-width: 150px;
   }
@@ -1356,12 +1409,18 @@ button:hover {
     background-color: #fff;
     height: 100vh;
   }
-
+  .right-panel__elements-container {
+    width: 100%;
+    margin-left: -40px;
+  }
   .registration-page{
     margin-left: -20px;
     margin-right: -20px;
   }
   .registration-page__left-panel {
+    display: none;
+  }
+  .login-page__left-panel {
     display: none;
   }
   .registration-page__right-panel {
