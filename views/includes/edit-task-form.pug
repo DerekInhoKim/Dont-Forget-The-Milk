@@ -12,19 +12,5 @@ div(class="edit-task-form-holder")
         input(type='text', name="dueDate", placeholder='')
       div
         label(for='description') Description
-        input(type='password', name="description", placeholder='')
+        input(type='text', name="description", placeholder='')
       button(class="gen-button ") Update
-
-
-script(type="text/javascript").
- const editTaskForm = document.querySelector(".edit-task-form-holder");
-
-  //- testBtn.onclick = () => {
-  //-   editTaskForm.style.display = "block";
-  //- }
-
-    window.onclick = function(event) {
-    if (event.target === editTaskForm) {
-      editTaskForm.style.display = "none";
-    }
-  }
