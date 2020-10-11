@@ -1,0 +1,23 @@
+//- button(id="testBtn") test
+
+div(class="edit-list-form-holder")
+  div(class="edit-list-form-content")
+    h3 Edit List Name
+    form(class="" id="edit-list-form")
+      div
+        label(for='listName') Task
+        input(type='text' name='listName' placeholder='')
+      button(class="gene-button ") Save
+
+script(type="text/javascript").
+ const editTaskForm = document.querySelector(".edit-list-form-holder");
+
+  //- testBtn.onclick = () => {
+  //-   editTaskForm.style.display = "block";
+  //- }
+
+    window.onclick = function(event) {
+    if (event.target === listTaskForm) {
+      editListForm.style.display = "none";
+    }
+  }
