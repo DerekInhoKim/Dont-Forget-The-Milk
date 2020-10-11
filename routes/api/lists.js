@@ -41,22 +41,22 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
   }
 }))
 
-router.put('/:id(\\d+)', validateList, asyncHandler(async(req,res,next)=> {
-    const list = await List.findOne({
-      where: {
-        id: req.params.id
-      }, inlcude: [{model: Task, as: "task"}]
-    });
-  if(req.params.id !== list.userId) {
-    const err = new Error('Unauthorized');
-    err.status = 401;
-    err.message = 'You are not authorized to edit this List';
-    err.title = 'Unauthorized';
-    throw err;
-  }
-  if(list) {
-    await list.update({listName: req.body.listName});
-    res.json({list});
+router.put('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+  const list = await List.findOne({
+    where: {
+      id: req.params.id
+    },
+  });
+  // if(req.params.id !== list.userId) {
+  //   const err = new Error('Unauthorized');
+  //   err.status = 401;
+  //   err.message = 'You are not authorized to edit this List';
+  //   err.title = 'Unauthorized';
+  //   throw err;
+  // }
+  if (list) {
+    await list.update({ listName: req.body.editListName });
+    res.json({ list });
   } else {
     next(listNotFoundError(req.params.id));
   }
