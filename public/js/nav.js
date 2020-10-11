@@ -3,7 +3,6 @@ import { errorNotifications } from "./error-notifications.js";
 document.addEventListener("DOMContentLoaded", async (event) => {
 
   const id = localStorage.getItem("DFTM_USER_ID");
-  console.log(id)
   try {
     // const res = await fetch(`/users/${id}`, {
     //   headers: {
@@ -18,7 +17,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     }
 
     const data = await res.json();
-    console.log(data);
 
     const welcomeMessage = document.querySelector('.welcome-container');
     welcomeMessage.innerHTML = `Welcome ${data.name}!`;
