@@ -23,7 +23,11 @@ block content
           a(href="/register" class="right-panel__login-button") Sign up for free
         div(class="registration-container")
           div(class="errors-container")
-          h3(class="right-panel__welcome-text") Been here before? Welcome back!
+          div(class="right-panel__welcome-group")
+            div(class="right-panel__welcome-text-container")
+              h3(class="right-panel__welcome-text") Been here before?
+              h3(class="right-panel__welcome-text") Welcome back!
+            img(class="right-panel__welcome-cow" src="./images/login-cow.png")
           form(class="sign-in-form")
             include includes/shared-form-fields.pug
             div(class="right-panel__form-bottom")

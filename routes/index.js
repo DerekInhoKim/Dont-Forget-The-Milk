@@ -9,6 +9,7 @@ router.get("/", userValidation, (req, res) => {
   res.render("index");
 });
 
+
 router.get("/lists", (req, res) => {
   res.render("index");
 });
