@@ -74,12 +74,43 @@ document.addEventListener('DOMContentLoaded', e => {
 
         // extract tasks from the server response and dynamically generate HTML that is used to display the tasks
 
+
         const {allTasks}  = await res.json()
+
+        let overdue = 0;
+        let currentDate = new Date()
+        let currentDateVals =
+        [currentDate.getFullYear(),
+          currentDate.getMonth()+1,
+        currentDate.getDate(),
+        ]
+        console.log(allTasks)
+        document.querySelector(".total-task-span").innerHTML = allTasks.length
+        allTasks.forEach(task => {
+          let dueDate = task.dueDate
+          if(dueDate !== null){
+            dueDate = dueDate.slice(0, 10).split('-')
+            console.log('due date:', dueDate)
+            console.log(currentDateVals)
+
+            if(currentDateVals[0] > dueDate[0]){
+              overdue +=1
+              return;
+            } else if(currentDateVals[0] == dueDate[0] && currentDateVals[1] > dueDate[1]) {
+              overdue += 1
+              return
+            } else if(currentDateVals[1] == dueDate[1] && currentDateVals[2] > dueDate[2]){
+              overdue += 1
+            }
+          }
+
+        })
+        document.querySelector(".overdue-tasks-span").innerHTML = overdue;
 
         const taskListContainer = document.querySelector(".task-list-container")
         allTasks.forEach(task => {
 
-          // make all of the HTML elements for the buttons and tasks
+          // make all of the HTML elements for the buttons
 
           let buttonContainer = document.createElement('div')
           let deleteButtonContainer = document.createElement('div')
@@ -105,6 +136,8 @@ document.addEventListener('DOMContentLoaded', e => {
 
           buttonContainer.appendChild(deleteButtonContainer)
           buttonContainer.appendChild(updateButtonContainer)
+
+          // make all of the HTML elements for the buttons
 
           const taskContainer = document.createElement('div');
           taskContainer.classList.add("task-container")

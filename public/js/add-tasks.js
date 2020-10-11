@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', e => {
       }
 
       addTaskForm.reset();
-
+      document.querySelector(".total-task-span").innerHTML ++
       const { task } = await res.json()
 
 

@@ -227,18 +227,20 @@ router.post('/:id/tasks/create-task', asyncHandler( async (req, res) => {
   res.json({ task })
 }))
 
+
+
 // show all tasks of a selected list
 
-router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
-  // console.log(req.params.id)
-  const taskId = parseInt(req.params.id, 10)
-  const tasks = await Task.findOne({
-    where: {
-      id: taskId
-    }
-  })
+// router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
+//   // console.log(req.params.id)
+//   const taskId = parseInt(req.params.id, 10)
+//   const tasks = await Task.findOne({
+//     where: {
+//       id: taskId
+//     }
+//   })
 
-  res.json({tasks})
-}))
+//   res.json({tasks})
+// }))
 
 module.exports = router;

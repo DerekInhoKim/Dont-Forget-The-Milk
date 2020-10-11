@@ -25,6 +25,7 @@ siteTour.addEventListener("click", async (event) => {
 
     localStorage.setItem("DFTM_USER_TOKEN", token);
     localStorage.setItem("DFTM_USER_ID", id);
+    localStorage.setItem("DFTM_USER_NAME", userName);
 
     window.location.href = "/";
   } catch (error) {
@@ -59,6 +60,7 @@ signInForm.addEventListener("submit", async (event) => {
 
     localStorage.setItem("DFTM_USER_TOKEN", token);
     localStorage.setItem("DFTM_USER_ID", id);
+    // localStorage.setItem("DFTM_USER_NAME", userName);
 
     window.location.href = "/";
   } catch (error) {

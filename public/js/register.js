@@ -13,7 +13,7 @@ registrationForm.addEventListener("submit", async (event) => {
   const email = formData.get("email");
   const password = formData.get("password");
   const confirmPassword = formData.get("confirmpass");
-  
+
   const body = {
     firstName,
     lastName,
@@ -38,6 +38,7 @@ registrationForm.addEventListener("submit", async (event) => {
 
     localStorage.setItem("DFTM_USER_TOKEN", token);
     localStorage.setItem("DFTM_USER_ID", id);
+    localStorage.setItem("DFTM_USER_NAME", userName);
 
     window.location.href = "/";
   } catch (error) {

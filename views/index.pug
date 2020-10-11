@@ -5,12 +5,10 @@ block content
   include includes/modal-no-match
   include includes/edit-task-form
 
-
-
   div(class="grid__container")
     div(class="grid__left-col" id="")
       div(class="logo-container")
-        img(src="" class="logo-dftm")
+        img(src="images/logo-lrg.png" class="logo-dftm")
       div(class="left-col__list-categories")
         a(class="all-lists" id="all-lists") Lists
           button(id="add-list-button" class="add-list-button fa fa-plus fa-fw")
@@ -38,8 +36,8 @@ block content
 
       div(class="divider")
       div(class="tab-container")
-        button(class="incomplete-task-tab") Incomplete
-        button(class="complete-task-tab") Completed
+        button(class="task-tab") Incomplete
+        button(class="task-tab") Completed
 
       form(class="add-task-form" id="add-task")
         label(for="new-task")
@@ -53,17 +51,22 @@ block content
 
     div(class="grid__right-col")
       div(class="right-col__task-info")
+
+        form(class="edit-task-name-form")
+          input(class="edit-task-name-input" type="input" placeholder=`Task Name Here` aria-label="" name="taskName")
+        div(id="edit-task-modal") click here to edit >
+
         div(class="info-header" ) due
           span(class="date-span") never
         div(class="info-header") list
-          span(class="list-span")  Personal
+          span(class="list-span") Personal
         div(class="task-description") THIS HOLDS THE DESCRIPTION
-      div(class="right-col__extra-options")
-        form(class="notes-form")
-          label(for='notes') Notes
-          input(class="notes-input" type='notes', name="notes", placeholder='Add a note...')
-          button(class="generic-btn" type="submit") Save
-          button(class="generic-btn cancel-btn" type="submit") Cancel
+      //- div(class="right-col__extra-options")
+      //-   form(class="notes-form")
+      //-     label(for='notes') Notes
+      //-     input(class="notes-input" type='notes', name="notes", placeholder='Add a note...')
+      //-     button(class="generic-btn" type="submit") Save
+      //-     button(class="generic-btn cancel-btn" type="submit") Cancel
 
 
   script(type="module" src="js/search-feature.js")
@@ -76,3 +79,6 @@ block content
   script(type="module" src="js/update-tasks.js")
   script(type="module" src="js/complete-incomplete-tab/complete-tab.js")
   script(type="module" src="js/complete-incomplete-tab/incomplete-tab.js")
+  script(type="module" src="js/test-added-functions.js")
+  //- script(type="module" src="")
+  script(type="module" src="js/right-col-edit-task-name.js")

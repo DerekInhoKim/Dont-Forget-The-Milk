@@ -87,9 +87,9 @@ const handleEdit = (listId) => {
 }
 
 document.addEventListener("DOMContentLoaded", async()=> {
-  
+
   try{
-    localStorage.setItem('DFTM_USER_ID', 3)
+    // localStorage.setItem('DFTM_USER_ID', 3)
     let userId = localStorage.getItem('DFTM_USER_ID');
     if(!userId) {
       window.location.href = '/sign-in';
@@ -159,6 +159,10 @@ document.addEventListener("DOMContentLoaded", async()=> {
           handleErrors(err);
         }
       });
+      // displays user name on the nav ========================================
+      const navUserName = document.getElementById("navUserName");
+      console.log("USER NAME!!!!", localStorage.getItem("DFTM_USER_NAME"));
+      navUserName.innerText = localStorage.getItem("DFTM_USER_NAME") + "!";
 
   }
   } catch(e) {
