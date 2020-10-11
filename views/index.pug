@@ -4,6 +4,8 @@ block content
   include includes/nav
   include includes/modal-no-match
   include includes/edit-task-form
+  include includes/edit-list-form
+  include includes/add-list-form
 
 
 
@@ -12,13 +14,9 @@ block content
       div(class="logo-container")
         img(src="./images/dftm-text-blue.png" class="logo-dftm")
       div(class="left-col__list-categories")
-        a(class="all-lists" id="all-lists") Lists
-          button(id="add-list-button" class="add-list-button fa fa-plus fa-fw")
-          div(id="list-drop-content" class="list-drop-content" style="display:none")
-            form(class="add-list-form" id="add-list-form")
-              label(for='listName')
-              input(id="add-list-input" class="add-list-input" type="input" name="listName" placeholder="List name..." aria-label="List name...")
-              button(id="add-new-list" type="submit") Add
+        div(class="add-list-container")
+        //- a(class="all-lists" id="all-lists") Lists
+        //-   button(id="add-list-button" class="add-list-button fa fa-plus fa-fw")
         div(class="list-cat-container") This holds the categories
       div(class="left-col__cow-container")
         img(class="left-col__cow-container-image" src="./images/milk-cow.png")

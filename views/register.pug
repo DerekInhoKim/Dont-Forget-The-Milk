@@ -1,10 +1,17 @@
-extends layout.pug
+//- extends layout.pug
 
-block content
+//- block content
+doctype html
+html
+  head
+    link(rel='stylesheet' href='css/style.css')
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.css")
+    title Sign in
+  body(class="registration-page__body")
   div(class="registration-page")
     div(class="registration-page__left-panel")
-      div(class="left-panel__logo-container")
-        img(src="./images/dtfm-logo-white.png")
+      div(class="left-panel__register-logo-container")
+        img(class="left-panel__register-logo" src="./images/dtfm-logo-white.png")
       div(class="left-panel__top-filler")
       div(class="left-panel__people-container")
         img(class="left-panel__people-image" src="./images/peoplewhoneedmilk.jpg")

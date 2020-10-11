@@ -106,6 +106,7 @@ input:focus {
 .dropdown {
   /* position:relative; */
   display: inline-block;
+  align-items: stretch;
 }
 
 .list-header {
@@ -113,7 +114,8 @@ input:focus {
 }
 
 .button-drop {
-  align-self: center;
+  display: flex;
+  align-self: flex-end;
   background-color: #D7E7F5;
   color:  royalblue;
   padding:0.2px 0.2px;
@@ -131,14 +133,25 @@ input:focus {
 
   /* color: black; */
 }
-
+.all-lists {
+  font-size: medium;
+  font-weight: bolder;
+  padding: 4px;
+  padding-left: 15px;
+  
+}
 .lists {
+  font-size: medium;
   display: flex;
   justify-content: space-between;
   position: relative;
   padding: 4px;
   background-color: #D7E7F5;
+  padding-left: 15px;
 }
+/* .lists:hover {
+   background-color: blue;
+} */
 
 
 #add-new-list {
@@ -156,6 +169,76 @@ input:focus {
   background-color: white;
   color:  royalblue;
 
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1;/* Sit on top */
+  padding-top: 250px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: white;
+  margin: auto;
+  padding: 2px 16px;
+  border: 1px solid #888;
+  width: 40%;
+  border-radius: 6px;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.2s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 2px;
+  background-color: white;
+  color: black;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: white;
+  color: white;
 }
 
 .nav-right-container {
@@ -606,16 +689,30 @@ button:hover {
   height: 100%;
 }
 
+.login-page__left-panel {
+  background-color: #2060BF;
+  grid-column-start: 1;
+  display: grid;
+  grid-template-rows: 120px 175px 1fr;
+  max-width: 100%;
+  height: 100%;
+}
+
 .left-panel__logo-container {
   display:grid;
   grid-template-columns: 2fr 8fr;
   height: 120px;
 }
 
-.left-panel__logo-container img{
+.left-panel__login__logo {
   grid-column-start: 2;
   margin-top: 30px;
 
+}
+
+.left-panel__register__logo {
+  grid-column-start: 2;
+  margin-top: 30px;
 }
 
 .left-panel__people-container {
@@ -1264,16 +1361,94 @@ button:hover {
 /* Screen sizes ================================================================= */
 
 @media screen and (max-width: 780px) {
-  /* .registration-page {
-    max-width: 780px;
+
+    .registration-page__body{
+    background-color: #fff;
+    height: 100%;
+  }
+
+  .registration-page{
+    height: 100%;
+    margin-left: -20px;
+    margin-right: -20px;
   }
   .registration-page__left-panel {
-
-    max-width: 50%;
+    max-width: 68%;
+  }
+  .login-page__left-panel {
+    max-width: 90%;
   }
   .registration-page__right-panel {
+
+    float: left;
+    max-width: 75%;
+    margin-left: -40px;
+    margin-right: 30px;
+  }
+  .left-panel__login-logo {
+    width: 62.4%;
+    margin-top: 10px;
+    margin-left: 30px;
+  }
+
+  .left-panel__register-logo {
+    width: 78%;
+    margin-left: 30px;
+    margin-top: 10px;
+  }
+  .left-panel__inspiration-container {
+    width: 20%;
+  }
+
+  .left-panel__people-container {
+    width: 20%;
+  }
+  .left-panel__people-image{
     width: 100%;
-  } */
+    margin-left: 20px;
+  }
+
+  .left-panel__panel-text {
+    margin-top: -150px;
+  }
+  .left-panel__blockquote {
+    width: 80%;
+  }
+  .right-panel__welcome-cow{
+    height: 235%;
+  }
+
+  .left-panel__cow-box {
+    grid-column-start: 3;
+    grid-row-start: 3;
+    width: 100%;
+  }
+
+  .left-panel__register-cow {
+
+  height: 60%;
+  margin-left: -86px;
+  }
+
+  .left-panel__top-filler {
+    width: 20%;
+  }
+  .left-panel__login-logo-container {
+    max-width: 90%;
+  }
+
+  .left-panel__register-logo-container {
+    max-width: 75%;
+  }
+
+  .registration-form__button {
+    width: 100%;
+  }
+
+  .not-found-notify-container__button {
+    width: 25%;
+  }
+
   .search-form {
     margin-left: 50px;
   }
@@ -1318,15 +1493,35 @@ button:hover {
 }
 
 @media only screen and (max-width: 550px) {
+
+  .registration-page__body{
+    background-color: #fff;
+    height: 100vh;
+  }
+  .right-panel__elements-container {
+    width: 100%;
+    margin-left: -40px;
+  }
+  .registration-page{
+    margin-left: -20px;
+    margin-right: -20px;
+  }
   .registration-page__left-panel {
+    display: none;
+  }
+  .login-page__left-panel {
     display: none;
   }
   .registration-page__right-panel {
 
     float: left;
     width: 100%;
+    margin-left: -40px;
+    margin-right: 30px;
+  }
 
-
+  .right-panel__welcome-cow{
+    height: 235%;
   }
   .search-form {
     margin-left: 15px;
@@ -1341,6 +1536,19 @@ button:hover {
   .logout-btn {
     font-size: 12px;
     width: 70px;
+  }
+  .password-reset-form {
+    margin-left: 135px;
+    width: 100%;
+  }
+
+  .password-reset-form__button {
+    width: 50%;
+
+  }
+
+  .not-found-notify-container__button {
+    width: 30%;
   }
   .grid__left-col {
     min-width: 120px;
@@ -1569,7 +1777,154 @@ button:hover {
   cursor: pointer;
 }
 
+/* EDIT LIST  ==========================================================*/
+.edit-list-form-holder {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* overflow: auto; */
+  background-color: rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+}
 
+.edit-list-form-content {
+  background-color: rgba(32,96,191, 0.9);
+  margin: 15% auto;
+  padding: 25px 40px;
+  box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(140, 148, 157, .8);
+  border-radius: 7px;
+  width: 40%;
+  min-width: 300px;
+}
+
+.edit-list-form-content h3 {
+  margin: 0 0 10px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
+}
+
+.edit-list-form-content label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.edit-list-form-content input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;;
+}
+
+/* .edit-task-form-content textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;;
+} */
+
+.edit-list-form-holder button {
+  width: 90px;
+  height: 30px;
+  background-color: #D7E7F5;
+  color: #3D79C9;
+  margin-top: 10px;
+}
+
+.close-edit {
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-edit:hover,
+.close-edit:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ADD LIST  ==========================================================*/
+
+.add-list-form-holder {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* overflow: auto; */
+  background-color: rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+}
+
+.add-list-form-content {
+  background-color: rgba(32,96,191, 0.9);
+  margin: 15% auto;
+  padding: 25px 40px;
+  box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(140, 148, 157, .8);
+  border-radius: 7px;
+  width: 40%;
+  min-width: 300px;
+}
+
+.add-list-form-content h3 {
+  margin: 0 0 10px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
+}
+
+.add-list-form-content label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.add-list-form-content input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;;
+}
+
+/* .edit-task-form-content textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;;
+} */
+
+.add-list-form-holder button {
+  width: 90px;
+  height: 30px;
+  background-color: #D7E7F5;
+  color: #3D79C9;
+  margin-top: 10px;
+}
+
+.close-add {
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-add:hover,
+.close-add:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 
 
