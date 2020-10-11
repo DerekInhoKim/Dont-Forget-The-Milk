@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', e => {
             oldTaskContainer.removeChild(task);
 
           })
-
         }
 
         // clear old script tags

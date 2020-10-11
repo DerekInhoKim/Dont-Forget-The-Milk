@@ -1,7 +1,7 @@
 const searchForm= document.getElementById("search-form");
-searchForm.addEventListener("keydown", async (e) => {
+searchForm.addEventListener("submit", async (e) => {
 
-  if(e.keyCode === 13) {
+  // if(e.keyCode === 13) {
     e.preventDefault();
     const formData = new FormData(searchForm);
     const searchStr = formData.get("searchStr");
@@ -28,26 +28,35 @@ searchForm.addEventListener("keydown", async (e) => {
       if(scriptElement) {
         oldTaskContainer.removeChild(scriptElement)
       }
-      
-      const res = await fetch(`/api/search/${searchStr}`);
+
+      const userId = localStorage.getItem('DFTM_USER_ID')
+
+      const res = await fetch(`/api/users/${userId}/lists/search`);
 
       if(!res.ok) {
         throw res;
       }
 
-      const { matchingTasks } = await res.json();
+      const {allLists} = await res.json();
+      const matchingTasks = []
 
-      if(matchingTasks.length ===  0) {
-        // alert("Sorry, no matches found =(");
-        // return;
-        const modal = document.getElementById("pop-up");
-        modal.style.display= "block";
-      }
+      // console.log(allLists)
 
-      const header = document.getElementById("list-header")
-      header.innerHTML = `Search : ${searchStr}`;
+      allLists.forEach(list => {
+        // if(list.task.taskName) {
+          // console.log(list.task)
+        // }
+        for(let i=0; i<list.task.length; i++) {
+          console.log(list.task[i].taskName)
+          console.log(searchStr)
+          if(list.task[i].taskName.toLowerCase().includes(searchStr.toLowerCase())) {
+            console.log(list.task[i])
+            matchingTasks.push(list.task[i])
+          }
+        }
+      })
 
-
+      console.log(matchingTasks)
 
       const taskListContainer = document.querySelector(".task-list-container")
       matchingTasks.forEach(task => {
@@ -108,5 +117,5 @@ searchForm.addEventListener("keydown", async (e) => {
     } catch (err) {
       console.error(err);
     }
-  }
+ 
 });
