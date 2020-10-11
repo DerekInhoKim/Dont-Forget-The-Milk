@@ -9,8 +9,8 @@ tasks.forEach(task => {
     const taskId = event.target.id
     const taskJson = await fetch(`./api/tasks/${taskId}`)
     const taskInfo = await taskJson.json()
-    console.log(taskInfo)
-    console.log(taskInfo.tasks.List)
+    // console.log(taskInfo)
+    // console.log(taskInfo.tasks.List)
     if(taskInfo.tasks.dueDate === null) {
       dueDateSpan.innerHTML = "No Due Date"
     } else {

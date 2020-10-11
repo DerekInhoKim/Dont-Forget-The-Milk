@@ -7,8 +7,23 @@ document.addEventListener("DOMContentLoaded", event => {
   completeTab.addEventListener("click", async event => {
     const listId = localStorage.getItem("CURRENT_LIST")
 
+    const oldTaskContainer = document.getElementById("task-list-container")
+
+    // Remove old tasks from the list of tasks
+    let oldTasks = document.querySelectorAll(".task-container")
+    if(oldTasks) {
+      oldTasks.forEach( task => {
+        oldTaskContainer.removeChild(task)
+      })
+    }
+
+    let scriptElement = document.querySelector('.script')
+    if(scriptElement) {
+      oldTaskContainer.removeChild(scriptElement)
+    }
+
     //If there is no list selected, display complete tasks for every list
-    console.log(listId)
+    // console.log(listId)
     if(listId === null){
       const allTasksJson = await fetch(`/api/users/${userId}/lists/completedTasks`, {
         headers: {
@@ -18,23 +33,9 @@ document.addEventListener("DOMContentLoaded", event => {
 
       const allTasksObj = await allTasksJson.json()
       const allTasksArr = allTasksObj.completeTasks
-      console.log(allTasksArr)
+      // console.log(allTasksArr)
       allTasksArr.forEach(task => {
 
-        const oldTaskContainer = document.getElementById("task-list-container")
-
-        // Remove old tasks from the list of tasks
-        let oldTasks = document.querySelectorAll(".task-container")
-        if(oldTasks) {
-          oldTasks.forEach( task => {
-            oldTaskContainer.removeChild(task)
-          })
-        }
-
-        let scriptElement = document.querySelector('.script')
-        if(scriptElement) {
-          oldTaskContainer.removeChild(scriptElement)
-        }
 
 
         const taskListContainer = document.querySelector(".task-list-container")
@@ -99,26 +100,10 @@ document.addEventListener("DOMContentLoaded", event => {
       })
 
       const allTasksObj = await allTasksJson.json()
-      console.log(allTasksObj)
+      // console.log(allTasksObj)
       const allTasksArr = allTasksObj.completeTasks
       // console.log(allTasksArr)
       allTasksArr.forEach(task => {
-
-        const oldTaskContainer = document.getElementById("task-list-container")
-
-        // Remove old tasks from the list of tasks
-        let oldTasks = document.querySelectorAll(".task-container")
-        if(oldTasks) {
-          oldTasks.forEach( task => {
-            oldTaskContainer.removeChild(task)
-          })
-        }
-
-        let scriptElement = document.querySelector('.script')
-        if(scriptElement) {
-          oldTaskContainer.removeChild(scriptElement)
-        }
-
 
         const taskListContainer = document.querySelector(".task-list-container")
         let buttonContainer = document.createElement('div')
