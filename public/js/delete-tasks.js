@@ -129,6 +129,7 @@ document.addEventListener("DOMContentLoaded", e => {
         }
       })
 
+
       if (res.status === 401) {
         window.location.href = "/log-in";
         return;
@@ -219,17 +220,37 @@ document.addEventListener("DOMContentLoaded", e => {
   const tasksContainer = document.querySelector('.task-list-container');
   // console.log(tasksContainer)
 
-  tasksContainer.addEventListener("click", e=> {
+  tasksContainer.addEventListener("click", async e=> {
     e.preventDefault();
     e.stopPropagation();
     if(e.target.className.startsWith('delete')) {
-
-      deleteTask(e.target.dataset.id)
-
-      //Functionality to subtract one from allTasks if a task is successfully deleted
+      const overdueSpan = document.querySelector(".overdue-tasks-span")
+      const taskId = e.target.dataset.id
+      const currentTaskJson = await fetch(`./api/tasks/${taskId}`)
+      const currentTask = await currentTaskJson.json()
+      const taskDueDate = currentTask.tasks.dueDate
+      const completedSpan = document.querySelector(".completed-tasks-span")
+      const taskStatus = currentTask.tasks.isComplete
       const allTasksSpan = document.querySelector(".total-task-span")
+
+      if(new Date(taskDueDate) < new Date() && taskDueDate !== null){
+        const overdueNum = Number(overdueSpan.innerHTML) - 1
+        overdueSpan.innerHTML = overdueNum
+
+      }
+
+      if(taskStatus === true ){
+        const completedNum = Number(completedSpan.innerHTML) - 1
+        completedSpan.innerHTML = completedNum
+
+      }
+
       let allTasksValue = allTasksSpan.innerHTML
       allTasksSpan.innerHTML = Number(`${allTasksValue}`) - 1
+
+      deleteTask(taskId)
+
+      //Functionality to subtract one from allTasks if a task is successfully deleted
 
     } else if (e.target.className.startsWith('update')) {
       taskId = e.target.dataset.id

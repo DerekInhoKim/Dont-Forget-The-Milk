@@ -111,6 +111,7 @@ document.addEventListener('DOMContentLoaded', e => {
 
     } catch(err) {
       console.error(err)
+
     }
   })
 })
