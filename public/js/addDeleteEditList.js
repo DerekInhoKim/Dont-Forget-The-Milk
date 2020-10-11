@@ -301,49 +301,49 @@
 
 //////EDIT LIST NAME
 
-let listkId;
-const runListForm = function () {
+// let listkId;
+// const runListForm = function () {
 
-  const editListForm = document.getElementById("edit-list-form")
+//   const editListForm = document.getElementById("edit-list-form")
 
-  editTaskForm.addEventListener("submit", async (e) => {
-    editTaskForm.style.display = "none"
-    e.preventDefault();
-    e.stopImmediatePropagation();
+//   editTaskForm.addEventListener("submit", async (e) => {
+//     editTaskForm.style.display = "none"
+//     e.preventDefault();
+//     e.stopImmediatePropagation();
 
-    const formData = new FormData(updateTaskForm)
-    const taskName = formData.get("taskName")
-    const dueDate = formData.get("dueDate")
-    const description = formData.get("description")
+//     const formData = new FormData(updateTaskForm)
+//     const taskName = formData.get("taskName")
+//     const dueDate = formData.get("dueDate")
+//     const description = formData.get("description")
 
-    const body = { taskName, dueDate, description, taskId }
+//     const body = { taskName, dueDate, description, taskId }
 
-    try {
-      const res = await fetch(`api/tasks/${taskId}/update-task`, {
-        method: "PUT",
-        body: JSON.stringify(body),
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem(
-            "DFTM_ACCESS_TOKEN"
-          )}`,
-        }
-      })
+//     try {
+//       const res = await fetch(`api/tasks/${taskId}/update-task`, {
+//         method: "PUT",
+//         body: JSON.stringify(body),
+//         headers: {
+//           "Content-Type": "application/json",
+//           "Authorization": `Bearer ${localStorage.getItem(
+//             "DFTM_ACCESS_TOKEN"
+//           )}`,
+//         }
+//       })
 
-      if (res.status === 401) {
-        window.location.href = "/log-in";
-        return;
-      }
-      if (!res.ok) {
-        throw res;
-      }
+//       if (res.status === 401) {
+//         window.location.href = "/log-in";
+//         return;
+//       }
+//       if (!res.ok) {
+//         throw res;
+//       }
 
-      const { task } = await res.json()
+//       const { task } = await res.json()
 
-      await displayTasks(task)
+//       await displayTasks(task)
 
-    } catch (err) {
-      console.error(err)
-    }
-  })
-}
+//     } catch (err) {
+//       console.error(err)
+//     }
+//   })
+// }

@@ -1652,7 +1652,154 @@ button:hover {
   cursor: pointer;
 }
 
+/* EDIT LIST  ==========================================================*/
+.edit-list-form-holder {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* overflow: auto; */
+  background-color: rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+}
 
+.edit-list-form-content {
+  background-color: rgba(32,96,191, 0.9);
+  margin: 15% auto;
+  padding: 25px 40px;
+  box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(140, 148, 157, .8);
+  border-radius: 7px;
+  width: 40%;
+  min-width: 300px;
+}
+
+.edit-list-form-content h3 {
+  margin: 0 0 10px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
+}
+
+.edit-list-form-content label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.edit-list-form-content input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;;
+}
+
+/* .edit-task-form-content textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;;
+} */
+
+.edit-list-form-holder button {
+  width: 90px;
+  height: 30px;
+  background-color: #D7E7F5;
+  color: #3D79C9;
+  margin-top: 10px;
+}
+
+.close-edit {
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-edit:hover,
+.close-edit:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ADD LIST  ==========================================================*/
+
+.add-list-form-holder {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* overflow: auto; */
+  background-color: rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+}
+
+.add-list-form-content {
+  background-color: rgba(32,96,191, 0.9);
+  margin: 15% auto;
+  padding: 25px 40px;
+  box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(140, 148, 157, .8);
+  border-radius: 7px;
+  width: 40%;
+  min-width: 300px;
+}
+
+.add-list-form-content h3 {
+  margin: 0 0 10px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
+}
+
+.add-list-form-content label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.add-list-form-content input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;;
+}
+
+/* .edit-task-form-content textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;;
+} */
+
+.add-list-form-holder button {
+  width: 90px;
+  height: 30px;
+  background-color: #D7E7F5;
+  color: #3D79C9;
+  margin-top: 10px;
+}
+
+.close-add {
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-add:hover,
+.close-add:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 
 
