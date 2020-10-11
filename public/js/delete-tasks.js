@@ -48,35 +48,35 @@ document.addEventListener("DOMContentLoaded", e => {
 
     const {allTasks}  = await res.json()
 
-    let overdue = 0;
-    let currentDate = new Date()
-    let currentDateVals =
-    [currentDate.getFullYear(),
-      currentDate.getMonth()+1,
-    currentDate.getDate(),
-    ]
-    console.log(allTasks)
-    document.querySelector(".total-task-span").innerHTML = allTasks.length
-    allTasks.forEach(task => {
-      let dueDate = task.dueDate
-      if(dueDate !== null){
-        dueDate = dueDate.slice(0, 10).split('-')
-        console.log('due date:', dueDate)
-        console.log(currentDateVals)
+    // let overdue = 0;
+    // let currentDate = new Date()
+    // let currentDateVals =
+    // [currentDate.getFullYear(),
+    //   currentDate.getMonth()+1,
+    // currentDate.getDate(),
+    // ]
+    // console.log(allTasks)
+    // document.querySelector(".total-task-span").innerHTML = allTasks.length
+    // allTasks.forEach(task => {
+    //   let dueDate = task.dueDate
+    //   if(dueDate !== null){
+    //     dueDate = dueDate.slice(0, 10).split('-')
+    //     console.log('due date:', dueDate)
+    //     console.log(currentDateVals)
 
-        if(currentDateVals[0] > dueDate[0]){
-          overdue +=1
-          return;
-        } else if(currentDateVals[0] == dueDate[0] && currentDateVals[1] > dueDate[1]) {
-          overdue += 1
-          return
-        } else if(currentDateVals[1] == dueDate[1] && currentDateVals[2] > dueDate[2]){
-          overdue += 1
-        }
-      }
+    //     if(currentDateVals[0] > dueDate[0]){
+    //       overdue +=1
+    //       return;
+    //     } else if(currentDateVals[0] == dueDate[0] && currentDateVals[1] > dueDate[1]) {
+    //       overdue += 1
+    //       return
+    //     } else if(currentDateVals[1] == dueDate[1] && currentDateVals[2] > dueDate[2]){
+    //       overdue += 1
+    //     }
+    //   }
 
-    })
-    document.querySelector(".overdue-tasks-span").innerHTML = overdue;
+    // })
+    // document.querySelector(".overdue-tasks-span").innerHTML = overdue;
 
     const taskListContainer = document.querySelector(".task-list-container")
     allTasks.forEach(task => {
@@ -166,30 +166,30 @@ document.addEventListener("DOMContentLoaded", e => {
 
       const {task}  = await res.json()
 
-      let overdue = document.querySelector(".overdue-tasks-span")
-      console.log('overdue container:', overdue)
-      let currentDate = new Date()
-      let currentDateVals =
-      [currentDate.getFullYear(),
-        currentDate.getMonth()+1,
-      currentDate.getDate(),
-      ]
-      let dueDate = task.dueDate
-      if(dueDate !== null){
-        dueDate = dueDate.slice(0, 10).split('-')
-        console.log('due date:', dueDate)
-        console.log(currentDateVals)
+      // let overdue = document.querySelector(".overdue-tasks-span")
+      // console.log('overdue container:', overdue)
+      // let currentDate = new Date()
+      // let currentDateVals =
+      // [currentDate.getFullYear(),
+      //   currentDate.getMonth()+1,
+      // currentDate.getDate(),
+      // ]
+      // let dueDate = task.dueDate
+      // if(dueDate !== null){
+      //   dueDate = dueDate.slice(0, 10).split('-')
+      //   console.log('due date:', dueDate)
+      //   console.log(currentDateVals)
 
-        if(currentDateVals[0] > dueDate[0]){
-           overdue.innerHTML -= 1
-          return;
-        } else if(currentDateVals[0] == dueDate[0] && currentDateVals[1] > dueDate[1]) {
-          overdue.innerHTML -= 1
-          return
-        } else if(currentDateVals[1] == dueDate[1] && currentDateVals[2] > dueDate[2]){
-          overdue.innerHTML -= 1
-        }
-      }
+      //   if(currentDateVals[0] > dueDate[0]){
+      //      overdue.innerHTML -= 1
+      //     return;
+      //   } else if(currentDateVals[0] == dueDate[0] && currentDateVals[1] > dueDate[1]) {
+      //     overdue.innerHTML -= 1
+      //     return
+      //   } else if(currentDateVals[1] == dueDate[1] && currentDateVals[2] > dueDate[2]){
+      //     overdue.innerHTML -= 1
+      //   }
+      // }
 
     } catch(err) {
       console.error(err)
