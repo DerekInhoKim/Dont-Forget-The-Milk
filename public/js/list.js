@@ -1,23 +1,33 @@
 // import {handleValidationErrors} from "../routes/api/utils.js"
+/* <button id="add-list-button" class="add-list-button fa fa-plus fa-fw"></button> */
 
-const fetchList = async(userId) => {
+const fetchList = async (userId) => {
+  let leftSide = ''
+
+  leftSide = document.querySelector(".add-list-container");
+  leftSide.innerHTML = `
+      <a class="all-lists" id="all-lists">Lists</a>
+        <button id="add-list-button" class="add-list-button fa fa-plus fa-fw"></button>
+  `;
+
   const res = await fetch(`/api/users/${userId}/lists`,
-  {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem(
-        "DFTM_USER_TOKEN"
-      )}`,
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem(
+          "DFTM_USER_TOKEN"
+        )}`,
+      }
     }
-  }
   );
-  if(res.status === 401) {
+  if (res.status === 401) {
     window.location.href = "/sign-in";
     return;
   }
-  const {lists} = await res.json();
+ 
+  const { lists } = await res.json();
   const listsContainer = document.querySelector(".list-cat-container");
   const listsHtml = lists.map(
-    ({ listName, id}) => `
+    ({ listName, id }) => `
       <div class="lists">
         <div class="list-header" data-list-id="${id}">
           ${listName}
@@ -33,136 +43,198 @@ const fetchList = async(userId) => {
     `
   );
   listsContainer.innerHTML = listsHtml.join("");
-  const dropButtons = document.querySelectorAll(".button-drop");
-  // const click = document.getElementById("drop-content");
 
+  //add a list button
+  let addListButton = document.getElementById("add-list-button");
+  addListButton.addEventListener("click", e => {
+    e.stopPropagation();
+    e.preventDefault();
+    const addForm = document.querySelector(".add-list-form-holder");
+    addForm.style.display = "block";
+
+  });
+
+
+
+
+  const dropButtons = document.querySelectorAll(".button-drop");
+
+  //DROP BUTTON
   dropButtons.forEach(dropButton => {
 
     dropButton.addEventListener('click', (event) => {
+
       event.preventDefault();
       event.stopPropagation();
       let click = event.target.parentNode.querySelector('.drop-content')
-      console.log(click)
       if (click.style.display === "none") {
         click.style.display = "block";
       } else {
         click.style.display = "none";
       }
+
+
+
+
+      window.onclick = function (event) {
+        if (event.target === click) {
+          click.style.display = "none";
+        }
+      }
     });
   })
 
+  // const dropDownButtons = document.querySelector(".drop-content");
+
+  // window.onclick = function (event) {
+  //   if (event.target === dropDownButtons) {
+  //     dropDownButtons.style.display = "none";
+  //   }
+  // }
+  let deleteButtonId;
   const deleteButtons = document.querySelectorAll(".delete-button");
   if (deleteButtons) {
     deleteButtons.forEach((button) => {
-      button.addEventListener("click", e => handleDelete(button.dataset.deletelistId))
+      button.addEventListener("click", async e => {
+        // handleDelete(button.dataset.deletelistId))
+        deleteButtonId = button.dataset.deletelistId;
+      try {
+        const res = await fetch(`/api/lists/${deleteButtonId}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem(
+              "DFTM_USER_TOKEN"
+            )}`,
+          }
+        });
+        if (!res.ok) {
+          throw res;
+        }
+        document.querySelector(`[data-list-id="${deleteButtonId}"]`).remove();
+        deleteButtonId = NaN;
+        await fetchList(userId)
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  });
+}
+
+
+
+  
+
+
+  ///EDIT BUTTON 
+  let editListIdTwo;
+  const editButtons = document.querySelectorAll(".edit-button");
+  if (editButtons) {
+    editButtons.forEach((button) => {
+      button.addEventListener("click", e => {
+        e.stopPropagation();
+        e.preventDefault();
+        const editForm = document.querySelector(".edit-list-form-holder");
+        editForm.style.display = "block";
+        editListIdTwo = button.dataset.editlistId;
+        const editListForm = document.getElementById("edit-list-form")
+        editListForm.addEventListener("submit", async (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          const form = document.getElementById("edit-list-form");
+          const formData = new FormData(form);
+          const editListName = formData.get("editListName");
+          const body = { editListName };
+          try {
+            const res = await fetch(`/api/lists/${editListIdTwo}`, {
+              method: "PUT",
+              body: JSON.stringify(body),
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem(
+                  "DFTM_USER_TOKEN"
+                )}`,
+              }
+            });
+            if (!res.ok) {
+              throw res;
+            }
+            editListIdTwo = NaN;
+            form.reset();
+            editForm.style.display = "none";
+            await fetchList(userId);
+          } catch (err) {
+            console.error(err);
+          }
+        })
+
+      })
     });
   }
 
+
 };
 
-// When pressing Delete Button on the list
-const handleDelete = async (listId) => {
-  // return async () => {
-    try{
-      const res = await fetch(`/api/lists/${listId}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem(
-            "DFTM_USER_TOKEN"
-          )}`,
-        }
-      });
-      if(!res.ok) {
-        throw res;
-      }
-      document.querySelector(`[data-list-id="${listId}"]`).remove();
-    } catch(err) {
-      console.error(err);
-    }
-  // };
-};
 
-const handleEdit = (listId) => {
-  // console.log(listId)
-}
 
-document.addEventListener("DOMContentLoaded", async()=> {
+document.addEventListener("DOMContentLoaded", async () => {
 
-  try{
-    // localStorage.setItem('DFTM_USER_ID', 3)
+  try {
+    // localStorage.setItem('DFTM_USER_ID', 3);
     let userId = localStorage.getItem('DFTM_USER_ID');
-    if(!userId) {
+    if (!userId) {
       window.location.href = '/sign-in';
     }
     await fetchList(userId);
 
+    //ADD FORM SUBMIT
 
-    const deleteButtons = document.querySelectorAll(".delete-button");
-    if (deleteButtons) {
-      deleteButtons.forEach((button) => {
-        button.addEventListener("click", e=>  handleDelete(button.dataset.deletelistId))
-      });
-    }
+    const form = document.getElementById("add-list-form")
 
-    const editButtons = document.querySelectorAll(".edit-button");
-    if (editButtons) {
-      editButtons.forEach((button) => {
-        button.addEventListener("click", handleEdit(button.id));
-      });
-
-
-    //add a list button
-      const addListButton = document.getElementById("add-list-button");
-      addListButton.addEventListener("click",e => {
-        event.stopPropagation();
-        let click = document.querySelector(".list-drop-content");
-        if (click.style.display === "none") {
-          click.style.display = "block";
-        } else {
-          click.style.display = "none";
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const addForm = document.querySelector(".add-list-form-holder");
+      addForm.style.display = "block";
+      const formData = new FormData(form);
+      let listName = formData.get("listName");
+      const body = { listName };
+      try {
+        const res = await fetch(`/api/users/${userId}/lists`, {
+          method: "POST",
+          body: JSON.stringify(body),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem(
+              "DFTM_USER_TOKEN"
+            )}`,
+          },
+        });
+        if (res.status === 401) {
+          window.location.href = "/log-in";
+          return;
         }
-
-      });
-
-
-      //ADDIN LIST
-
-      const form = document.querySelector(".add-list-form")
-
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const formData = new FormData(form);
-        const listName = formData.get("listName")
-        const body = { listName };
-        try {
-          const res = await fetch(`/api/users/${userId}/lists`, {
-            method: "POST",
-            body: JSON.stringify(body),
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Beearer ${localStorage.getItem(
-                "DFTM_USER_TOKEN"
-              )}`,
-            },
-          });
-          if (res.status === 401) {
-            window.location.href = "/log-in";
-            return;
-          }
-          if (!res.ok) {
-            throw res;
-          }
-          form.reset();
-          console.log('hello')
-          await fetchList(userId);
-        } catch (err) {
-          handleErrors(err);
+        if (!res.ok) {
+          throw res;
         }
-      });
+        form.reset();
+        addForm.style.display = "none";
+        await fetchList(userId);
+      } catch (err) {
+        handleErrors(err);
+      }
+    });
 
-  }
-  } catch(e) {
+
+    
+
+    // displays user name on the nav ========================================
+    // const navUserName = document.getElementById("navUserName");
+    // console.log("USER NAME!!!!", localStorage.getItem("DFTM_USER_NAME"));
+    // navUserName.innerText = localStorage.getItem("DFTM_USER_NAME") + "!";
+
+  } catch (e) {
     console.error(e);
   }
 
 });
+
