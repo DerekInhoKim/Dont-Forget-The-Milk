@@ -1274,6 +1274,39 @@ button:hover {
   .registration-page__right-panel {
     width: 100%;
   } */
+    .registration-page__body{
+    background-color: #fff;
+    height: 100%;
+  }
+
+  .registration-page{
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+  .registration-page__left-panel {
+    max-width: 90%;
+  }
+  .registration-page__right-panel {
+
+    float: left;
+    max-width: 75%;
+    margin-left: -40px;
+    margin-right: 30px;
+  }
+  .left-panel__logo-container img {
+    width: 75%;
+  }
+
+  .left-panel__inspiration-container {
+    width: 20%;
+  }
+
+  .left-panel__blockquote {
+    width: 100%;
+  }
+  .right-panel__welcome-cow{
+    height: 235%;
+  }
   .search-form {
     margin-left: 50px;
   }
@@ -1318,6 +1351,16 @@ button:hover {
 }
 
 @media only screen and (max-width: 550px) {
+
+  .registration-page__body{
+    background-color: #fff;
+    height: 100vh;
+  }
+
+  .registration-page{
+    margin-left: -20px;
+    margin-right: -20px;
+  }
   .registration-page__left-panel {
     display: none;
   }
@@ -1325,8 +1368,12 @@ button:hover {
 
     float: left;
     width: 100%;
+    margin-left: -40px;
+    margin-right: 30px;
+  }
 
-
+  .right-panel__welcome-cow{
+    height: 235%;
   }
   .search-form {
     margin-left: 15px;
