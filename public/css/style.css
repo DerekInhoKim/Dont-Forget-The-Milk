@@ -1448,6 +1448,15 @@ button:hover {
     font-size: 12px;
     width: 70px;
   }
+  .password-reset-form {
+    margin-left: 135px;
+    width: 100%;
+  }
+  
+  .password-reset-form__button {
+    width: 50%;
+
+  }
   .grid__left-col {
     min-width: 120px;
   }
