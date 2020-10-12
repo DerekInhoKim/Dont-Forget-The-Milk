@@ -125,7 +125,7 @@ input:focus {
   align-self: flex-end;
 }
 
-#drop-content {
+.drop-content {
 /* .drop-content { */
   position: absolute;
   z-index: 1;
