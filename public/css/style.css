@@ -784,7 +784,8 @@ button:hover {
   grid-column-start: 3;
   display: flex;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: flex-start;
+  margin-top: -20px;
 }
 
 
