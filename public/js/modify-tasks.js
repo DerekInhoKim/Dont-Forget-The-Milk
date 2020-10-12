@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", e => {
     // check authorization of user by adding an authorization header in the GET request
     let listId = localStorage.getItem("CURRENT_LIST")
 
-    const res = await fetch(`/api/lists/${listId}/tasks`, {
+    const res = await fetch(`/api/lists/${listId}/tasks/incompletedTasks`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem(
           "DFTM_USER_TOKEN"
@@ -111,11 +111,37 @@ document.addEventListener("DOMContentLoaded", e => {
 
  //---------------------------------------------------------------------------------
 
-  // delete a task on the back-end and render the change on the front-end
+  // delete a task on the back-end and make a call to the function that renders the change on the front-end
+
   const deleteTask = async function (taskId) {
     let listId = localStorage.getItem("CURRENT_LIST")
+
     const body = {taskId}
 
+    try {
+      const res = await fetch(`/api/tasks/${taskId}/get-task`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem(
+            "DFTM_ACCESS_TOKEN"
+          )}`,
+        }
+      })
+
+      if (res.status === 401) {
+        window.location.href = "/log-in";
+        return;
+      }
+
+      if(!res.ok) {
+        throw res;
+      }
+
+      const {task}  = await res.json()
+
+    } catch(err) {
+      console.error(err)
+    }
 
     try{
       const res = await fetch(`/api/lists/${listId}/tasks/delete-task`, {
@@ -142,8 +168,11 @@ document.addEventListener("DOMContentLoaded", e => {
       const data  = await res.json()
       console.log(data.deletedTask)
       const deletedTask = document.querySelector(`[data-task-id="${data.deletedTask}"]`)
-
       deletedTask.remove()
+
+      const totalTasks = document.querySelector(".total-task-span")
+      totalTasks.innerHTML -= 1
+
 
     } catch(err) {
       console.error(err)
@@ -159,7 +188,6 @@ document.addEventListener("DOMContentLoaded", e => {
   const runTaskForm = function() {
 
     const updateTaskForm = document.getElementById("edit-task-form")
-    console.log(updateTaskForm)
     updateTaskForm.addEventListener("submit", async(e) => {
       editTaskForm.style.display = "none"
       e.preventDefault();
@@ -167,10 +195,21 @@ document.addEventListener("DOMContentLoaded", e => {
 
       const formData = new FormData(updateTaskForm)
       const taskName = formData.get("taskName")
-      const dueDate = formData.get("dueDate")
+      let dueDate = formData.get("dueDate")
+      if(dueDate === "No Due Date") {
+        dueDate = ''
+      }
       const description = formData.get("description")
 
-      const body = {taskName, dueDate, description, taskId}
+      let status = document.querySelector(".status").value;
+
+      if(status === "false") {
+        status = false
+      }else {
+        status = true
+      }
+
+      const body = {taskName, dueDate, description, status, taskId}
 
       try{
         const res = await fetch(`api/tasks/${taskId}/update-task`, {
@@ -187,6 +226,12 @@ document.addEventListener("DOMContentLoaded", e => {
         //Functionality to display increment overdue tasks span if new task has a due date that has passed.
         // console.log("DueDate", new Date(dueDate))
         // console.log(new Date())
+        if(status === true) {
+          const completedTaskSpan = document.querySelector(".completed-tasks-span")
+          let numericalCompletedTasks = Number(completedTaskSpan.innerHTML)
+          completedTaskSpan.innerHTML = numericalCompletedTasks + 1
+
+        }
         if(new Date(dueDate) < new Date()){
           const overdueTasksSpan = document.querySelector(".overdue-tasks-span")
           let overdueTasksValue = overdueTasksSpan.innerHTML
@@ -204,6 +249,17 @@ document.addEventListener("DOMContentLoaded", e => {
 
         const { task } = await res.json()
 
+        // Displays the task name in the header section (right column)
+        const taskNameHeader = document.querySelector(".edit-task-name-form");
+        taskNameHeader.style.display = "block";
+
+        const taskNameInput = document.querySelector(".edit-task-name-input");
+        taskNameInput.setAttribute("placeholder", task.taskName);
+
+        // Displays description on the task info section (right column)
+        const description = document.querySelector(".task-description");
+        description.innerHTML = task.description;
+
         await displayTasks(task)
 
 
@@ -220,9 +276,10 @@ document.addEventListener("DOMContentLoaded", e => {
   const tasksContainer = document.querySelector('.task-list-container');
   // console.log(tasksContainer)
 
-  tasksContainer.addEventListener("click", async e=> {
+
+  tasksContainer.addEventListener("click", async(e)=> {
     e.preventDefault();
-    e.stopPropagation();
+    e.stopImmediatePropagation();
     if(e.target.className.startsWith('delete')) {
       const overdueSpan = document.querySelector(".overdue-tasks-span")
       const taskId = e.target.dataset.id
@@ -245,9 +302,6 @@ document.addEventListener("DOMContentLoaded", e => {
 
       }
 
-      let allTasksValue = allTasksSpan.innerHTML
-      allTasksSpan.innerHTML = Number(`${allTasksValue}`) - 1
-
       deleteTask(taskId)
 
       //Functionality to subtract one from allTasks if a task is successfully deleted
@@ -255,9 +309,25 @@ document.addEventListener("DOMContentLoaded", e => {
     } else if (e.target.className.startsWith('update')) {
       taskId = e.target.dataset.id
       const editTaskForm = document.querySelector(".edit-task-form-holder")
-      editTaskForm.style.display = "block"
-      runTaskForm()
 
+      // getting text from the right-col__task-info div
+      const date = document.querySelector(".date-span")
+      const taskContent = document.getElementById(taskId)
+      const description = document.querySelector(".task-description")
+      if(!description.innerText || description.innerText === "THIS HOLDS THE DESCRIPTION") {
+        description.innerText = ''
+      }
+      // this adds the text from above to the update form
+      setTimeout(() => {
+        document.querySelector(".taskNameField").value = taskContent.innerText
+
+        document.querySelector(".dueDateField").value = date.innerText
+
+        document.querySelector(".descriptionField").value = description.innerText
+        editTaskForm.style.display = "block"
+      },50)
+
+      runTaskForm()
     }
     return;
   })

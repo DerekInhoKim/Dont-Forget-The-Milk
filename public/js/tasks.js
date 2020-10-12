@@ -18,11 +18,13 @@ document.addEventListener('DOMContentLoaded', e => {
       e.stopImmediatePropagation();
 
 
-
+      const listHeader = document.getElementById("list-header")
       // localStorage.setItem("DFTM_USER_ID", 1)
       // let userId = localStorage.getItem("DFTM_USER_ID")
 
       listId = e.target.dataset.listId;
+
+      listHeader.innerHTML = e.target.innerText
 
       localStorage.setItem("CURRENT_LIST", listId)
 
@@ -37,7 +39,6 @@ document.addEventListener('DOMContentLoaded', e => {
             oldTaskContainer.removeChild(task);
 
           })
-
         }
 
         // clear old script tags
@@ -74,12 +75,14 @@ document.addEventListener('DOMContentLoaded', e => {
 
         // extract tasks from the server response and dynamically generate HTML that is used to display the tasks
 
+
         const {allTasks}  = await res.json()
+
 
         const taskListContainer = document.querySelector(".task-list-container")
         allTasks.forEach(task => {
 
-          // make all of the HTML elements for the buttons and tasks
+          // make all of the HTML elements for the buttons
 
           let buttonContainer = document.createElement('div')
           let deleteButtonContainer = document.createElement('div')
@@ -105,6 +108,8 @@ document.addEventListener('DOMContentLoaded', e => {
 
           buttonContainer.appendChild(deleteButtonContainer)
           buttonContainer.appendChild(updateButtonContainer)
+
+          // make all of the HTML elements for the buttons
 
           const taskContainer = document.createElement('div');
           taskContainer.classList.add("task-container")
