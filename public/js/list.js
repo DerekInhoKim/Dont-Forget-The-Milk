@@ -47,7 +47,7 @@ const fetchList = async (userId) => {
   //add a list button
   let addListButton = document.getElementById("add-list-button");
   addListButton.addEventListener("click", e => {
-    e.stopPropagation();
+    e.stopImmediatePropagation();
     e.preventDefault();
     const addForm = document.querySelector(".add-list-form-holder");
     addForm.style.display = "block";
@@ -191,7 +191,9 @@ document.addEventListener("DOMContentLoaded", async()=> {
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      e.stopPropagation();
+
+      // THIS STOPS THE DUPLICATION OF LISTS DURING CREATION
+      e.stopImmediatePropagation();
       const addForm = document.querySelector(".add-list-form-holder");
       addForm.style.display = "block";
       const formData = new FormData(form);
@@ -228,6 +230,7 @@ document.addEventListener("DOMContentLoaded", async()=> {
 
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
+        e.stopImmediatePropagation()
         const formData = new FormData(form);
         const listName = formData.get("listName")
         const body = { listName };
