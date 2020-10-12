@@ -47,7 +47,7 @@ router.post('/:id/tasks/create-task', asyncHandler( async (req, res) => {
 
 router.put('/:id/update-task', asyncHandler( async (req, res) => {
 
-  const {taskName, dueDate, description, taskId} = req.body;
+  const {taskName, dueDate, description, status, taskId} = req.body;
   console.log(req.body)
   const task = await Task.findOne({
     where: {
@@ -55,15 +55,53 @@ router.put('/:id/update-task', asyncHandler( async (req, res) => {
     }
   });
 
+  if(dueDate === '') {
 
- await task.update({
-    taskName: taskName,
-    dueDate: dueDate,
-    description: description,
-    where: {id: taskId}
+    await task.update({
+        taskName: taskName,
+        dueDate: null,
+        description: description,
+        isComplete: status,
+        where: {id: taskId}
+      });
+      console.log(task)
+      res.json({ task })
+  } else{
+    await task.update({
+      taskName: taskName,
+      dueDate: dueDate,
+      description: description,
+      isComplete: status,
+      where: {id: taskId}
+    });
+    console.log(task)
+    res.json({ task })
+  }
+}));
+
+router.get('/:id/get-task', asyncHandler(async (req, res) => {
+  const taskId = parseInt(req.params.id, 10)
+  const task = await Task.findByPk(taskId)
+  res.json({task})
+}))
+
+
+router.put('/:id/update-task-name', asyncHandler(async (req, res) => {
+  const { taskName, taskId } = req.body;
+  console.log(req.body)
+  const task = await Task.findOne({
+    where: {
+      id: Number(taskId)
+    }
   });
-  console.log(task)
-  res.json({ task })
+
+    await task.update({
+      taskName: taskName,
+      where: { id: taskId }
+    });
+    console.log(task)
+    res.json({ task })
+
 }));
 
 

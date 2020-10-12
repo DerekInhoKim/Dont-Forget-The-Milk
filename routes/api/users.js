@@ -240,5 +240,16 @@ router.get('/:id/lists/incompletedTasks', asyncHandler(async ( req, res, next) =
   res.json({incompleteTasks})
 }))
 
+router.get('/:id/lists/search', asyncHandler(async (req, res) => {
+  console.log('hello')
+  const userId = parseInt(req.params.id, 10)
+  const allLists = await List.findAll({
+    where: {
+      userId: userId
+    }, include: [{model: Task, as: "task"}]
+  })
+  console.log(allLists)
+  res.json({allLists})
+}))
 
 module.exports = router;
