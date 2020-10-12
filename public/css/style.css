@@ -288,7 +288,7 @@ input:focus {
 }
 
 .logo-container {
-  margin-left: 20px;
+  margin-left: -20px;
 }
 .logo-dftm {
   width: 200px;
@@ -313,9 +313,11 @@ input:focus {
 }
 
 .left-col__cow-container {
-  display: flex;
+  margin-left: -15px;
+  margin-top: 325px;
+  /* display: flex;
   align-items: flex-end;
-  justify-content: flex-end;
+  justify-content: flex-start; */
 }
 /* MID COLUMN ================================================================== */
 
@@ -1485,15 +1487,19 @@ button:hover {
   }
 
   .logo-container {
-    padding-left: 7px;
+    padding-left: 5px;
+    padding-right:5px;
+
   }
 
   .logo-dftm {
     width: 95%;
     height: auto;
+
   }
   .left-col__cow-container-image {
     max-width: 100%;
+
   }
   .grid__mid-col {
     grid-template-rows: 1fr 0.7fr 1.5fr 8fr;
