@@ -709,19 +709,25 @@ button:hover {
   height: 100%;
 }
 
-.left-panel__logo-container {
+.left-panel__login-logo-container {
   display:grid;
   grid-template-columns: 2fr 8fr;
   height: 120px;
 }
 
-.left-panel__login__logo {
+.left-panel__register-logo-container {
+  display:grid;
+  grid-template-columns: 2fr 8fr;
+  height: 120px;
+}
+
+.left-panel__login-logo {
   grid-column-start: 2;
   margin-top: 30px;
 
 }
 
-.left-panel__register__logo {
+.left-panel__register-logo {
   grid-column-start: 2;
   margin-top: 30px;
 }
