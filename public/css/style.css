@@ -9,6 +9,8 @@ body {
   background-color: #D7E7F5;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+
 }
 
 
@@ -204,6 +206,13 @@ input:focus {
   animation-duration: 0.2s
 }
 
+.footer {
+  position: absolute;
+  color: gray;
+  margin-top: 122%;
+  margin-left: 20px;
+}
+
 /* Add Animation */
 @-webkit-keyframes animatetop {
   from {top:-300px; opacity:0}
@@ -313,8 +322,9 @@ input:focus {
 }
 
 .left-col__cow-container {
-  margin-left: -15px;
-  margin-top: 325px;
+  /* position: fixed; */
+  /* margin-left: -15px; */
+  /* margin-top: 80px; */
   /* display: flex;
   align-items: flex-end;
   justify-content: flex-start; */
@@ -1499,6 +1509,7 @@ button:hover {
 
   }
   .left-col__cow-container-image {
+    /* margin-top: 80%; */
     max-width: 100%;
 
   }
