@@ -121,7 +121,7 @@ router.post("/token", sharedAuthValidations,
 
     const token = getUserToken(user);
     res.cookie("accessToken", token, { httpOnly: true });
-    res.json({ token, user: { id: user.id }});
+    res.json({ token, user: { id: user.id, userName: user.userName }});
   })
 );
 

@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", async()=> {
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      e.stopPropagation();
+      e.stopImmediatePropagation();
       const addForm = document.querySelector(".add-list-form-holder");
       addForm.style.display = "block";
       const formData = new FormData(form);
@@ -257,9 +257,10 @@ document.addEventListener("DOMContentLoaded", async()=> {
         }
       });
       // displays user name on the nav ========================================
-      const navUserName = document.getElementById("navUserName");
-      console.log("USER NAME!!!!", localStorage.getItem("DFTM_USER_NAME"));
-      navUserName.innerText = localStorage.getItem("DFTM_USER_NAME") + "!";
+      // const navUserName = document.getElementById("navUserName");
+      // // console.log(navUserName)
+      // // console.log("USER NAME!!!!", localStorage.getItem("DFTM_USER_NAME"));
+      // navUserName.innerText = localStorage.getItem("DFTM_USER_NAME") + "!";
 
   } catch (e) {
     console.error(e);

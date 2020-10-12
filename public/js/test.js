@@ -16,8 +16,8 @@ tasks.forEach(task => {
     const description = document.querySelector(".task-description")
     const completed = document.querySelector(".completed-span")
 
-    console.log(taskIdFromButton)
-    console.log(taskIdFromContainer)
+    // console.log(taskIdFromButton)
+    // console.log(taskIdFromContainer)
     let taskJson;
     if(taskIdFromButton !== undefined){
       taskJson = await fetch(`./api/tasks/${taskIdFromButton}`)
@@ -29,13 +29,15 @@ tasks.forEach(task => {
     const taskInfo = await taskJson.json()
     taskId = taskInfo.tasks.id;
 
-    console.log(taskInfo)
-    console.log(taskInfo.tasks.List)
+    // console.log(taskInfo)
+    // console.log(taskInfo.tasks.List)
 
     if(taskInfo.tasks.dueDate === null) {
       dueDateSpan.innerHTML = "No Due Date"
     } else {
-      dueDateSpan.innerHTML = taskInfo.tasks.dueDate
+      const splitDateArr = taskInfo.tasks.dueDate.split("T")
+      const displayDate = splitDateArr[0]
+      dueDateSpan.innerHTML = `${displayDate}`
     }
     if(taskInfo.tasks.List.listName === undefined) {
       listName.innerHTML = "No List Name"
@@ -49,40 +51,11 @@ tasks.forEach(task => {
     }
 
     if(taskInfo.tasks.isComplete === false) {
-      completed.innerHTML = " Incomplete"
+      completed.innerHTML = "Incomplete"
     } else {
-      completed.innerHTML = " Complete"
+      completed.innerHTML = "Complete"
     }
 
-    // const completed = document.querySelector(".completed-span")
-    // // const taskId = event.target.id
-    // const taskJson = await fetch(`./api/tasks/${taskId}`)
-    // const taskInfo = await taskJson.json()
-    // console.log(taskInfo)
-    // console.log(taskInfo.tasks.isComplete)
-    // if(taskInfo.tasks.dueDate === null || taskInfo.tasks.dueDate === "") {
-    //   dueDateSpan.innerHTML = " No Due Date"
-
-    // } else {
-    //   const splitDateArr = taskInfo.tasks.dueDate.split("T")
-    //   const displayDate = splitDateArr[0]
-    //   dueDateSpan.innerHTML = ` ${displayDate}`
-    // }
-    // if(taskInfo.tasks.List.listName === undefined) {
-    //   listName.innerHTML = " No List Name"
-    // } else {
-    //   listSpan.innerHTML = ` ${taskInfo.tasks.List.listName}`
-    // }
-    // if(taskInfo.tasks.description === null || taskInfo.tasks.description === "") {
-    //   description.innerHTML = " No Description"
-    // } else {
-    //   description.innerHTML = ` ${taskInfo.tasks.description}`
-    // }
-    // if(taskInfo.tasks.isComplete === false) {
-    //   completed.innerHTML = " Incomplete"
-    // } else {
-    //   completed.innerHTML = " Complete"
-    // }
 
     // ======================================================================
       // When task is clicked, the task name shows up as the header of

@@ -288,7 +288,7 @@ input:focus {
 }
 
 .logo-container {
-  margin-left: -20px;
+  margin-left: 20px;
 }
 .logo-dftm {
   width: 200px;
@@ -609,6 +609,10 @@ form.add-task-form{
 
 .list-span {
   margin-left: 20px;
+}
+
+.completed-span {
+  margin-left: 5px;
 }
 
 /* .info-span {
@@ -1485,7 +1489,7 @@ button:hover {
   }
 
   .logo-dftm {
-    width: 90%;
+    width: 95%;
     height: auto;
   }
   .left-col__cow-container-image {
