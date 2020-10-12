@@ -39,12 +39,6 @@ const sharedAuthValidations = [
     .withMessage("User password is required"),
 ];
 
-// router.get("/:id(\\d+)", (req, res) => {
-//   id = req.params.id;
-//   user = User.id;
-//   username = user.userName;
-//   res.json(data);
-// });
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
   const userId = req.params.id;
