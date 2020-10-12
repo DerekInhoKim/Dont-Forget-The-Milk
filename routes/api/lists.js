@@ -81,14 +81,22 @@ router.delete('/:id(\\d+)', asyncHandler(async(req,res,next) => {
 
 // /api/lists/listId/tasks will display all tasks for a specific list
 router.get('/:listId/tasks', asyncHandler(async (req, res) => {
+  let count = 0;
   const listId = req.params.listId
   const allTasks = await Task.findAll({
     where: {
       listId,
     }
   })
-  res.json({allTasks})
+  allTasks.forEach(task => {
+    if(task.isComplete === true){
+      count++
+    }
+  })
+  res.json({allTasks, count})
 }))
+
+
 
 // create a new task and store it in the database
 router.post('/:id/tasks/create-task', asyncHandler( async (req, res) => {
