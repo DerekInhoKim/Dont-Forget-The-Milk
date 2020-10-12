@@ -23,7 +23,7 @@ block content
 
     div(class="grid__mid-col")
       div(class="mid-col-list-header")
-        h2(id="list-header") placeholder...
+        h2(id="list-header")
       div(class="task-total")
         <span class="total-task-span"> </span>  <br> tasks
 
@@ -45,7 +45,7 @@ block content
 
       div(class="task-list-container" id="task-list-container")
         div(class="task-container")
-          div(class="task") FORGET the milk!
+          div(class="task")
 
 
     div(class="grid__right-col")
@@ -55,19 +55,15 @@ block content
           input(class="edit-task-name-input" type="input" placeholder=`Task Name Here` aria-label="" name="taskName")
         div(id="edit-task-modal") click here to edit >
 
-        div(class="info-header" ) due
-          span(class="date-span") never
-        div(class="info-header") list
-          span(class="list-span")  Personal
-        div(class="info-header") Completion Status
+        div(class="info-header" ) Due:
+          span(class="date-span")
+        div(class="info-header") List:
+          span(class="list-span")
+        div(class="info-header") Completion Status:
           span(class="completed-span")
-        div(class="task-description") THIS HOLDS THE DESCRIPTION
-      //- div(class="right-col__extra-options")
-      //-   form(class="notes-form")
-      //-     label(for='notes') Notes
-      //-     input(class="notes-input" type='notes', name="notes", placeholder='Add a note...')
-      //-     button(class="generic-btn" type="submit") Save
-      //-     button(class="generic-btn cancel-btn" type="submit") Cancel
+        div(class="info-header") Description:
+          div(class="task-description")
+
 
 
   script(type="module" src="js/search-feature.js")
@@ -76,7 +72,7 @@ block content
   script(type="module" src="js/list-summary/overdue-tasks.js")
   script(type="module" src="js/list-summary/completed-tasks.js")
   script(type="module" src="js/add-tasks.js")
-  script(type="module" src="js/delete-tasks.js")
+  script(type="module" src="js/modify-tasks.js")
   script(type="module" src="js/update-tasks.js")
   script(type="module" src="js/complete-incomplete-tab/complete-tab.js")
   script(type="module" src="js/complete-incomplete-tab/incomplete-tab.js")

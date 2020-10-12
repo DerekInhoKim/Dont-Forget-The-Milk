@@ -47,7 +47,7 @@ router.post('/:id/tasks/create-task', asyncHandler( async (req, res) => {
 
 router.put('/:id/update-task', asyncHandler( async (req, res) => {
 
-  const {taskName, dueDate, description, taskId} = req.body;
+  const {taskName, dueDate, description, status, taskId} = req.body;
   console.log(req.body)
   const task = await Task.findOne({
     where: {
@@ -61,6 +61,7 @@ router.put('/:id/update-task', asyncHandler( async (req, res) => {
         taskName: taskName,
         dueDate: null,
         description: description,
+        isComplete: status,
         where: {id: taskId}
       });
       console.log(task)
@@ -70,6 +71,7 @@ router.put('/:id/update-task', asyncHandler( async (req, res) => {
       taskName: taskName,
       dueDate: dueDate,
       description: description,
+      isComplete: status,
       where: {id: taskId}
     });
     console.log(task)

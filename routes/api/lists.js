@@ -84,7 +84,7 @@ router.get('/:listId/tasks', asyncHandler(async (req, res) => {
   const listId = req.params.listId
   const allTasks = await Task.findAll({
     where: {
-      listId
+      listId,
     }
   })
   res.json({allTasks})

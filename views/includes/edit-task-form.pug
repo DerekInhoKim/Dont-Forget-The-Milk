@@ -12,17 +12,14 @@ div(class="edit-task-form-holder")
         label(for='dueDate') Due Date
         input(class="dueDateField" type='text', name="dueDate", placeholder='')
       div
+        label(for='status') Due Date
+        select(class="status"  name="status", placeholder='')
+          option(value="false") Incomplete
+          option(value="true") Complete
+      div
         label(for='description') Description
         textarea(class="descriptionField" name="description", placeholder='')
       button(class="gen-button ") Update
-//- script(type="text/javascript").
-//-  const editTaskForm = document.querySelector(".edit-task-form-holder");
-
-//-     window.onclick = function(event) {
-//-     if (event.target === editTaskForm) {
-//-       editTaskForm.style.display = "none";
-//-     }
-//-   }
 script(type="text/javascript").
   const editTaskForm = document.querySelector(".edit-task-form-holder")
   const closeAddButton = document.querySelector(".close-edit-task-form");

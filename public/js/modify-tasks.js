@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", e => {
     // check authorization of user by adding an authorization header in the GET request
     let listId = localStorage.getItem("CURRENT_LIST")
 
-    const res = await fetch(`/api/lists/${listId}/tasks`, {
+    const res = await fetch(`/api/lists/${listId}/tasks/incompletedTasks`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem(
           "DFTM_USER_TOKEN"
@@ -48,36 +48,6 @@ document.addEventListener("DOMContentLoaded", e => {
     // extract tasks from the server response and dynamically generate HTML that is used to display the tasks
 
     const {allTasks}  = await res.json()
-
-    // let overdue = 0;
-    // let currentDate = new Date()
-    // let currentDateVals =
-    // [currentDate.getFullYear(),
-    //   currentDate.getMonth()+1,
-    // currentDate.getDate(),
-    // ]
-    // console.log(allTasks)
-    // document.querySelector(".total-task-span").innerHTML = allTasks.length
-    // allTasks.forEach(task => {
-    //   let dueDate = task.dueDate
-    //   if(dueDate !== null){
-    //     dueDate = dueDate.slice(0, 10).split('-')
-    //     console.log('due date:', dueDate)
-    //     console.log(currentDateVals)
-
-    //     if(currentDateVals[0] > dueDate[0]){
-    //       overdue +=1
-    //       return;
-    //     } else if(currentDateVals[0] == dueDate[0] && currentDateVals[1] > dueDate[1]) {
-    //       overdue += 1
-    //       return
-    //     } else if(currentDateVals[1] == dueDate[1] && currentDateVals[2] > dueDate[2]){
-    //       overdue += 1
-    //     }
-    //   }
-
-    // })
-    // document.querySelector(".overdue-tasks-span").innerHTML = overdue;
 
     const taskListContainer = document.querySelector(".task-list-container")
     allTasks.forEach(task => {
@@ -169,31 +139,6 @@ document.addEventListener("DOMContentLoaded", e => {
 
       const {task}  = await res.json()
 
-      // let overdue = document.querySelector(".overdue-tasks-span")
-      // console.log('overdue container:', overdue)
-      // let currentDate = new Date()
-      // let currentDateVals =
-      // [currentDate.getFullYear(),
-      //   currentDate.getMonth()+1,
-      // currentDate.getDate(),
-      // ]
-      // let dueDate = task.dueDate
-      // if(dueDate !== null){
-      //   dueDate = dueDate.slice(0, 10).split('-')
-      //   console.log('due date:', dueDate)
-      //   console.log(currentDateVals)
-
-      //   if(currentDateVals[0] > dueDate[0]){
-      //      overdue.innerHTML -= 1
-      //     return;
-      //   } else if(currentDateVals[0] == dueDate[0] && currentDateVals[1] > dueDate[1]) {
-      //     overdue.innerHTML -= 1
-      //     return
-      //   } else if(currentDateVals[1] == dueDate[1] && currentDateVals[2] > dueDate[2]){
-      //     overdue.innerHTML -= 1
-      //   }
-      // }
-
     } catch(err) {
       console.error(err)
     }
@@ -225,7 +170,8 @@ document.addEventListener("DOMContentLoaded", e => {
       const deletedTask = document.querySelector(`[data-task-id="${data.deletedTask}"]`)
       deletedTask.remove()
 
-      document.querySelector(".total-task-span").innerHTML -= 1
+      const totalTasks = document.querySelector(".total-task-span")
+      totalTasks.innerHTML -= 1
 
 
     } catch(err) {
@@ -255,7 +201,15 @@ document.addEventListener("DOMContentLoaded", e => {
       }
       const description = formData.get("description")
 
-      const body = {taskName, dueDate, description, taskId}
+      let status = document.querySelector(".status").value;
+
+      if(status === "false") {
+        status = false
+      }else {
+        status = true
+      }
+
+      const body = {taskName, dueDate, description, status, taskId}
 
       try{
         const res = await fetch(`api/tasks/${taskId}/update-task`, {
@@ -272,6 +226,12 @@ document.addEventListener("DOMContentLoaded", e => {
         //Functionality to display increment overdue tasks span if new task has a due date that has passed.
         // console.log("DueDate", new Date(dueDate))
         // console.log(new Date())
+        if(status === true) {
+          const completedTaskSpan = document.querySelector(".completed-tasks-span")
+          let numericalCompletedTasks = Number(completedTaskSpan.innerHTML)
+          completedTaskSpan.innerHTML = numericalCompletedTasks + 1
+
+        }
         if(new Date(dueDate) < new Date()){
           const overdueTasksSpan = document.querySelector(".overdue-tasks-span")
           let overdueTasksValue = overdueTasksSpan.innerHTML
@@ -319,7 +279,7 @@ document.addEventListener("DOMContentLoaded", e => {
 
   tasksContainer.addEventListener("click", async(e)=> {
     e.preventDefault();
-    e.stopPropagation();
+    e.stopImmediatePropagation();
     if(e.target.className.startsWith('delete')) {
       const overdueSpan = document.querySelector(".overdue-tasks-span")
       const taskId = e.target.dataset.id
@@ -341,9 +301,6 @@ document.addEventListener("DOMContentLoaded", e => {
         completedSpan.innerHTML = completedNum
 
       }
-
-      let allTasksValue = allTasksSpan.innerHTML
-      allTasksSpan.innerHTML = Number(`${allTasksValue}`) - 1
 
       deleteTask(taskId)
 
