@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', e => {
       // set up event listeners on delete buttons
 
       const scriptForDeleteButtons = document.createElement('script')
-      scriptForDeleteButtons.setAttribute('src', './js/delete-tasks.js')
+      scriptForDeleteButtons.setAttribute('src', './js/modify-tasks.js')
       scriptForDeleteButtons.classList.add('script')
       taskListContainer.appendChild(scriptForDeleteButtons)
 

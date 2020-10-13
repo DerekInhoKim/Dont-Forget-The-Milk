@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       // console.log(dueDate)
       const today = (Date.parse(new Date()))
       //Add one to the counter, if the parsed due date is less than today's date, and is not NaN
-      if(dueDate < new Date() && today !== NaN){
+      if(dueDate < new Date() && today !== NaN && tasks.isComplete === false){
         counter++
       }
     })

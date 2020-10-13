@@ -191,8 +191,6 @@ document.addEventListener("DOMContentLoaded", async()=> {
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-
-      // THIS STOPS THE DUPLICATION OF LISTS DURING CREATION
       e.stopImmediatePropagation();
       const addForm = document.querySelector(".add-list-form-holder");
       addForm.style.display = "block";
@@ -260,9 +258,10 @@ document.addEventListener("DOMContentLoaded", async()=> {
         }
       });
       // displays user name on the nav ========================================
-      const navUserName = document.getElementById("navUserName");
-      console.log("USER NAME!!!!", localStorage.getItem("DFTM_USER_NAME"));
-      navUserName.innerText = localStorage.getItem("DFTM_USER_NAME") + "!";
+      // const navUserName = document.getElementById("navUserName");
+      // // console.log(navUserName)
+      // // console.log("USER NAME!!!!", localStorage.getItem("DFTM_USER_NAME"));
+      // navUserName.innerText = localStorage.getItem("DFTM_USER_NAME") + "!";
 
   } catch (e) {
     console.error(e);

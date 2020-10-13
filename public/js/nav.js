@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     const data = await res.json();
 
     const welcomeMessage = document.querySelector('.welcome-container');
-    welcomeMessage.innerHTML = `Welcome ${data.name}!`;
+    welcomeMessage.innerHTML = `Welcome ${data.name}`;
 
   } catch (error) {
     console.warn(error);
