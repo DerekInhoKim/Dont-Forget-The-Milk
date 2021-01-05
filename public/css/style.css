@@ -12,8 +12,7 @@ body {
   background-color: #D7E7F5;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  height: 50%;
+  overflow-x: hidden;
 
 }
 
@@ -1957,8 +1956,8 @@ button:hover {
 
 .instructions {
   border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
-  width: 70%;
-  margin-left: 50px;
+  width: 71%;
+  margin-left: 65px;
   margin-right: 0px;
 }
 

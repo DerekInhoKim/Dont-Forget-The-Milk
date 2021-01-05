@@ -69,8 +69,6 @@ const restoreUser = (req, res, next) => {
 
 
 
-
-
   return jwt.verify(token, secret, null, async (error, jwtPayload) => {
 
     if (error) {
