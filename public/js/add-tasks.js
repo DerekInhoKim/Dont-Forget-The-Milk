@@ -5,19 +5,22 @@ document.addEventListener('DOMContentLoaded', e => {
 
   const addTaskForm = document.querySelector(".add-task-form")
   // send a post request to create a new task
-
   addTaskForm.addEventListener("submit", async(e) => {
 
     e.preventDefault()
     e.stopPropagation();
-
-
+    const selectListPopup = document.querySelector(".select-list-popup-holder")
     let listId = localStorage.getItem("CURRENT_LIST")
-    // console.log(listId)
+    console.log(listId)
+    if(listId === null) {
+      selectListPopup.style.display = "block"
+      return
+    }
+    console.log(listId)
     const formData = new FormData(addTaskForm)
     const newTask = formData.get("new-task")
-
-    const body = { newTask, listId }
+    let userId = localStorage.getItem("DFTM_USER_ID")
+    const body = { newTask, listId, userId }
     try{
       const res = await fetch(`api/lists/${listId}/tasks/create-task`, {
         method: "POST",
@@ -42,7 +45,6 @@ document.addEventListener('DOMContentLoaded', e => {
       // document.querySelector(".total-task-span").innerHTML ++
       const { task } = await res.json()
 
-
       // clear old script tags
 
       const oldTaskContainer = document.getElementById("task-list-container")
@@ -51,7 +53,6 @@ document.addEventListener('DOMContentLoaded', e => {
       if(scriptElement) {
         oldTaskContainer.removeChild(scriptElement)
       }
-
 
       const taskListContainer = document.querySelector(".task-list-container")
       let buttonContainer = document.createElement('div')
@@ -111,7 +112,6 @@ document.addEventListener('DOMContentLoaded', e => {
 
     } catch(err) {
       console.error(err)
-
     }
   })
 })

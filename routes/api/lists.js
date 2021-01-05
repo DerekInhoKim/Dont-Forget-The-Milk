@@ -102,12 +102,14 @@ router.get('/:listId/tasks', asyncHandler(async (req, res) => {
 router.post('/:id/tasks/create-task', asyncHandler( async (req, res) => {
 
   const { newTask, listId } = req.body;
+
   const task = await Task.create({
     taskName: newTask,
     listId: listId
   })
   // console.log(task)
   res.json({ task })
+
 }))
 
 router.get('/:id/tasks/completedTasks', asyncHandler(async ( req, res, next) => {

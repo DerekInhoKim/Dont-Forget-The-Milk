@@ -76,18 +76,21 @@ document.addEventListener('DOMContentLoaded', e => {
 
         const {allTasks, count}  = await res.json()
 
+        const totalTaskSpan = document.querySelector(".total-task-span")
+        totalTaskSpan.innerHTML = allTasks.length
         const completedTasksSpan = document.querySelector(".completed-tasks-span")
         completedTasksSpan.innerHTML = count
 
         let overdue = 0;
         let currentDate = new Date()
         let currentDateVals =
-        [currentDate.getFullYear(),
+        [
+          currentDate.getFullYear(),
           currentDate.getMonth()+1,
-        currentDate.getDate(),
+          currentDate.getDate(),
         ]
         // console.log(allTasks)
-        document.querySelector(".total-task-span").innerHTML = allTasks.length
+        // document.querySelector(".total-task-span").innerHTML = allTasks.length
         allTasks.forEach(task => {
           let dueDate = task.dueDate
           if(dueDate !== null){
@@ -95,17 +98,20 @@ document.addEventListener('DOMContentLoaded', e => {
             // console.log('due date:', dueDate)
             // console.log(currentDateVals)
             if(currentDateVals[0] > dueDate[0]){
+              console.log('first')
               overdue +=1
               return;
             } else if(currentDateVals[0] == dueDate[0] && currentDateVals[1] > dueDate[1]) {
+              console.log('second')
               overdue += 1
               return
             } else if(currentDateVals[1] == dueDate[1] && currentDateVals[2] > dueDate[2]){
+              console.log('third')
               overdue += 1
             }
           }
         })
-
+        console.log('hello')
         document.querySelector(".overdue-tasks-span").innerHTML = overdue;
 
         const taskListContainer = document.querySelector(".task-list-container")

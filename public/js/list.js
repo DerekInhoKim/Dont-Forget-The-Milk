@@ -98,6 +98,7 @@ const fetchList = async (userId) => {
       button.addEventListener("click", async e => {
         // handleDelete(button.dataset.deletelistId))
         deleteButtonId = button.dataset.deletelistId;
+        console.log(deleteButtonId)
       try {
         const res = await fetch(`/api/lists/${deleteButtonId}`, {
           method: "DELETE",

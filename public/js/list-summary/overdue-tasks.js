@@ -39,18 +39,54 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     const allTasks = taskRes.allTasks
 
     //Loop through each task, to find the number of tasks that are complete
-    allTasks.forEach(tasks => {
-      const dueDate = (Date.parse(tasks.dueDate))
-      // console.log(dueDate)
-      const today = (Date.parse(new Date()))
-      //Add one to the counter, if the parsed due date is less than today's date, and is not NaN
-      if(dueDate < new Date() && today !== NaN && tasks.isComplete === false){
-        counter++
-      }
-    })
+    // allTasks.forEach(tasks => {
+    //   const dueDate = (Date.parse(tasks.dueDate))
+    //   // console.log(dueDate)
+    //   const today = (Date.parse(new Date()))
+    //   //Add one to the counter, if the parsed due date is less than today's date, and is not NaN
+    //   if(dueDate < new Date() && today !== NaN && tasks.isComplete === false){
+    //     counter++
+    //   }
+    // })
 
-    //Set the innerHTML of our completeTaskSpan to equal the count of all tasks from each list which have been filtered
-    overdueTasksSpan.innerHTML = counter;
+    // //Set the innerHTML of our completeTaskSpan to equal the count of all tasks from each list which have been filtered
+    // overdueTasksSpan.innerHTML = counter;
+
+    // FIXES THE ABOVE COMMENTED OUT CODE TO DISPLAY THE CORRECT NUMBER OF OVERDUE
+    // TASKS ACROSS ALL LISTS
+
+    let overdue = 0;
+        let currentDate = new Date()
+        let currentDateVals =
+        [
+          currentDate.getFullYear(),
+          currentDate.getMonth()+1,
+          currentDate.getDate(),
+        ]
+        // console.log(allTasks)
+        // document.querySelector(".total-task-span").innerHTML = allTasks.length
+        allTasks.forEach(task => {
+          let dueDate = task.dueDate
+          if(dueDate !== null){
+            dueDate = dueDate.slice(0, 10).split('-')
+            // console.log('due date:', dueDate)
+            // console.log(currentDateVals)
+            if(currentDateVals[0] > dueDate[0]){
+              console.log('first')
+              overdue +=1
+              return;
+            } else if(currentDateVals[0] == dueDate[0] && currentDateVals[1] > dueDate[1]) {
+              console.log('second')
+              overdue += 1
+              return
+            } else if(currentDateVals[1] == dueDate[1] && currentDateVals[2] > dueDate[2]){
+              console.log('third')
+              overdue += 1
+            }
+          }
+        })
+
+        document.querySelector(".overdue-tasks-span").innerHTML = overdue;
   })
 
   //Set up event listeners for all tasks that are displayed on the page, to update the

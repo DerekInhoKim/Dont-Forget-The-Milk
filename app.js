@@ -51,9 +51,6 @@ app.use('/api/tasks', displayTasks);
 // app.use("/api/tasks", tasksRouter);
 
 
-
-
-
 // unhandled requests
   app.use((req, res, next) => {
     const error = new Error("Resource could not be found.");
