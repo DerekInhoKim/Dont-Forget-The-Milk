@@ -170,12 +170,14 @@ document.addEventListener("DOMContentLoaded", e => {
       let overdue = document.querySelector(".overdue-tasks-span")
       // console.log('overdue container:', overdue)
       let currentDate = new Date()
+      console.log('current date:', currentDate)
       let currentDateVals =
       [currentDate.getFullYear(),
         currentDate.getMonth()+1,
       currentDate.getDate(),
       ]
       let dueDate = task.dueDate
+      console.log(dueDate)
       if(dueDate !== null){
         dueDate = dueDate.slice(0, 10).split('-')
         // console.log('due date:', dueDate)
@@ -276,7 +278,9 @@ document.addEventListener("DOMContentLoaded", e => {
         completedTaskSpan.innerHTML = numericalCompletedTasks - 1
       }
 
+
       const body = {taskName, dueDate, description, status, taskId}
+      console.log(body)
       try{
         const res = await fetch(`api/tasks/${taskId}/update-task`, {
           method: "PUT",

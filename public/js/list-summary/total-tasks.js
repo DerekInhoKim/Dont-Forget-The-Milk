@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     })
 
     const listsRes = await allLists.json()
-    // console.log(listsRes.lists)
+    console.log(listsRes.lists)
     counter = 0;
     listsRes.lists.forEach( async list => {
       // console.log(list.task.length)
@@ -41,45 +41,45 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   //For each task, we set up an event listener to find which task is being selected.
   //ADD EVENT LISTENERS TO DELETE BUTTON TO CHANGE THE NUMBERS UNDER THESE SPANS
   //=================================================================================================================================================================
-  selectedTask.forEach(task => {
-    task.addEventListener("click", async event => {
-      event.stopImmediatePropagation
-      taskId = event.target.id
+  // selectedTask.forEach(task => {
+  //   task.addEventListener("click", async event => {
+  //     event.stopImmediatePropagation
+  //     taskId = event.target.id
 
-      const tasksList = await fetch(`/api/tasks/${taskId}`, {
-        headers: {
-          "Authorization": `Bearer: ${token}`
-        }
-      })
+  //     const tasksList = await fetch(`/api/tasks/${taskId}`, {
+  //       headers: {
+  //         "Authorization": `Bearer: ${token}`
+  //       }
+  //     })
 
-      listId = tasksList.listId
+  //     listId = tasksList.listId
 
-      try {
-        //We grab all the tasks, from the specific list
-        const res = await fetch(`/api/lists/${listId}`, {
-          headers: {
-            "Authorization": `Bearer: ${token}`
-          }
-        })
+  //     try {
+  //       //We grab all the tasks, from the specific list
+  //       const res = await fetch(`/api/lists/${listId}`, {
+  //         headers: {
+  //           "Authorization": `Bearer: ${token}`
+  //         }
+  //       })
 
-        //if the user's authrozation is not valid, they will be redirected to log-in
-        if(res.status === 401) {
-          window.location.href = "/log-in"
-        }
+  //       //if the user's authrozation is not valid, they will be redirected to log-in
+  //       if(res.status === 401) {
+  //         window.location.href = "/log-in"
+  //       }
 
-        const { tasks } = await res.json()
+  //       const { tasks } = await res.json()
 
-        //We take the element with the class total-task-span and set the innerHTML of the div to display the number of all tasks.
-        totalTasksSpan.innerHTML = tasks.length;
+  //       //We take the element with the class total-task-span and set the innerHTML of the div to display the number of all tasks.
+  //       totalTasksSpan.innerHTML = tasks.length;
 
 
-      } catch (e){
-        console.log(e)
+  //     } catch (e){
+  //       console.log(e)
 
-      }
-    })
-    //==============================================================================================================================================================================
-  })
+  //     }
+  //   })
+  //   //==============================================================================================================================================================================
+  // })
 
 
 })

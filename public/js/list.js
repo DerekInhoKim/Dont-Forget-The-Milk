@@ -47,7 +47,7 @@ const fetchList = async (userId) => {
   //add a list button
   let addListButton = document.getElementById("add-list-button");
   addListButton.addEventListener("click", e => {
-    e.stopPropagation();
+    e.stopImmediatePropagation();
     e.preventDefault();
     const addForm = document.querySelector(".add-list-form-holder");
     addForm.style.display = "block";
@@ -98,6 +98,7 @@ const fetchList = async (userId) => {
       button.addEventListener("click", async e => {
         // handleDelete(button.dataset.deletelistId))
         deleteButtonId = button.dataset.deletelistId;
+        console.log(deleteButtonId)
       try {
         const res = await fetch(`/api/lists/${deleteButtonId}`, {
           method: "DELETE",
@@ -228,6 +229,7 @@ document.addEventListener("DOMContentLoaded", async()=> {
 
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
+        e.stopImmediatePropagation()
         const formData = new FormData(form);
         const listName = formData.get("listName")
         const body = { listName };
