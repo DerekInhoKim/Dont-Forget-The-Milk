@@ -1,5 +1,5 @@
-
 import { errorNotifications } from "./error-notifications.js";
+
 document.addEventListener("DOMContentLoaded", async (event) => {
   try {
     const res = await fetch("https://type.fit/api/quotes")
