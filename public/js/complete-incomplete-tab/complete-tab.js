@@ -36,8 +36,6 @@ document.addEventListener("DOMContentLoaded", event => {
       // console.log(allTasksArr)
       allTasksArr.forEach(task => {
 
-
-
         const taskListContainer = document.querySelector(".task-list-container")
         let buttonContainer = document.createElement('div')
         let deleteButtonContainer = document.createElement('div')

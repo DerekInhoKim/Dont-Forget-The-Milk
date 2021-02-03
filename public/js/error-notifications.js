@@ -15,7 +15,7 @@ export const errorNotifications = async (error) => {
       errorsHtml = errors.map(
         (message) => `
           <div class="alert alert-danger">
-              ${message}
+              <li>${message}</li>
           </div>
         `
       );
