@@ -877,6 +877,7 @@ button:hover {
   font-size: 14px;
   opacity: .6;
   font-weight: 500;
+  height: 100px;
   font-family: MuseoSansRounded, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #fff;
   max-width: 275px;
@@ -895,7 +896,7 @@ button:hover {
   margin-left: 60px;
   max-width: 515px;
   display: grid;
-  grid-template-rows: 310px 1fr;
+  grid-template-rows: 100px 1fr;
 }
 
 .right-panel__login-button{
@@ -922,8 +923,8 @@ button:hover {
 
 .right-panel__welcome-group {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  /* grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr; */
 }
 
 .right-panel__welcome-text-container{
@@ -932,6 +933,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  justify-content: center;
   align-items: flex-start;
 }
 .right-panel__welcome-text {
@@ -944,8 +946,8 @@ button:hover {
 
 .right-panel__welcome-cow {
   grid-column-start: 2;
-  grid-row-start: 1;
-  height: 250%;
+  grid-row-start: 2;
+  height: 100%;
 
 }
 .registration-container {
